@@ -1,83 +1,6 @@
----
-title: FaaS API Reference
+# 账户关联相关
 
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-
-
-toc_footers:
-  - <a href='#'>Sign Up for Partner Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - connect
-  - webhook
-  - errors
-
-search: true
-
-code_clipboard: true
-
-meta:
-  - name: description
-    content: Documentation for the FaaS API
----
-
-# 简介
-
-欢迎使用Cabital FaaS API，FaaS API 使合作伙伴能够合规、合法的将Cabital的法币入金途径集成到合作伙伴的系统中。
-
-API 功能简介：
-
-- 提供用户侧的 Authentication 与 Authorization，打通双方的用户体系
-- 提供用户的账号余额，以及划转到合作伙伴方的同名账户，并支持C+T（转换+划转）
-- 通过API的相互调用，确认用户的同名，以及交换KYC基础信息，支持合规的要求
-
-您可以根据本文档提供的API来使用服务，支持的全部API请参见
-
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: Bearer <Token>`
-
-<aside class="notice">
-你必须替换 <code>Token</code> 为相关的用户Token.
-</aside>
-
-# 账户操作相关
-
-## 获取用户提现限额
+## 获取用户关联状况
 
 
 ```shell
@@ -175,7 +98,7 @@ Parameter | Default | Description
 partner_id | true | faas的partner id
 
 
-## 账户可用余额
+## 关联同名用户
 
 ```shell
 curl "/faas/partners/{partner_id}/balances" \
@@ -233,7 +156,7 @@ Parameter | Default | Description
 --------- | ------- | -----------
 partner_id | true | faas的partner id
 
-## Delete a Specific Kitten
+## 获取用户的OTP状况
 
 ```ruby
 require 'kittn'

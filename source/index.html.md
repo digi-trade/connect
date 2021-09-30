@@ -11,11 +11,13 @@ toc_footers:
 
 includes:
   - authentication
+  - openid-connect
   - partner
   - connect
   - account
   - webhook
   - errors
+
 
 search: true
 

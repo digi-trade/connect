@@ -16,6 +16,7 @@ includes:
   - account
   - webhook
   - errors
+  - changelog
 
 search: true
 

@@ -12,10 +12,11 @@ Callback 事件预计平均会在 1-5 分钟后到达，但理论上可能需要
 类型 | 描述
 --------- | -----------
 LINKED | 用户成功连接后通知
-Created | 用户成功开户后通知，本方账户开通
-ReadyForMatching | 我方KYC通过，等待合作方提交同名验证
-Matched | 同名验证通过，完全开通同账户转账
-Rejected | 同名验证拒绝，多种因素，
+CREATED | 用户成功开户后通知，本方账户开通
+READYFORMATCHING | 我方KYC通过，等待合作方提交同名验证
+MATCHED | 同名验证通过，完全开通同账户转账
+REJECTED | 同名验证拒绝，多种因素
+UNLINKED | 用户主动关闭与合作方的账户关联
 
 账户关联的状态发生变化时，我们将向您发送带有 JSON 负载的 POST 请求到集成时提供给我们的 URL。
 ### 事件内容 JSON Payload

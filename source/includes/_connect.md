@@ -27,6 +27,7 @@ account_id | true | faas的Cabital账户id
   "match_status" : "MATCHED",
   "otp_ready" : true,
   "email_address" : "john.doe@email.com",
+  "kyc_token" : "8yzhvhv87dahfb",
   "limits": {}
 }
 ```
@@ -37,6 +38,7 @@ account_id | true | faas的Cabital账户id
 match_status | string(ENUM) | 身份匹配状态 `MATCHED,READY_FOR_MATCHING,PENDING,REJECTED`
 otp_ready | bool | 客户是否已经在 Cabital 绑定完成OTP，其在提现的时候需要附上。
 email_address | string | 用户在本方的 Email， 供合作方匹配
+kyc_token | string | 用户在本方的 KYC Token 供合作方使用
 limits | object | 当前提款限额 （待定）
 
 
@@ -49,8 +51,7 @@ limits | object | 当前提款限额 （待定）
 ```shell
 curl "/faas/partners/faas_partner/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/match" \
   -X "POST" \
-  -H "Authorization: Bearer jwt_token" \
-  -d '{ "name": "John Doe", "id": "J12345678D", "id_document": "PASSPORT", "DOB": "19700101" }' 
+  -d '{ "name": "John Doe", "id": "J12345678D", "id_document": "PASSPORT", "dob": "19700101" }' 
 ```
 
 
@@ -80,9 +81,9 @@ dob | string | 身份文件上的生日（Date of birth）
 ```json
 {
   "result": "MISMATCH",
-  "MISMATCH": [
+  "mismatch_fields": [
     "name",
-    "DOB"
+    "dob"
   ]
 }
 ```

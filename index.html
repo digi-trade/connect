@@ -418,7 +418,6 @@
 <p>API Key是客户访问FaaS认证的唯一方法，所有的API都需要签名并包含以下HTTP Header:</p>
 
 <ul>
-<li>ACCESS-KEY 客户的Access Key，请联系服务顾问获取</li>
 <li>ACCESS-SIGN 在客户系统中根据下面的规则生成的消息签名</li>
 <li>ACCESS-TIMESTAMP API访问的时间戳</li>
 <li>ACCESS-NONCE 请求发送的唯一的数字或者字符串，每个API请求必须选择不同的Nonce，接收系统会以NONCE作为调用消息的幂等处理</li>
@@ -436,7 +435,7 @@
 
 <p>ACCESS-TIMESTAMP 以秒为单位从Unix Epoch到当前的数字，客户请求的时间戳必须与API服务的时间差别30秒以内，否则将被认为是过期或者直接拒绝。</p>
 
-<aside class="warning">请不要分享你的API Key与Secrets，否则会造成信息泄漏以及不必要的交易费损失。如Secret出现异常，请立刻与你的服务顾问联系并立刻更新。</aside>
+<aside class="warning">请不要分享你的Secrets，否则会造成信息泄漏以及不必要的交易费损失。如Secret出现异常，请立刻与你的服务顾问联系并立刻更新。</aside>
 <h1 id='171d707637'>合作方配置</h1>
 <p>合作方系统API是提供给合作方用来感知合作开户状态，系统基础设定，和非用户级别的设定。</p>
 <h2 id='79fee25901'>获取合作方的配置</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://faas.cabital.com/faas/faas_partner/config"</span>
@@ -497,24 +496,34 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>match_status</td>
+<td>symobl</td>
 <td>string(ENUM)</td>
-<td>身份匹配状态 <code>MATCHED,READY_FOR_MATCHING,PENDING,REJECTED</code></td>
+<td>货币标志</td>
 </tr>
 <tr>
-<td>otp_ready</td>
-<td>bool</td>
-<td>客户是否已经在 Cabital 绑定完成OTP，其在提现的时候需要附上。</td>
+<td>type</td>
+<td>int(ENUM)</td>
+<td>货币类型，详见下面解释</td>
 </tr>
 <tr>
-<td>email_address</td>
-<td>string</td>
-<td>用户在本方的 Email， 供合作方匹配</td>
+<td>status</td>
+<td>string(ENUM)</td>
+<td>状态，详见下面解释</td>
 </tr>
 <tr>
-<td>limits</td>
-<td>object</td>
-<td>当前提款限额 （待定）</td>
+<td>deposit_methods</td>
+<td>list</td>
+<td>当前入金方式</td>
+</tr>
+<tr>
+<td>deposit_methods</td>
+<td>list</td>
+<td>当前出金方式</td>
+</tr>
+<tr>
+<td>cap_limit ｜ string(number)</td>
+<td>限额</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='enum'>Enum解释</h3>
@@ -574,7 +583,7 @@
 </tbody></table>
 
 <aside class="success">
-整个合作方的限额
+限额为整个合作方
 </aside>
 <h2 id='get'>获取最新的报价 (GET)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://faas.cabital.com/faas/faas_partner/quotes/USDT-EUR"</span>
 </code></pre></div><h3 id='http-2'>HTTP 请求</h3>
@@ -681,6 +690,7 @@
   </span><span class="nl">"match_status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MATCHED"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"otp_ready"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nl">"email_address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"kyc_token"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"8yzhvhv87dahfb"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"limits"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
@@ -707,6 +717,11 @@
 <td>用户在本方的 Email， 供合作方匹配</td>
 </tr>
 <tr>
+<td>kyc_token</td>
+<td>string</td>
+<td>用户在本方的 KYC Token 供合作方使用</td>
+</tr>
+<tr>
 <td>limits</td>
 <td>object</td>
 <td>当前提款限额 （待定）</td>
@@ -718,8 +733,7 @@
 </aside>
 <h2 id='eb54a92e30'>关联同名用户</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/faas/partners/faas_partner/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/match"</span> <span class="se">\</span>
   <span class="nt">-X</span> <span class="s2">"POST"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer jwt_token"</span> <span class="se">\</span>
-  <span class="nt">-d</span> <span class="s1">'{ "name": "John Doe", "id": "J12345678D", "id_document": "PASSPORT", "DOB": "19700101" }'</span> 
+  <span class="nt">-d</span> <span class="s1">'{ "name": "John Doe", "id": "J12345678D", "id_document": "PASSPORT", "dob": "19700101" }'</span> 
 </code></pre></div><h3 id='http-2'>HTTP请求</h3>
 <p><code>PUT /faas/partners/&lt;partner_id&gt;/account/match</code></p>
 <h3 id='url-2'>URL参数</h3>
@@ -776,9 +790,9 @@
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MISMATCH"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"MISMATCH"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nl">"mismatch_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"DOB"</span><span class="w">
+    </span><span class="s2">"dob"</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
@@ -1465,20 +1479,24 @@ account_id | true | Cabital提供的账户id -->
 <td>用户成功连接后通知</td>
 </tr>
 <tr>
-<td>Created</td>
+<td>CREATED</td>
 <td>用户成功开户后通知，本方账户开通</td>
 </tr>
 <tr>
-<td>ReadyForMatching</td>
+<td>READYFORMATCHING</td>
 <td>我方KYC通过，等待合作方提交同名验证</td>
 </tr>
 <tr>
-<td>Matched</td>
+<td>MATCHED</td>
 <td>同名验证通过，完全开通同账户转账</td>
 </tr>
 <tr>
-<td>Rejected</td>
-<td>同名验证拒绝，多种因素，</td>
+<td>REJECTED</td>
+<td>同名验证拒绝，多种因素</td>
+</tr>
+<tr>
+<td>UNLINKED</td>
+<td>用户主动关闭与合作方的账户关联</td>
 </tr>
 </tbody></table>
 

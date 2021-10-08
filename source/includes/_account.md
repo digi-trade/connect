@@ -373,7 +373,7 @@ curl "/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/
 
 ### HTTP请求
 
-`GET /faas/partners/<partner_id>/accounts/<account_id>//transfers/<trasfer_id>`
+`GET /faas/partners/<partner_id>/accounts/<account_id>/transfers/<trasfer_id>`
 
 ### URL参数
 
@@ -432,7 +432,7 @@ curl -X POST "/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c
 
 ### HTTP请求
 
-`POST /faas/partners/<partner_id>/accounts/<account_id>/conversions`
+`POST /faas/partners/<partner_id>/accounts/<account_id>/transfers`
 
 ### URL参数
 

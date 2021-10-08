@@ -43,6 +43,44 @@ staus | string(enum) | true | 账户关联的状态
 staus | datestamp | true | 事件产生的时间，格式为[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
 data | object | false | 账户关联的一些额外数据，比如Shared Token
 
+
+<!-- ## Transfer事件
+
+当对手方发起划转后，系统会根据现在的划转状态发送 Transfer事件 事件，其包含以下几个状态：
+
+- SUCCESS
+- FAILED
+
+<aside class="notice">
+通常不需要监听 Transfer 事件，因为Transfer结果是同期返回给对手方的。
+</aside>
+### 事件内容 JSON Payload
+
+> JSON Payload
+ 
+```json
+{
+    "transfer_id": "4c416854-8970-4838-99ad-febc437ac81d",
+    "amount": "1000.365",
+    "symbol": "USDT",
+    "direction": "DEBIT",
+    "conversion_id": "d81adf6d-0322-41d7-8c32-669203e35f11",
+    "external_id": "adb8f31d-7a71-4003-85d7-3ac58158461f",
+    "created_at": 1633445162,
+    "status": "SUCCESS"
+}
+```
+
+字段 | 类型 | 描述
+--------- | ------- | -----------
+transfer_id | string(uuid) | 划转订单ID
+amount | string(number) | 数量
+symbol | string | 划转的货币
+direction | string(enum) | 划转的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
+conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
+external_id | string(50) | 合作方的第三方ID，非必需
+status | string(enum) | 划转的结果，SUCCESS / FAILED -->
+
 ## 事件签名
 
 Webhook 签名规则与API认证一致，请参考[API认证](#api)

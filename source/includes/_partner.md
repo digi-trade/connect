@@ -56,10 +56,12 @@ partner_id | true | faas的partner id
 
 字段 | 类型 | 描述
 --------- | ------- | ---------------
-match_status | string(ENUM) | 身份匹配状态 `MATCHED,READY_FOR_MATCHING,PENDING,REJECTED`
-otp_ready | bool | 客户是否已经在 Cabital 绑定完成OTP，其在提现的时候需要附上。
-email_address | string | 用户在本方的 Email， 供合作方匹配
-limits | object | 当前提款限额 （待定）
+symobl | string(ENUM) | 货币标志
+type | int(ENUM) | 货币类型，详见下面解释
+status | string(ENUM) | 状态，详见下面解释
+deposit_methods | list | 当前入金方式
+deposit_methods | list | 当前出金方式
+cap_limit ｜ string(number) | 限额
 ### Enum解释
 
 - 状态 Status
@@ -82,7 +84,7 @@ Bit位 | 描述
 2 | 数字货币
 
 <aside class="success">
-整个合作方的限额
+限额为整个合作方
 </aside>
 
 ## 获取最新的报价 (GET)

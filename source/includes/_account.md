@@ -271,7 +271,7 @@ major_ccy | string | 主要货，用于转换限额判定
 </aside>
 
 ### 错误处理
-！！！
+TBD
 
 
 ## 账户划转列表
@@ -438,6 +438,7 @@ account_id | true | Cabital提供的账户id
 --------- | ------- | -----------
 amount | string(number) | 数量
 symbol | string | 划转的货币
+otp | string | OTP的数值
 direction | string(enum) | 划转的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的唯一订单号，如重复订单将拒绝

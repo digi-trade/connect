@@ -389,6 +389,9 @@
             <a href="#5988541320" class="toc-h1 toc-link" data-title="版本变化">版本变化</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#0-1-1" class="toc-h2 toc-link" data-title="0.1.1">0.1.1</a>
+                  </li>
+                  <li>
                     <a href="#0-1-0" class="toc-h2 toc-link" data-title="0.1.0">0.1.0</a>
                   </li>
               </ul>
@@ -418,9 +421,10 @@
 <p>API Key是客户访问FaaS认证的唯一方法，所有的API都需要签名并包含以下HTTP Header:</p>
 
 <ul>
+<li>ACCESS-KEY 客户的Access Key，请联系服务顾问获取</li>
 <li>ACCESS-SIGN 在客户系统中根据下面的规则生成的消息签名</li>
 <li>ACCESS-TIMESTAMP API访问的时间戳</li>
-<li>ACCESS-NONCE 请求发送的唯一的数字或者字符串，每个API请求必须选择不同的Nonce，接收系统会以NONCE作为调用消息的幂等处理</li>
+<li>ACCESS-NONCE 请求发送的唯一的数字或者字符串，每个API请求必须选择不同的Nonce，接收系统会以NONCE作为调用消息的幂等处理，幂等处理有60分钟的时间区间，在60分钟内的系统会自动忽略第一笔之外的请求，超过60分钟提交同样的请求将视为新的调用。</li>
 </ul>
 
 <p>所有的访问必须设置 <code>Content-Type</code> 为 <code>application/json</code>，并且内容为正规的的JSON。</p>
@@ -440,21 +444,7 @@
 <p>合作方系统API是提供给合作方用来感知合作开户状态，系统基础设定，和非用户级别的设定。</p>
 <h2 id='79fee25901'>获取合作方的配置</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://faas.cabital.com/faas/faas_partner/config"</span>
 </code></pre></div><h3 id='http'>HTTP 请求</h3>
-<p><code>GET /faas/partners/&lt;partner_id&gt;/config</code></p>
-<h3 id='url'>URL参数</h3>
-<table><thead>
-<tr>
-<th>参数</th>
-<th>是否必须</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>partner_id</td>
-<td>true</td>
-<td>faas的partner id</td>
-</tr>
-</tbody></table>
+<p><code>GET /api/v1/config</code></p>
 
 <blockquote>
 <p>获得以下JSON结构体:</p>
@@ -471,7 +461,20 @@
             </span><span class="nl">"withdrew_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SOL"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"cap_limit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500"</span><span class="w">
+            </span><span class="nl">"limits"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"withdraw"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"deposit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"conversion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"symobl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
@@ -483,7 +486,21 @@
             </span><span class="nl">"withdrew_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"SEPA"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"cap_limit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000000"</span><span class="w">
+            </span><span class="p">,</span><span class="w">
+            </span><span class="nl">"limits"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"withdraw"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"deposit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"conversion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -521,9 +538,9 @@
 <td>当前出金方式</td>
 </tr>
 <tr>
-<td>cap_limit ｜ string(number)</td>
+<td>cap_limit</td>
+<td>string(number)</td>
 <td>限额</td>
-<td></td>
 </tr>
 </tbody></table>
 <h3 id='enum'>Enum解释</h3>
@@ -548,12 +565,12 @@
 <tr>
 <td>2</td>
 <td>2</td>
-<td>允许转出 (Cabile -&gt; Partner)</td>
+<td>允许转出 (Cabital -&gt; Partner)</td>
 </tr>
 <tr>
 <td>3</td>
 <td>4</td>
-<td>允许转入 (Partner -&gt; Cabile)</td>
+<td>允许转入 (Partner -&gt; Cabital)</td>
 </tr>
 <tr>
 <td>4</td>
@@ -587,8 +604,8 @@
 </aside>
 <h2 id='get'>获取最新的报价 (GET)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://faas.cabital.com/faas/faas_partner/quotes/USDT-EUR"</span>
 </code></pre></div><h3 id='http-2'>HTTP 请求</h3>
-<p><code>GET /faas/partners/&lt;partner_id&gt;/quotes/&lt;code_pair&gt;</code></p>
-<h3 id='url-2'>URL参数</h3>
+<p><code>GET /api/v1/quotes/&lt;code_pair&gt;</code></p>
+<h3 id='url'>URL参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -596,11 +613,6 @@
 <th>描述</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>partner_id</td>
-<td>true</td>
-<td>faas的partner id</td>
-</tr>
 <tr>
 <td>code_pair</td>
 <td>true</td>
@@ -642,6 +654,11 @@
 <td>报价的唯一ID，格式为 事件戳:报价货币对:报价目的</td>
 </tr>
 <tr>
+<td>quote</td>
+<td>string</td>
+<td>报价的Pair，左侧为Base，右侧为Quote，报价以Cabital为中心</td>
+</tr>
+<tr>
 <td>valid_interval</td>
 <td>number</td>
 <td>报价有效时间宽度，以秒记</td>
@@ -662,7 +679,7 @@
 <p>FaaS的服务，依照Cabital的要求，接入合作方必须提供与本方一致的身份信息（每一个字段），字段阐述请参考关联同名账户API。</p>
 <h2 id='35926dc96b'>获取用户关联状况</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://faas.cabital.com/faas/faas_partner/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/detail"</span>
 </code></pre></div><h3 id='http'>HTTP 请求</h3>
-<p><code>GET /faas/partners/&lt;partner_id&gt;/accounts/&lt;account_id&gt;/detail</code></p>
+<p><code>GET /api/v1/accounts/&lt;account_id&gt;/detail</code></p>
 <h3 id='url'>URL参数</h3>
 <table><thead>
 <tr>
@@ -671,11 +688,6 @@
 <th>描述</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>partner_id</td>
-<td>true</td>
-<td>faas的partner id</td>
-</tr>
 <tr>
 <td>account_id</td>
 <td>true</td>
@@ -702,9 +714,9 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>match_status</td>
+<td>account_status</td>
 <td>string(ENUM)</td>
-<td>身份匹配状态 <code>MATCHED,READY_FOR_MATCHING,PENDING,REJECTED</code></td>
+<td>账户关联状态，详见事件定义</td>
 </tr>
 <tr>
 <td>otp_ready</td>
@@ -712,30 +724,24 @@
 <td>客户是否已经在 Cabital 绑定完成OTP，其在提现的时候需要附上。</td>
 </tr>
 <tr>
-<td>email_address</td>
+<td>email_address?</td>
 <td>string</td>
 <td>用户在本方的 Email， 供合作方匹配</td>
 </tr>
-<tr>
-<td>kyc_token</td>
-<td>string</td>
-<td>用户在本方的 KYC Token 供合作方使用</td>
-</tr>
-<tr>
-<td>limits</td>
-<td>object</td>
-<td>当前提款限额 （待定）</td>
-</tr>
 </tbody></table>
+
+<p>ext_id?
+kyc_token | string | 用户在本方的 KYC Token 供合作方使用
+limits | object | 当前提款限额 （待定）</p>
 
 <aside class="success">
 单个账户的限额
 </aside>
-<h2 id='eb54a92e30'>关联同名用户</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/faas/partners/faas_partner/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/match"</span> <span class="se">\</span>
-  <span class="nt">-X</span> <span class="s2">"POST"</span> <span class="se">\</span>
+<h2 id='eb54a92e30'>关联同名用户</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/match"</span> <span class="se">\</span>
+  <span class="nt">-X</span> <span class="s2">"PUT"</span> <span class="se">\</span>
   <span class="nt">-d</span> <span class="s1">'{ "name": "John Doe", "id": "J12345678D", "id_document": "PASSPORT", "dob": "19700101" }'</span> 
 </code></pre></div><h3 id='http-2'>HTTP请求</h3>
-<p><code>PUT /faas/partners/&lt;partner_id&gt;/account/match</code></p>
+<p><code>PUT /api/v1/accounts/&lt;account_id&gt;/match</code></p>
 <h3 id='url-2'>URL参数</h3>
 <table><thead>
 <tr>
@@ -744,11 +750,6 @@
 <th>描述</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>partner_id</td>
-<td>true</td>
-<td>faas的partner id</td>
-</tr>
 <tr>
 <td>account_id</td>
 <td>true</td>
@@ -766,7 +767,7 @@
 <tr>
 <td>name</td>
 <td>string</td>
-<td>客户本人的姓名，按照身份证件上的常用顺序，如First Name + Last Name</td>
+<td>客户本人的全名，按照身份证件上的常用顺序，如First Name +（Middle Name） + Last Name</td>
 </tr>
 <tr>
 <td>id</td>
@@ -776,14 +777,16 @@
 <tr>
 <td>id_document</td>
 <td>string(ENUM)</td>
-<td>身份文件类型 <code>ID,PASSPORT,NO_SUGGESTION</code></td>
+<td>身份文件类型 <code>ID,PASSPORT,DRIVER_LICENSE</code></td>
 </tr>
 <tr>
 <td>dob</td>
 <td>string</td>
-<td>身份文件上的生日（Date of birth）</td>
+<td>身份文件上的生日（Date of birth）格式为YYYYMMDD</td>
 </tr>
 </tbody></table>
+
+<!-- issued_by | string | 身份文件颁发国家 -->
 
 <blockquote>
 <p>得以下JSON结构体:</p>
@@ -802,19 +805,14 @@
 
 
 ```shell
-curl "http://faas.cabital.com/faas/{partner_id}/limit" \
+curl "http://faas.cabital.com/api/v1/limit" \
   -H "Authorization: Bearer"
 ```
 
 ### HTTP 请求
 
-`GET /faas/partners/<partner_id>/limit`
+`GET /api/v1/limit`
 
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-partner_id | true | faas的partner id
 
 > 获得以下JSON结构体:
 
@@ -885,17 +883,16 @@ partner_id | true | faas的partner id
 
 ### HTTP请求
 
-`GET /faas/partners/<partner_id>/accounts/<account_id>/balances`
+`GET /api/v1/accounts/<account_id>/balances`
 
 ### URL参数
 
 Parameter | Default | Description
 --------- | ------- | -----------
-partner_id | true | faas的partner id
 account_id | true | Cabital提供的账户id -->
 <h2 id='9b7d4b6004'>账户可用余额列表</h2>
 <p>获取用户的所有账户余额</p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/faas/partners/{partner_id}/accounts/{account_id}/balances"</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/{account_id}/balances"</span>
 </code></pre></div>
 <blockquote>
 <p>获得以下JSON结构体:</p>
@@ -923,7 +920,7 @@ account_id | true | Cabital提供的账户id -->
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div><h3 id='http'>HTTP请求</h3>
-<p><code>GET /faas/partners/&lt;partner_id&gt;/accounts/&lt;account_id&gt;/balances</code></p>
+<p><code>GET /api/v1/accounts/&lt;account_id&gt;/balances</code></p>
 <h3 id='url'>URL参数</h3>
 <table><thead>
 <tr>
@@ -933,11 +930,6 @@ account_id | true | Cabital提供的账户id -->
 </tr>
 </thead><tbody>
 <tr>
-<td>partner_id</td>
-<td>true</td>
-<td>faas的partner id</td>
-</tr>
-<tr>
 <td>account_id</td>
 <td>true</td>
 <td>Cabital提供的账户id</td>
@@ -945,7 +937,7 @@ account_id | true | Cabital提供的账户id -->
 </tbody></table>
 <h2 id='f752da1b82'>账户可用余额单币</h2>
 <p>获取用户的单一账户余额，货币符号请参考<a href="/?shell#get">报价API</a></p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/BTC"</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/BTC"</span>
 </code></pre></div>
 <blockquote>
 <p>获得以下JSON结构体:</p>
@@ -955,7 +947,7 @@ account_id | true | Cabital提供的账户id -->
   </span><span class="nl">"balances"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.12345678"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-2'>HTTP请求</h3>
-<p><code>GET /faas/partners/&lt;partner_id&gt;/accounts/&lt;account_id&gt;/balances/&lt;symbol&gt;</code></p>
+<p><code>GET /api/v1/accounts/&lt;account_id&gt;/balances/&lt;symbol&gt;</code></p>
 <h3 id='url-2'>URL参数</h3>
 <table><thead>
 <tr>
@@ -964,11 +956,6 @@ account_id | true | Cabital提供的账户id -->
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>partner_id</td>
-<td>true</td>
-<td>faas的partner id</td>
-</tr>
 <tr>
 <td>account_id</td>
 <td>true</td>
@@ -982,7 +969,7 @@ account_id | true | Cabital提供的账户id -->
 </tbody></table>
 <h2 id='36832df916'>账户单币入账信息</h2>
 <p>获取用户的单一账户入账信息</p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/EUR/deposit/SEPA"</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/EUR/deposit/SEPA"</span>
 </code></pre></div>
 <blockquote>
 <p>获得以下JSON结构体:</p>
@@ -1000,7 +987,7 @@ account_id | true | Cabital提供的账户id -->
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-3'>HTTP请求</h3>
-<p><code>GET /faas/partners/&lt;partner_id&gt;/accounts/&lt;account_id&gt;/balances/&lt;symbol&gt;/deposit/&lt;method&gt;</code></p>
+<p><code>GET /api/v1/accounts/&lt;account_id&gt;/balances/&lt;symbol&gt;/deposit/&lt;method&gt;</code></p>
 <h3 id='url-3'>URL参数</h3>
 <table><thead>
 <tr>
@@ -1009,11 +996,6 @@ account_id | true | Cabital提供的账户id -->
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>partner_id</td>
-<td>true</td>
-<td>faas的partner id</td>
-</tr>
 <tr>
 <td>account_id</td>
 <td>true</td>
@@ -1032,7 +1014,7 @@ account_id | true | Cabital提供的账户id -->
 </tbody></table>
 <h2 id='cf7cc7379a'>账户转换货币</h2>
 <p>在Cabital的账户余额间通过转换的方法，兑换不同种的货币。通过转换货币，可以将Cabital方不支持划转的货币，通过先转换后划转的方式进行交易(C+T)</p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/conversions"</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/conversions"</span>
 <span class="nt">-d</span> <span class="s1">'{
     "quote_id": "20210416225049:BTC-USDT:Customer",
     "quote": "61426.365",
@@ -1058,11 +1040,11 @@ account_id | true | Cabital提供的账户id -->
 <p>获得以下JSON结构体:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"transaction_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="nl">"transaction_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d81adf6d-0322-41d7-8c32-669203e35f11"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-4'>HTTP请求</h3>
-<p><code>POST /faas/partners/&lt;partner_id&gt;/accounts/&lt;account_id&gt;/conversions</code></p>
+<p><code>POST /api/v1/accounts/&lt;account_id&gt;/conversions</code></p>
 <h3 id='url-4'>URL参数</h3>
 <table><thead>
 <tr>
@@ -1071,11 +1053,6 @@ account_id | true | Cabital提供的账户id -->
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>partner_id</td>
-<td>true</td>
-<td>faas的partner id</td>
-</tr>
 <tr>
 <td>account_id</td>
 <td>true</td>
@@ -1118,7 +1095,7 @@ account_id | true | Cabital提供的账户id -->
 <tr>
 <td>major_ccy</td>
 <td>string</td>
-<td>主要货币（可选）</td>
+<td>主要货，用于转换限额判定</td>
 </tr>
 </tbody></table>
 
@@ -1129,9 +1106,11 @@ account_id | true | Cabital提供的账户id -->
   <li>由于报价支持正反向（Ask & Bid），不论买入还是卖出，皆为同一个报价对。</li>
 </ul>
 </aside>
+<h3 id='128e9ff023'>错误处理</h3>
+<p>TBD</p>
 <h2 id='1306c352c3'>账户划转列表</h2>
 <p>查询划转历史记录，支持参数查询和分页。</p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"</span>
 </code></pre></div>
 <blockquote>
 <p>返回JSON结构体:</p>
@@ -1162,7 +1141,7 @@ account_id | true | Cabital提供的账户id -->
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-5'>HTTP请求</h3>
-<p><code>GET /faas/partners/&lt;partner_id&gt;/accounts/&lt;account_id&gt;/trasfers</code></p>
+<p><code>GET /api/v1/accounts/&lt;account_id&gt;/transfers</code></p>
 <h3 id='url-5'>URL参数</h3>
 <table><thead>
 <tr>
@@ -1172,12 +1151,6 @@ account_id | true | Cabital提供的账户id -->
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>partner_id</td>
-<td>true</td>
-<td>--</td>
-<td>faas的partner id</td>
-</tr>
 <tr>
 <td>account_id</td>
 <td>true</td>
@@ -1273,7 +1246,7 @@ account_id | true | Cabital提供的账户id -->
 </tbody></table>
 <h2 id='0c165f19f8'>账户划转详情</h2>
 <p>在 Cabital 与合作方的同名账户之间进行划转。</p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/4c416854-8970-4838-99ad-febc437ac81d"</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/4c416854-8970-4838-99ad-febc437ac81d"</span>
 </code></pre></div>
 <blockquote>
 <p>返回JSON结构体:</p>
@@ -1289,7 +1262,7 @@ account_id | true | Cabital提供的账户id -->
   </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-6'>HTTP请求</h3>
-<p><code>GET /faas/partners/&lt;partner_id&gt;/accounts/&lt;account_id&gt;/transfers/&lt;trasfer_id&gt;</code></p>
+<p><code>GET /api/v1/accounts/&lt;account_id&gt;/transfers/&lt;trasfer_id&gt;</code></p>
 <h3 id='url-6'>URL参数</h3>
 <table><thead>
 <tr>
@@ -1298,11 +1271,6 @@ account_id | true | Cabital提供的账户id -->
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>partner_id</td>
-<td>true</td>
-<td>faas的partner id</td>
-</tr>
 <tr>
 <td>account_id</td>
 <td>true</td>
@@ -1360,7 +1328,7 @@ account_id | true | Cabital提供的账户id -->
 </tbody></table>
 <h2 id='4e24c408a0'>账户双向划转</h2>
 <p>在 Cabital 与合作方的同名账户之间进行划转。</p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"</span>
 <span class="nt">-d</span> <span class="s1">'{
     "amount": "1000.365",
     "symbol": "USDT",
@@ -1388,7 +1356,7 @@ account_id | true | Cabital提供的账户id -->
   </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-7'>HTTP请求</h3>
-<p><code>POST /faas/partners/&lt;partner_id&gt;/accounts/&lt;account_id&gt;/transfers</code></p>
+<p><code>POST /api/v1/accounts/&lt;account_id&gt;/transfers</code></p>
 <h3 id='url-7'>URL参数</h3>
 <table><thead>
 <tr>
@@ -1397,11 +1365,6 @@ account_id | true | Cabital提供的账户id -->
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>partner_id</td>
-<td>true</td>
-<td>faas的partner id</td>
-</tr>
 <tr>
 <td>account_id</td>
 <td>true</td>
@@ -1427,6 +1390,11 @@ account_id | true | Cabital提供的账户id -->
 <td>划转的货币</td>
 </tr>
 <tr>
+<td>otp</td>
+<td>string</td>
+<td>OTP的数值</td>
+</tr>
+<tr>
 <td>direction</td>
 <td>string(enum)</td>
 <td>划转的方向，以Cabital为中心，<code>CREDIT</code>为充值，<code>DEBIT</code>为提款</td>
@@ -1439,7 +1407,7 @@ account_id | true | Cabital提供的账户id -->
 <tr>
 <td>external_id</td>
 <td>string(50)</td>
-<td>合作方的第三方ID，非必需</td>
+<td>合作方的唯一订单号，如重复订单将拒绝</td>
 </tr>
 </tbody></table>
 <h3 id='85676544e1'>返回对象描述</h3>
@@ -1456,11 +1424,22 @@ account_id | true | Cabital提供的账户id -->
 <td>划转订单ID</td>
 </tr>
 <tr>
+<td>external_id</td>
+<td>string(50)</td>
+<td></td>
+</tr>
+<tr>
 <td>status</td>
 <td>string(enum)</td>
 <td>划转的结果</td>
 </tr>
 </tbody></table>
+
+<!-- ### OTP的使用！！！ -->
+<h3 id='918468e755'>失败原因</h3>
+<ul>
+<li>305 ： OTP 缺失</li>
+</ul>
 <h1 id='callback'>Callback 事件</h1>
 <p>Callback 事件预计平均会在 1-5 分钟后到达，但理论上可能需要长达 24 小时。如果由于某种原因您错过了 Callback 事件，请不要担心：我们会记录尝试发送的所有内容，并且可以随时重新发送失败的 Callback 事件。如果 Callback 事件请求失败，我们会尝试重新发送四次：5 分钟、1 小时、5 小时和 18 小时后，直到请求成功获得 2XX 返回码的。</p>
 
@@ -1476,29 +1455,39 @@ account_id | true | Cabital提供的账户id -->
 </thead><tbody>
 <tr>
 <td>LINKED</td>
-<td>用户成功连接后通知</td>
+<td>用户成功连接后通知，还未在 Cabital 提交 KYC</td>
+</tr>
+<tr>
+<td>PENDING</td>
+<td>Cabital 审核 KYC 中。</td>
+</tr>
+<tr>
+<td>REJECTED</td>
+<td>Cabital 开户最终拒绝</td>
 </tr>
 <tr>
 <td>CREATED</td>
-<td>用户成功开户后通知，本方账户开通</td>
+<td>用户成功开户后通知，本方账户开通，等待合作方提交同名验证。</td>
 </tr>
 <tr>
-<td>READYFORMATCHING</td>
-<td>我方KYC通过，等待合作方提交同名验证</td>
+<td>MATCHING</td>
+<td>同名验证验证中</td>
 </tr>
 <tr>
 <td>MATCHED</td>
 <td>同名验证通过，完全开通同账户转账</td>
 </tr>
 <tr>
-<td>REJECTED</td>
+<td>MISMATCHED</td>
 <td>同名验证拒绝，多种因素</td>
 </tr>
 <tr>
 <td>UNLINKED</td>
-<td>用户主动关闭与合作方的账户关联</td>
+<td>用户/ Cabital 主动关闭与合作方的单账户关联，！是否处理合作方的关闭</td>
 </tr>
 </tbody></table>
+
+<!-- READYFORMATCHING | 我方KYC通过，等待合作方提交同名验证 (以后）-->
 
 <p>账户关联的状态发生变化时，我们将向您发送带有 JSON 负载的 POST 请求到集成时提供给我们的 URL。</p>
 <h3 id='json-payload'>事件内容 JSON Payload</h3>
@@ -1508,7 +1497,7 @@ account_id | true | Cabital提供的账户id -->
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"account_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"user_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jone.doe@email.com"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"user_ext_ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"partner_id"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"user_ext_ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fce4fd45-7dd7-4d4c-b06c-e17ff12f3e30"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"staus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LINKED"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"event_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-01T09:00:00.000Z"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
@@ -1601,52 +1590,58 @@ status | string(enum) | 划转的结果，SUCCESS / FAILED -->
 <h1 id='128e9ff023'>错误处理</h1>
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>错误代码</th>
+<th>含义</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td>Bad Request -- 访问参数有错误</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>Unauthorized -- API Secret 错误，或者 Request 签名错误。</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden -- The API requested is hidden for administrators only.</td>
+<td>Forbidden -- 通常为客户已经取消与合作方的账户关联，需要合作方发起重新关联。（Unlink状态）</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified resource could not be found.</td>
+<td>Not Found -- 特定的资源不存在</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>Method Not Allowed -- 访问的方法不正确</td>
 </tr>
 <tr>
 <td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+<td>Not Acceptable -- 格式强制要求是JSON，不允许</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone -- The API requested has been removed from our servers.</td>
+<td>409</td>
+<td>Conflict -- 消息违反幂等性（NONCE）</td>
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many cases! Slow down!</td>
+<td>Too Many Requests -- 访问频率过高</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+<td>Internal Server Error -- 本方出现服务器错误，请重试.</td>
 </tr>
 <tr>
 <td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>Service Unavailable -- 本方服务不可用，请稍后重试.</td>
 </tr>
 </tbody></table>
-<h1 id='5988541320'>版本变化</h1><h2 id='0-1-0'>0.1.0</h2>
+<h1 id='5988541320'>版本变化</h1><h2 id='0-1-1'>0.1.1</h2>
+<ul>
+<li>恢复了 API-Key，便于已经集成 CaaS 的合作方，集成 FaaS</li>
+<li>由于使用API-Key，移除访问 Path 中的 Partner Id</li>
+<li>增加更多 API 细节，以及错误处理</li>
+</ul>
+<h2 id='0-1-0'>0.1.0</h2>
 <ul>
 <li>提供最初的 FaaS API 文档</li>
 </ul>

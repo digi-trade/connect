@@ -4,19 +4,14 @@
 
 
 ```shell
-curl "http://faas.cabital.com/faas/{partner_id}/limit" \
+curl "http://faas.cabital.com/api/v1/limit" \
   -H "Authorization: Bearer"
 ```
 
 ### HTTP 请求
 
-`GET /faas/partners/<partner_id>/limit`
+`GET /api/v1/limit`
 
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-partner_id | true | faas的partner id
 
 > 获得以下JSON结构体:
 
@@ -87,13 +82,12 @@ partner_id | true | faas的partner id
 
 ### HTTP请求
 
-`GET /faas/partners/<partner_id>/accounts/<account_id>/balances`
+`GET /api/v1/accounts/<account_id>/balances`
 
 ### URL参数
 
 Parameter | Default | Description
 --------- | ------- | -----------
-partner_id | true | faas的partner id
 account_id | true | Cabital提供的账户id -->
 
 
@@ -102,7 +96,7 @@ account_id | true | Cabital提供的账户id -->
 获取用户的所有账户余额
 
 ```shell
-curl "/faas/partners/{partner_id}/accounts/{account_id}/balances"
+curl "/api/v1/accounts/{account_id}/balances"
 ```
 
 > 获得以下JSON结构体:
@@ -134,13 +128,12 @@ curl "/faas/partners/{partner_id}/accounts/{account_id}/balances"
 
 ### HTTP请求
 
-`GET /faas/partners/<partner_id>/accounts/<account_id>/balances`
+`GET /api/v1/accounts/<account_id>/balances`
 
 ### URL参数
 
 Parameter | Default | Description
 --------- | ------- | -----------
-partner_id | true | faas的partner id
 account_id | true | Cabital提供的账户id
 
 ## 账户可用余额单币
@@ -148,7 +141,7 @@ account_id | true | Cabital提供的账户id
 获取用户的单一账户余额，货币符号请参考[报价API](/?shell#get)
 
 ```shell
-curl "/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/BTC"
+curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/BTC"
 ```
 
 > 获得以下JSON结构体:
@@ -162,13 +155,12 @@ curl "/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/
 
 ### HTTP请求
 
-`GET /faas/partners/<partner_id>/accounts/<account_id>/balances/<symbol>`
+`GET /api/v1/accounts/<account_id>/balances/<symbol>`
 
 ### URL参数
 
 Parameter | Default | Description
 --------- | ------- | -----------
-partner_id | true | faas的partner id
 account_id | true | Cabital提供的账户id
 symbol | true | 货币的Symbol
 
@@ -178,7 +170,7 @@ symbol | true | 货币的Symbol
 获取用户的单一账户入账信息
 
 ```shell
-curl "/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/EUR/deposit/SEPA"
+curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/EUR/deposit/SEPA"
 ```
 
 > 获得以下JSON结构体:
@@ -200,13 +192,12 @@ curl "/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/
 
 ### HTTP请求
 
-`GET /faas/partners/<partner_id>/accounts/<account_id>/balances/<symbol>/deposit/<method>`
+`GET /api/v1/accounts/<account_id>/balances/<symbol>/deposit/<method>`
 
 ### URL参数
 
 Parameter | Default | Description
 --------- | ------- | -----------
-partner_id | true | faas的partner id
 account_id | true | Cabital提供的账户id
 symbol | true | 货币的Symbol
 method | false | 入币方式，非必须，如缺失将使用默认方法，具体方法请参考[配置API](/?shell#79fee25901)
@@ -216,7 +207,7 @@ method | false | 入币方式，非必须，如缺失将使用默认方法，具
 在Cabital的账户余额间通过转换的方法，兑换不同种的货币。通过转换货币，可以将Cabital方不支持划转的货币，通过先转换后划转的方式进行交易(C+T)
 
 ```shell
-curl -X POST "/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/conversions"
+curl -X POST "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/conversions"
 -d '{
     "quote_id": "20210416225049:BTC-USDT:Customer",
     "quote": "61426.365",
@@ -244,20 +235,19 @@ curl -X POST "/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c
 
 ```json
 {
-  "transaction_id": "",
-  "status": ""
+  "transaction_id": "d81adf6d-0322-41d7-8c32-669203e35f11",
+  "status": "SUCCESS"
 }
 ```
 
 ### HTTP请求
 
-`POST /faas/partners/<partner_id>/accounts/<account_id>/conversions`
+`POST /api/v1/accounts/<account_id>/conversions`
 
 ### URL参数
 
 Parameter | Default | Description
 --------- | ------- | -----------
-partner_id | true | faas的partner id
 account_id | true | Cabital提供的账户id
 
 
@@ -270,7 +260,7 @@ quote | string(number) | 报价
 pair | string | 报价的货币对，左侧为买，右侧为卖
 buy_amount | string(number) | 买入数量
 sell_amount | string(number) | 卖出数量
-major_ccy | string | 主要货币（可选）
+major_ccy | string | 主要货，用于转换限额判定
 
 <aside class="warning">
 <b>注意事项：</b>
@@ -280,13 +270,16 @@ major_ccy | string | 主要货币（可选）
 </ul>
 </aside>
 
+### 错误处理
+TBD
+
 
 ## 账户划转列表
 
 查询划转历史记录，支持参数查询和分页。
 
 ```shell
-curl "/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
+curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
 ```
 
 > 返回JSON结构体:
@@ -321,13 +314,12 @@ curl "/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/
 
 ### HTTP请求
 
-`GET /faas/partners/<partner_id>/accounts/<account_id>/trasfers`
+`GET /api/v1/accounts/<account_id>/transfers`
 
 ### URL参数
 
 Parameter | 必须 | 默认值 | Description
 --------- | ------- | ----------- | -----------
-partner_id | true | -- | faas的partner id
 account_id | true | -- | Cabital提供的账户id
 direction | false | 全部 | 方向过滤
 symbol | false | 全部 | 币种过滤
@@ -353,7 +345,7 @@ status | string(enum) | 划转的结果，SUCCESS / FAILED
 在 Cabital 与合作方的同名账户之间进行划转。
 
 ```shell
-curl "/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/4c416854-8970-4838-99ad-febc437ac81d"
+curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/4c416854-8970-4838-99ad-febc437ac81d"
 ```
 
 > 返回JSON结构体:
@@ -373,13 +365,12 @@ curl "/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/
 
 ### HTTP请求
 
-`GET /faas/partners/<partner_id>/accounts/<account_id>/transfers/<trasfer_id>`
+`GET /api/v1/accounts/<account_id>/transfers/<trasfer_id>`
 
 ### URL参数
 
 Parameter | 必须 |  Description
 --------- | ------- |  -----------
-partner_id | true | faas的partner id
 account_id | true | Cabital提供的账户id
 trasfer_id | true | 划转订单id
 
@@ -399,7 +390,7 @@ status | string(enum) | 划转的结果，SUCCESS / FAILED
 在 Cabital 与合作方的同名账户之间进行划转。
 
 ```shell
-curl -X POST "/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
+curl -X POST "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
 -d '{
     "amount": "1000.365",
     "symbol": "USDT",
@@ -432,13 +423,12 @@ curl -X POST "/faas/partners/faas_partner/accounts/6d92e7b4-715c-4ce3-a028-19f1c
 
 ### HTTP请求
 
-`POST /faas/partners/<partner_id>/accounts/<account_id>/transfers`
+`POST /api/v1/accounts/<account_id>/transfers`
 
 ### URL参数
 
 Parameter | Default | Description
 --------- | ------- | -----------
-partner_id | true | faas的partner id
 account_id | true | Cabital提供的账户id
 
 
@@ -448,13 +438,21 @@ account_id | true | Cabital提供的账户id
 --------- | ------- | -----------
 amount | string(number) | 数量
 symbol | string | 划转的货币
+otp | string | OTP的数值
 direction | string(enum) | 划转的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
-external_id | string(50) | 合作方的第三方ID，非必需
+external_id | string(50) | 合作方的唯一订单号，如重复订单将拒绝
 
 ### 返回对象描述
 
 字段 | 类型 | 描述
 --------- | ------- | -----------
 transfer_id | string(uuid) | 划转订单ID
+external_id | string(50) | 
 status | string(enum) | 划转的结果
+
+<!-- ### OTP的使用！！！ -->
+
+### 失败原因
+
+- 305 ： OTP 缺失

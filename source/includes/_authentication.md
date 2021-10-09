@@ -2,9 +2,10 @@
 
 API Key是客户访问FaaS认证的唯一方法，所有的API都需要签名并包含以下HTTP Header:
 
+- ACCESS-KEY 客户的Access Key，请联系服务顾问获取
 - ACCESS-SIGN 在客户系统中根据下面的规则生成的消息签名
 - ACCESS-TIMESTAMP API访问的时间戳
-- ACCESS-NONCE 请求发送的唯一的数字或者字符串，每个API请求必须选择不同的Nonce，接收系统会以NONCE作为调用消息的幂等处理
+- ACCESS-NONCE 请求发送的唯一的数字或者字符串，每个API请求必须选择不同的Nonce，接收系统会以NONCE作为调用消息的幂等处理，幂等处理有60分钟的时间区间，在60分钟内的系统会自动忽略第一笔之外的请求，超过60分钟提交同样的请求将视为新的调用。
 
 所有的访问必须设置 `Content-Type` 为 `application/json`，并且内容为正规的的JSON。
 

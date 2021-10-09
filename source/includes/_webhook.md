@@ -11,14 +11,19 @@ Callback 事件预计平均会在 1-5 分钟后到达，但理论上可能需要
 
 类型 | 描述
 --------- | -----------
-LINKED | 用户成功连接后通知
-CREATED | 用户成功开户后通知，本方账户开通
-READYFORMATCHING | 我方KYC通过，等待合作方提交同名验证
+LINKED | 用户成功连接后通知，还未在 Cabital 提交 KYC
+PENDING | Cabital 审核 KYC 中。
+REJECTED | Cabital 开户最终拒绝
+CREATED | 用户成功开户后通知，本方账户开通，等待合作方提交同名验证。
+MATCHING | 同名验证验证中
 MATCHED | 同名验证通过，完全开通同账户转账
-REJECTED | 同名验证拒绝，多种因素
-UNLINKED | 用户主动关闭与合作方的账户关联
+MISMATCHED | 同名验证拒绝，多种因素
+UNLINKED | 用户/ Cabital 主动关闭与合作方的单账户关联，！是否处理合作方的关闭
+
+<!-- READYFORMATCHING | 我方KYC通过，等待合作方提交同名验证 (以后）-->
 
 账户关联的状态发生变化时，我们将向您发送带有 JSON 负载的 POST 请求到集成时提供给我们的 URL。
+
 ### 事件内容 JSON Payload
 
 > JSON Payload
@@ -27,7 +32,7 @@ UNLINKED | 用户主动关闭与合作方的账户关联
 {
     "account_uuid": "6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c",
     "user_email": "jone.doe@email.com",
-    "user_ext_ref": "partner_id",
+    "user_ext_ref": "fce4fd45-7dd7-4d4c-b06c-e17ff12f3e30",
     "staus": "LINKED",
     "event_time": "2020-07-01T09:00:00.000Z",
     "data" : {}

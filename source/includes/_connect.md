@@ -11,13 +11,12 @@ curl "http://faas.cabital.com/faas/faas_partner/accounts/cdaa9983-9b8f-4478-ba60
 
 ### HTTP 请求
 
-`GET /faas/partners/<partner_id>/accounts/<account_id>/detail`
+`GET /api/v1/accounts/<account_id>/detail`
 
 ### URL参数
 
 参数 | 是否必须 | 描述
 --------- | ------- | -----------
-partner_id | true | faas的partner id
 account_id | true | faas的Cabital账户id
 
 > 获得以下JSON结构体:
@@ -35,9 +34,10 @@ account_id | true | faas的Cabital账户id
 
 字段 | 类型 | 描述
 --------- | ------- | ---------------
-match_status | string(ENUM) | 身份匹配状态 `MATCHED,READY_FOR_MATCHING,PENDING,REJECTED`
+account_status | string(ENUM) | 账户关联状态，详见事件定义
 otp_ready | bool | 客户是否已经在 Cabital 绑定完成OTP，其在提现的时候需要附上。
-email_address | string | 用户在本方的 Email， 供合作方匹配
+email_address? | string | 用户在本方的 Email， 供合作方匹配
+ext_id?
 kyc_token | string | 用户在本方的 KYC Token 供合作方使用
 limits | object | 当前提款限额 （待定）
 
@@ -49,8 +49,8 @@ limits | object | 当前提款限额 （待定）
 ## 关联同名用户
 
 ```shell
-curl "/faas/partners/faas_partner/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/match" \
-  -X "POST" \
+curl "/api/v1/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/match" \
+  -X "PUT" \
   -d '{ "name": "John Doe", "id": "J12345678D", "id_document": "PASSPORT", "dob": "19700101" }' 
 ```
 
@@ -58,23 +58,24 @@ curl "/faas/partners/faas_partner/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/
 
 ### HTTP请求
 
-`PUT /faas/partners/<partner_id>/account/match`
+`PUT /api/v1/accounts/<account_id>/match`
 
 ### URL参数
 
 参数 | 是否必须 | 描述
 --------- | ------- | -----------
-partner_id | true | faas的partner id
 account_id | true | faas的Cabital账户id
 
 ### 请求体
 
 字段 | 类型 | 描述
 --------- | ------- | ---------------
-name | string | 客户本人的姓名，按照身份证件上的常用顺序，如First Name + Last Name
+name | string | 客户本人的全名，按照身份证件上的常用顺序，如First Name +（Middle Name） + Last Name
 id | string | 身份文件上的ID
-id_document | string(ENUM) | 身份文件类型 `ID,PASSPORT,NO_SUGGESTION`
-dob | string | 身份文件上的生日（Date of birth）
+id_document | string(ENUM) | 身份文件类型 `ID,PASSPORT,DRIVER_LICENSE`
+dob | string | 身份文件上的生日（Date of birth）格式为YYYYMMDD
+
+<!-- issued_by | string | 身份文件颁发国家 -->
 
 > 得以下JSON结构体:
 
@@ -89,5 +90,3 @@ dob | string | 身份文件上的生日（Date of birth）
 ```
 
 提交用户信息，以获得同名验证结果
-
-

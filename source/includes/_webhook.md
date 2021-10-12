@@ -11,14 +11,14 @@ Callback 事件预计平均会在 1-5 分钟后到达，但理论上可能需要
 
 类型 | 描述
 --------- | -----------
-LINKED | 用户成功连接后通知，还未在 Cabital 提交 KYC
-PENDING | Cabital 审核 KYC 中。
-REJECTED | Cabital 开户最终拒绝
-CREATED | 用户成功开户后通知，本方账户开通，等待合作方提交同名验证。
-MATCHING | 同名验证验证中
+LINKED | 用户成功连接，还未在 Cabital 提交 KYC
+PENDING | 用户正在于Cabital 进行KYC
+REJECTED | 用户呗Cabital 最终拒绝开户
+CREATED | 用户成功 KYC，Cabital 账户开通，等待合作方提交同名验证。
+MATCHING | 合作方已提交，同名验证人工审核中
 MATCHED | 同名验证通过，完全开通同账户转账
 MISMATCHED | 同名验证拒绝，多种因素
-UNLINKED | 用户/ Cabital 主动关闭与合作方的单账户关联，！是否处理合作方的关闭
+UNLINKED | 用户/ Cabital 主动关闭与合作方的某账户关联
 
 <!-- READYFORMATCHING | 我方KYC通过，等待合作方提交同名验证 (以后）-->
 

@@ -31,7 +31,7 @@ Cabital目前支持Authorization Code Flow 和 Implicit Flow。
 
 ### 2、接入方案
 
-OpenID Connect (OIDC) 分为authentication 和 Refresh Tokens。
+本文描述OpenID Connect (OIDC)接入方案。
 
 #### 2.1 第三方接入准备
 
@@ -41,8 +41,8 @@ OpenID Connect (OIDC) 分为authentication 和 Refresh Tokens。
 
 | 名称                     | 配置值                        |      |
 | ------------------------ | ----------------------------- | ---- |
-| Authorized origins       | https://DOMAIN                |      |
-| Authorized redirect URIs | https://DOMAIN/login/callback |      |
+| Authorized origins       | https://partner.com                |      |
+| Authorized redirect URIs | https://partner.com/callback |      |
 
 
 
@@ -52,8 +52,8 @@ Cabital提供给合作方的资料信息：
 | -------------------- | ------------------------------------ | --------------------- |
 | Client ID            | `Client_ID`                          | OAuth 2 Client ID     |
 | Client Secret        | `Client_SECRET`                      | OAuth 2 Client Secret |
-| URL                  | https://domain                       | Domain URL            |
-| openid-configuration | https://domain/.openid-configuration | openid-configuration  |
+| URL                  | https://domain                       | Domain URL，即后文中的Base-url            |
+| openid-configuration | https://domain/{partner-id}/openid-configuration | openid-configuration  |
 
 
 
@@ -112,7 +112,7 @@ Cabital提供给合作方的资料信息：
 
 4. Client收到refresh token返回信息。
 
-   
+
 
 #### 2.3 Revoke token
 
@@ -144,7 +144,7 @@ RP(Relying Party) 向Client发送HTTP响应，指示它重定向到OP(OpenID Pro
 重定向URL
 
 ```
-https://Base-url/realms/{realm-name}/protocol/openid-connect/auth
+https://Base-url/{partner-id}/openid-connect/auth
 ```
 
 主要支持参数：
@@ -187,7 +187,7 @@ https://Base-url/realms/{realm-name}/protocol/openid-connect/auth
 例子：
 
 ```shell
-https://Base-url/auth/realms/tibyb/protocol/openid-connect/auth?client_id=demo-client&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&response_type=code&scope=openid+profile&state=pnIj1g3GMsX0Rj6FDbVoe3rYbLJzdfejT0EfusiEbis%3D
+https://Base-url/tibyb/openid-connect/auth?client_id=demo-client&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&response_type=code&scope=openid+profile&state=pnIj1g3GMsX0Rj6FDbVoe3rYbLJzdfejT0EfusiEbis%3D
 ```
 
 
@@ -224,7 +224,7 @@ RP(relying party) 发送 授权code到Cabital.
 请求URL
 
 ```
-https://Base-url/realms/{realm-name}/protocol/openid-connect/token
+https://Base-url/{partner-id}/openid-connect/token
 ```
 
 使用Basic authentication
@@ -330,7 +330,7 @@ RP(Relying Party)应该做以下检查 ：
 使用URL
 
 ```
-https://Base-url/realms/{realm-name}/protocol/openid-connect/userinfo
+https://Base-url/{partner-id}/openid-connect/userinfo
 ```
 
 重定向请求带有如下参数：
@@ -374,7 +374,7 @@ json对象字段如下：
 使用URL
 
 ```
-https://Base-url/realms/{realm-name}/protocol/openid-connect/token
+https://Base-url/{partner-id}/openid-connect/token
 ```
 
 重定向请求带有如下参数：
@@ -396,7 +396,7 @@ HTTP header中设置: Authorization: Bearer The `access_token` is taken from the
 请求URL
 
 ```
-https://Base-url/realms/{realm-name}/protocol/openid-connect/revoke
+https://Base-url/{partner-id}/openid-connect/revoke
 ```
 
 使用Basic authentication
@@ -436,7 +436,7 @@ Token生命周期有如下规则：
 Openid配置保存了OP(OpenID Provider)Metadata信息, 该信息保存为json对象.
 
 ```
-https://Base-url/auth/realms/{realm-name}/.well-known/openid-configuration
+https://Base-url/{partner-id}/well-known/openid-configuration
 ```
 
 Cabital返回json信息，主要有以下属性
@@ -444,7 +444,7 @@ Cabital返回json信息，主要有以下属性
 |                                      |                                                              |
 | :----------------------------------- | :----------------------------------------------------------- |
 | **Attribute name**                   | **Value**                                                    |
-| issuer                               | Issuer of the OpenID access token. This is the URL used in the metadata request, without the `/.well-known/openid-configuration`. |
+| issuer                               | Issuer of the OpenID access token. This is the URL used in the metadata request, without the `/well-known/openid-configuration`. |
 | authorization_endpoint               | URL for the Authentication request.                          |
 | token_endpoint                       | URL for the Access token request.                            |
 | token_endpoint_auth_method_supported | The methods for authenticating the OpenID Client during the Access token request. Array with one value: `client_secret_basic` for HTTP Basic Authentication. |
@@ -696,31 +696,31 @@ For your convenience you can find the relevant standards linked below.
 
 Base-url 和 realm-name 需要跟Cabital客服申请，完整服务url是https://Base-url/uri。以下对各个uri功能进行描述
 
-- /auth/realms/{realm-name}/.well-known/openid-configuration
+- /{partner-id}/openid-configuration
 
 Openid-configuration is OpenID Provider Metadata (see OIDC Discovery specification). This link is a JSON document describing metadata about the IDP.
 
-- /realms/{realm-name}/protocol/openid-connect/auth
+- /{partner-id}/protocol/openid-connect/auth
 
 This is the URL endpoint for obtaining a temporary code in the Authorization Code Flow or for obtaining tokens via the Implicit Flow.
 
-- /realms/{realm-name}/protocol/openid-connect/token
+- /{partner-id}/protocol/openid-connect/token
 
 This is the URL endpoint for the Authorization Code Flow to turn a temporary code into a token, or for obtaining tokens directly via Resource Owner Password Credentials (Direct Access Grants) or Client Credentials.
 
-- /realms/{realm-name}/protocol/openid-connect/logout
+- /{partner-id}/protocol/openid-connect/logout
 
 This is the URL endpoint for performing logouts.
 
-- /realms/{realm-name}/protocol/openid-connect/userinfo
+- /{partner-id}/protocol/openid-connect/userinfo
 
 This is the URL endpoint for the User Info service described in the OIDC specification.
 
-- /realms/{realm-name}/protocol/openid-connect/revoke
+- /{partner-id}/protocol/openid-connect/revoke
 
 This is the URL endpoint for OAuth 2.0 Token Revocation described in [RFC7009](https://datatracker.ietf.org/doc/html/rfc7009).
 
-- /realms/{realm-name}/protocol/openid-connect/certs
+- /{partner-id}/protocol/openid-connect/certs
 
 This is the URL endpoint for the JSON Web Key Set (JWKS) containing the public keys used to verify any JSON Web Token (jwks_uri)
 

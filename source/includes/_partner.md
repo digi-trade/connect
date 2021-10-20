@@ -23,23 +23,24 @@ curl "http://faas.cabital.com/faas/faas_partner/config"
         {
             "symobl": "ETH",
             "type": 2,
-            "status": 15, // 1 + 2 + 4 + 8
             "deposit_methods": [
                 "ERC20", "SOL"
             ],
             "withdrew_methods": [
                 "ERC20", "SOL"
             ],
-            "limits": {
-                "withdraw": {
+            "config": {
+                "debit": {
                     "min": "0.01",
                     "max": "5"
                 },
-                "deposit": {
+                "credit": {
+                    "allow": true,
                     "min": "0.01",
                     "max": "5"
                 },
                 "conversion": {
+                    "allow": true,
                     "min": "0.01",
                     "max": "5"
                 }
@@ -48,7 +49,6 @@ curl "http://faas.cabital.com/faas/faas_partner/config"
         {
             "symobl": "EUR",
             "type": 1, 
-            "status": 9, // 1 + 8
             "deposit_methods": [
                 "SEPA"
             ],
@@ -56,16 +56,15 @@ curl "http://faas.cabital.com/faas/faas_partner/config"
                 "SEPA"
             ],
             ,
-            "limits": {
-                "withdraw": {
-                    "min": "0.01",
-                    "max": "5"
+            "config": {
+                "debit": {
+                    "allow": false,
                 },
-                "deposit": {
-                    "min": "0.01",
-                    "max": "5"
+                "credit": {
+                    "allow": false,
                 },
                 "conversion": {
+                    "allow": true,
                     "min": "0.01",
                     "max": "5"
                 }
@@ -80,25 +79,21 @@ curl "http://faas.cabital.com/faas/faas_partner/config"
 --------- | ------- | ---------------
 symobl | string(ENUM) | 货币标志
 type | int(ENUM) | 货币类型，详见下面解释
-status | string(ENUM) | 状态，详见下面解释
 deposit_methods | list | 当前入金方式
-deposit_methods | list | 当前出金方式
-cap_limit | string(number) | 限额
+withdraw_methods | list | 当前出金方式
+config | list(object) | 该币种的限制和配置
+
+Config 对象定义
+
+字段 | 类型 | 描述
+--------- | ------- | ---------------
+allow | bool | 允许（该允许使用）
+min | string(number) | 交易最小每笔
+max | string(number) | 交易最大每笔
+
 ### Enum解释
 
-- 状态 Status
-
-Staus 是一个以 Bit 位的复合字段，基于合作协议，以及 Cabital 在渠道上的状态。
-
-Bit位 |  值 |  描述
---------- |  ---- |  -----------
-1 | 1 |  开关
-2 | 2 |  允许转出 (Cabital -> Partner)
-3 | 4 |  允许转入 (Partner -> Cabital)
-4 | 8 |  支持 Convert
-
 - 货币类型 type
-
 
 Bit位 | 描述
 --------- | -----------
@@ -106,7 +101,7 @@ Bit位 | 描述
 2 | 数字货币
 
 <aside class="success">
-限额为整个合作方
+限额为整个合作方，单笔的限制
 </aside>
 
 ## 获取最新的报价 (GET)

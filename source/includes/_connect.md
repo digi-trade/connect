@@ -1,6 +1,6 @@
 # 账户关联相关
 
-FaaS的服务，依照Cabital的要求，接入合作方必须提供与本方一致的身份信息（每一个字段），字段阐述请参考关联同名账户API。
+Cabital Connect 应监管要求，接入合作方必须提供与本方一致的身份信息（每一个字段），字段阐述请参考关联同名账户API。
 
 ## 获取用户关联状况
 
@@ -17,7 +17,7 @@ curl "http://faas.cabital.com/faas/faas_partner/accounts/cdaa9983-9b8f-4478-ba60
 
 参数 | 是否必须 | 描述
 --------- | ------- | -----------
-account_id | true | faas的Cabital账户id
+account_id | true | Connect的Cabital账户id
 
 > 获得以下JSON结构体:
 
@@ -64,7 +64,7 @@ curl "/api/v1/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/match" \
 
 参数 | 是否必须 | 描述
 --------- | ------- | -----------
-account_id | true | faas的Cabital账户id
+account_id | true | Connect的Cabital账户id
 
 ### 请求体
 
@@ -90,3 +90,7 @@ dob | string | 身份文件上的生日（Date of birth）格式为YYYYMMDD
 ```
 
 提交用户信息，以获得同名验证结果
+
+### 错误消息
+
+- 400 用户状态必须为 CREATED 或者 MISMATCHED

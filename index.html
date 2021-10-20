@@ -11,7 +11,7 @@
             name="description"
             content="Documentation for the FaaS API"
         >
-    <title>FaaS API Reference</title>
+    <title>Cabital Connect API Reference</title>
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -403,6 +403,9 @@
             <a href="#5988541320" class="toc-h1 toc-link" data-title="版本变化">版本变化</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#0-2-0" class="toc-h2 toc-link" data-title="0.2.0">0.2.0</a>
+                  </li>
+                  <li>
                     <a href="#0-1-1" class="toc-h2 toc-link" data-title="0.1.1">0.1.1</a>
                   </li>
                   <li>
@@ -412,25 +415,26 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for Partner Key</a></li>
-            <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='mailto:developer@cabital.com'>Sign Up for Partner Key</a></li>
+            <li><a href='https://cabital.com/'>Copyright by Cabital 2021</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='5ea2e0cde2'>简介</h1>
-<p>欢迎使用Cabital FaaS API，FaaS API 使合作伙伴能够合规、合法的将Cabital的法币入金途径集成到合作伙伴的系统中。</p>
+<p>欢迎使用Cabital Connect API，Connect API 使合作伙伴与 Cabital 钱包能实现无缝划转的查询，给予用户更多的支付与收款能力。</p>
 
 <p>API 功能简介：</p>
 
 <ul>
-<li>提供用户侧的 Authentication 与 Authorization，打通双方的用户体系</li>
-<li>提供用户的账号余额，以及划转到合作伙伴方的同名账户，并支持C+T（转换+划转）</li>
-<li>通过API的相互调用，确认用户的同名，以及交换KYC基础信息，支持合规的要求</li>
+<li>提供服务端的 Authentication 与 Authorization，打通双方相互调用</li>
+<li>提供用户的账号余额，以及划转到合作伙伴方的同名账户，并支持 C+T（转换+划转）</li>
+<li>通过关联同名用户接口，完成Cabital Connect功能</li>
+<li>在完成Cabital Connect下，提供用户的账号余额，以及划转到合作伙伴方的同名账户，并支持C+T（转换+划转）</li>
 </ul>
 
-<p>您可以根据本文档提供的API来使用服务，支持的全部API请参见</p>
+<p>您可以根据本文档提供的API来使用服务</p>
 <h1 id='cd47d4902f'>合作方接入准备</h1>
 <p>本文主要描述合作方Partner使用OpenID Connect (OIDC)协议接入Cabital.</p>
 <h2 id='1'>1. 准备信息</h2>
@@ -913,7 +917,7 @@
 <li><p><a href="https://tools.ietf.org/html/rfc7523">JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants</a></p></li>
 </ul>
 <h1 id='api'>API 认证</h1>
-<p>API Key是客户访问FaaS认证的唯一方法，所有的API都需要签名并包含以下HTTP Header:</p>
+<p>API Key是客户访问 Connect API 认证的唯一方法，所有的API都需要签名并包含以下HTTP Header:</p>
 
 <ul>
 <li>ACCESS-KEY 客户的Access Key，请联系服务顾问获取</li>
@@ -949,23 +953,24 @@
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"symobl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="mi">8</span><span class="w">
             </span><span class="nl">"deposit_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SOL"</span><span class="w">
             </span><span class="p">],</span><span class="w">
             </span><span class="nl">"withdrew_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SOL"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"limits"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"withdraw"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"debit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                     </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
                 </span><span class="p">},</span><span class="w">
-                </span><span class="nl">"deposit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"credit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
                 </span><span class="p">},</span><span class="w">
                 </span><span class="nl">"conversion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
@@ -974,7 +979,6 @@
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"symobl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> 
-            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="mi">8</span><span class="w">
             </span><span class="nl">"deposit_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"SEPA"</span><span class="w">
             </span><span class="p">],</span><span class="w">
@@ -982,16 +986,15 @@
                 </span><span class="s2">"SEPA"</span><span class="w">
             </span><span class="p">],</span><span class="w">
             </span><span class="p">,</span><span class="w">
-            </span><span class="nl">"limits"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"withdraw"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+            </span><span class="nl">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"debit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
                 </span><span class="p">},</span><span class="w">
-                </span><span class="nl">"deposit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+                </span><span class="nl">"credit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
                 </span><span class="p">},</span><span class="w">
                 </span><span class="nl">"conversion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
@@ -1018,62 +1021,48 @@
 <td>货币类型，详见下面解释</td>
 </tr>
 <tr>
-<td>status</td>
-<td>string(ENUM)</td>
-<td>状态，详见下面解释</td>
-</tr>
-<tr>
 <td>deposit_methods</td>
 <td>list</td>
 <td>当前入金方式</td>
 </tr>
 <tr>
-<td>deposit_methods</td>
+<td>withdraw_methods</td>
 <td>list</td>
 <td>当前出金方式</td>
 </tr>
 <tr>
-<td>cap_limit</td>
-<td>string(number)</td>
-<td>限额</td>
+<td>config</td>
+<td>list(object)</td>
+<td>该币种的限制和配置</td>
 </tr>
 </tbody></table>
-<h3 id='enum'>Enum解释</h3>
-<ul>
-<li>状态 Status</li>
-</ul>
 
-<p>Staus 是一个以 Bit 位的复合字段，基于合作协议，以及 Cabital 在渠道上的状态。</p>
+<p>Config 对象定义</p>
 
 <table><thead>
 <tr>
-<th>Bit位</th>
-<th>值</th>
+<th>字段</th>
+<th>类型</th>
 <th>描述</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>1</td>
-<td>1</td>
-<td>开关</td>
+<td>allow</td>
+<td>bool</td>
+<td>允许（该允许使用）</td>
 </tr>
 <tr>
-<td>2</td>
-<td>2</td>
-<td>允许转出 (Cabital -&gt; Partner)</td>
+<td>min</td>
+<td>string(number)</td>
+<td>交易最小每笔</td>
 </tr>
 <tr>
-<td>3</td>
-<td>4</td>
-<td>允许转入 (Partner -&gt; Cabital)</td>
-</tr>
-<tr>
-<td>4</td>
-<td>8</td>
-<td>支持 Convert</td>
+<td>max</td>
+<td>string(number)</td>
+<td>交易最大每笔</td>
 </tr>
 </tbody></table>
-
+<h3 id='enum'>Enum解释</h3>
 <ul>
 <li>货币类型 type</li>
 </ul>
@@ -1095,7 +1084,7 @@
 </tbody></table>
 
 <aside class="success">
-限额为整个合作方
+限额为整个合作方，单笔的限制
 </aside>
 <h2 id='get'>获取最新的报价 (GET)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://faas.cabital.com/faas/faas_partner/quotes/USDT-EUR"</span>
 </code></pre></div><h3 id='http-2'>HTTP 请求</h3>
@@ -1171,7 +1160,7 @@
 <h2 id='ws'>获取最新的报价 (WS)</h2>
 <p>TBD</p>
 <h1 id='a1f7e38a27'>账户关联相关</h1>
-<p>FaaS的服务，依照Cabital的要求，接入合作方必须提供与本方一致的身份信息（每一个字段），字段阐述请参考关联同名账户API。</p>
+<p>Cabital Connect 应监管要求，接入合作方必须提供与本方一致的身份信息（每一个字段），字段阐述请参考关联同名账户API。</p>
 <h2 id='35926dc96b'>获取用户关联状况</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://faas.cabital.com/faas/faas_partner/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/detail"</span>
 </code></pre></div><h3 id='http'>HTTP 请求</h3>
 <p><code>GET /api/v1/accounts/&lt;account_id&gt;/detail</code></p>
@@ -1186,7 +1175,7 @@
 <tr>
 <td>account_id</td>
 <td>true</td>
-<td>faas的Cabital账户id</td>
+<td>Connect的Cabital账户id</td>
 </tr>
 </tbody></table>
 
@@ -1248,7 +1237,7 @@ limits | object | 当前提款限额 （待定）</p>
 <tr>
 <td>account_id</td>
 <td>true</td>
-<td>faas的Cabital账户id</td>
+<td>Connect的Cabital账户id</td>
 </tr>
 </tbody></table>
 <h3 id='a526db39fb'>请求体</h3>
@@ -1295,7 +1284,61 @@ limits | object | 当前提款限额 （待定）</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>提交用户信息，以获得同名验证结果</p>
+<h3 id='c1f957ec0c'>错误消息</h3>
+<ul>
+<li>400 用户状态必须为 CREATED 或者 MISMATCHED</li>
+</ul>
 <h1 id='527200ee4e'>账户操作相关</h1>
+<p>账户操作业务错误列表</p>
+
+<table><thead>
+<tr>
+<th>错误</th>
+<th>含义</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PA001</td>
+<td>Cabital account id 不存在</td>
+</tr>
+<tr>
+<td>PA002</td>
+<td>账户可用余额不足</td>
+</tr>
+<tr>
+<td>PA003</td>
+<td>该笔交易未达到最小限额</td>
+</tr>
+<tr>
+<td>PA004</td>
+<td>该笔交易超过最大限额</td>
+</tr>
+<tr>
+<td>PA005</td>
+<td>请求的交易类型不可用</td>
+</tr>
+<tr>
+<td>PA006</td>
+<td>请求的交易请求的币种不可用</td>
+</tr>
+<tr>
+<td>PA007</td>
+<td>Quote 已经过期</td>
+</tr>
+<tr>
+<td>PA008</td>
+<td>2FA（OTP）不正确</td>
+</tr>
+<tr>
+<td>AC001</td>
+<td>该客户的KYC状态尚未匹配</td>
+</tr>
+<tr>
+<td>AC002</td>
+<td>2FA (OTP) 特指 Google Authenticator未设置</td>
+</tr>
+</tbody></table>
+
 <!-- ## 获取用户提现限额
 
 
@@ -1949,16 +1992,20 @@ account_id | true | Cabital提供的账户id -->
 </tr>
 </thead><tbody>
 <tr>
-<td>LINKED</td>
+<td>INITIALIZED</td>
 <td>用户成功连接，还未在 Cabital 提交 KYC</td>
 </tr>
 <tr>
 <td>PENDING</td>
-<td>用户正在于Cabital 进行KYC</td>
+<td>Cabital处理用户材料中</td>
 </tr>
 <tr>
-<td>REJECTED</td>
-<td>用户呗Cabital 最终拒绝开户</td>
+<td>TEMPORARY_REJECTED</td>
+<td>用户被 Cabital 要求提供正确材料</td>
+</tr>
+<tr>
+<td>FINAL_REJECTED</td>
+<td>用户被 Cabital 最终拒绝开户</td>
 </tr>
 <tr>
 <td>CREATED</td>
@@ -1993,7 +2040,7 @@ account_id | true | Cabital提供的账户id -->
     </span><span class="nl">"account_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"user_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jone.doe@email.com"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"user_ext_ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fce4fd45-7dd7-4d4c-b06c-e17ff12f3e30"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"staus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LINKED"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"staus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INITIALIZED"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"event_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-01T09:00:00.000Z"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2130,7 +2177,14 @@ status | string(enum) | 划转的结果，SUCCESS / FAILED -->
 <td>Service Unavailable -- 本方服务不可用，请稍后重试.</td>
 </tr>
 </tbody></table>
-<h1 id='5988541320'>版本变化</h1><h2 id='0-1-1'>0.1.1</h2>
+<h1 id='5988541320'>版本变化</h1><h2 id='0-2-0'>0.2.0</h2>
+<ul>
+<li>规范了产品名称，从 <code>faas</code> 转换为 <code>cabital connect</code></li>
+<li>增加了合作方准备文档，为合作方接入本方系统做准备</li>
+<li>Connect 状态命名的细微调整，细化了<code>Rejected</code>的两种不同性质</li>
+<li>增加了账户的错误处理，并调整了状态，转换为config里面</li>
+</ul>
+<h2 id='0-1-1'>0.1.1</h2>
 <ul>
 <li>恢复了 API-Key，便于已经集成 CaaS 的合作方，集成 FaaS</li>
 <li>由于使用API-Key，移除访问 Path 中的 Partner Id</li>

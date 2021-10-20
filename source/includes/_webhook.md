@@ -11,9 +11,10 @@ Callback 事件预计平均会在 1-5 分钟后到达，但理论上可能需要
 
 类型 | 描述
 --------- | -----------
-LINKED | 用户成功连接，还未在 Cabital 提交 KYC
-PENDING | 用户正在于Cabital 进行KYC
-REJECTED | 用户呗Cabital 最终拒绝开户
+INITIALIZED | 用户成功连接，还未在 Cabital 提交 KYC
+PENDING | Cabital处理用户材料中
+TEMPORARY_REJECTED | 用户被 Cabital 要求提供正确材料
+FINAL_REJECTED | 用户被 Cabital 最终拒绝开户
 CREATED | 用户成功 KYC，Cabital 账户开通，等待合作方提交同名验证。
 MATCHING | 合作方已提交，同名验证人工审核中
 MATCHED | 同名验证通过，完全开通同账户转账
@@ -33,7 +34,7 @@ UNLINKED | 用户/ Cabital 主动关闭与合作方的某账户关联
     "account_uuid": "6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c",
     "user_email": "jone.doe@email.com",
     "user_ext_ref": "fce4fd45-7dd7-4d4c-b06c-e17ff12f3e30",
-    "staus": "LINKED",
+    "staus": "INITIALIZED",
     "event_time": "2020-07-01T09:00:00.000Z",
     "data" : {}
 }

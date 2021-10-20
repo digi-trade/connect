@@ -1,6 +1,6 @@
 # API 认证
 
-API Key是客户访问FaaS认证的唯一方法，所有的API都需要签名并包含以下HTTP Header:
+API Key是客户访问 Connect API 认证的唯一方法，所有的API都需要签名并包含以下HTTP Header:
 
 - ACCESS-KEY 客户的Access Key，请联系服务顾问获取
 - ACCESS-SIGN 在客户系统中根据下面的规则生成的消息签名

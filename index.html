@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta
             name="description"
-            content="Documentation for the FaaS API"
+            content="Documentation for the Cabital Connect API"
         >
     <title>Cabital Connect API Reference</title>
 
@@ -941,7 +941,7 @@
 <aside class="warning">请不要分享你的Secrets，否则会造成信息泄漏以及不必要的交易费损失。如Secret出现异常，请立刻与你的服务顾问联系并立刻更新。</aside>
 <h1 id='171d707637'>合作方配置</h1>
 <p>合作方系统API是提供给合作方用来感知合作开户状态，系统基础设定，和非用户级别的设定。</p>
-<h2 id='79fee25901'>获取合作方的配置</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://faas.cabital.com/faas/faas_partner/config"</span>
+<h2 id='79fee25901'>获取合作方的配置</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/config"</span>
 </code></pre></div><h3 id='http'>HTTP 请求</h3>
 <p><code>GET /api/v1/config</code></p>
 
@@ -1086,7 +1086,7 @@
 <aside class="success">
 限额为整个合作方，单笔的限制
 </aside>
-<h2 id='get'>获取最新的报价 (GET)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://faas.cabital.com/faas/faas_partner/quotes/USDT-EUR"</span>
+<h2 id='get'>获取最新的报价 (GET)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/quotes/USDT-EUR"</span>
 </code></pre></div><h3 id='http-2'>HTTP 请求</h3>
 <p><code>GET /api/v1/quotes/&lt;code_pair&gt;</code></p>
 <h3 id='url'>URL参数</h3>
@@ -1161,7 +1161,7 @@
 <p>TBD</p>
 <h1 id='a1f7e38a27'>账户关联相关</h1>
 <p>Cabital Connect 应监管要求，接入合作方必须提供与本方一致的身份信息（每一个字段），字段阐述请参考关联同名账户API。</p>
-<h2 id='35926dc96b'>获取用户关联状况</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://faas.cabital.com/faas/faas_partner/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/detail"</span>
+<h2 id='35926dc96b'>获取用户关联状况</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/detail"</span>
 </code></pre></div><h3 id='http'>HTTP 请求</h3>
 <p><code>GET /api/v1/accounts/&lt;account_id&gt;/detail</code></p>
 <h3 id='url'>URL参数</h3>
@@ -1343,7 +1343,7 @@ limits | object | 当前提款限额 （待定）</p>
 
 
 ```shell
-curl "http://faas.cabital.com/api/v1/limit" \
+curl "http://partner.cabital.com/api/v1/limit" \
   -H "Authorization: Bearer"
 ```
 
@@ -2181,20 +2181,20 @@ status | string(enum) | 划转的结果，SUCCESS / FAILED -->
 </tbody></table>
 <h1 id='5988541320'>版本变化</h1><h2 id='0-2-0'>0.2.0</h2>
 <ul>
-<li>规范了产品名称，从 <code>faas</code> 转换为 <code>cabital connect</code></li>
+<li>规范了产品名称，从 <code>partner</code> 转换为 <code>cabital connect</code></li>
 <li>增加了合作方准备文档，为合作方接入本方系统做准备</li>
 <li>Connect 状态命名的细微调整，细化了<code>Rejected</code>的两种不同性质</li>
 <li>增加了账户的错误处理，并调整了状态，转换为config里面</li>
 </ul>
 <h2 id='0-1-1'>0.1.1</h2>
 <ul>
-<li>恢复了 API-Key，便于已经集成 CaaS 的合作方，集成 FaaS</li>
+<li>恢复了 API-Key，便于已经集成 CaaS 的合作方，集成 Connect</li>
 <li>由于使用API-Key，移除访问 Path 中的 Partner Id</li>
 <li>增加更多 API 细节，以及错误处理</li>
 </ul>
 <h2 id='0-1-0'>0.1.0</h2>
 <ul>
-<li>提供最初的 FaaS API 文档</li>
+<li>提供最初的 Partner API 文档</li>
 </ul>
 
       </div>

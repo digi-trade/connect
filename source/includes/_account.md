@@ -19,7 +19,7 @@ AC002 | 2FA (OTP) 特指 Google Authenticator未设置
 
 
 ```shell
-curl "http://faas.cabital.com/api/v1/limit" \
+curl "http://partner.cabital.com/api/v1/limit" \
   -H "Authorization: Bearer"
 ```
 

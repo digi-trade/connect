@@ -26,7 +26,7 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Documentation for the FaaS API
+    content: Documentation for the Cabital Connect API
 ---
 
 # 简介

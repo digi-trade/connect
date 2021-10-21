@@ -6,7 +6,7 @@
 
 
 ```shell
-curl "http://faas.cabital.com/faas/faas_partner/config"
+curl "http://partner.cabital.com/partners/partner_id/config"
 ```
 
 ### HTTP 请求
@@ -107,7 +107,7 @@ Bit位 | 描述
 ## 获取最新的报价 (GET)
 
 ```shell
-curl "http://faas.cabital.com/faas/faas_partner/quotes/USDT-EUR"
+curl "http://partner.cabital.com/partners/partner_id/quotes/USDT-EUR"
 ```
 ### HTTP 请求
 

@@ -178,12 +178,12 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/BTC"
 Parameter | Default | Description
 --------- | ------- | -----------
 account_id | true | Cabital Connect Account Id
-symbol | true | 货币的Symbol
+symbol | true | Currency Symbol
 
 
-## 账户单币入账信息
+## Account Currency Deposite Information
 
-获取用户的单一账户入账信息
+Get account currency deposite information
 
 ```shell
 curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/EUR/deposit/SEPA"

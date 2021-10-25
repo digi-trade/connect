@@ -1,4 +1,4 @@
-# Account operation related
+# Account Operations
 
 List of Account Operation Business Errors
 
@@ -107,7 +107,7 @@ Parameter | Default | Description
 account_id | true | Cabital Connect Account Id -->
 
 
-## List of account available balances
+## List of Available Account Balances
 
 Get all account balances of the user
 
@@ -152,9 +152,9 @@ Parameter | Default | Description
 --------- | ------- | -----------
 account_id | true | Cabital Connect Account Id
 
-## Account available balance in single currency
+## Available Account Balance in a Single Currency
 
-Get the user's single account balance, please refer to the currency symbol [报价API](/?shell#get)
+Get the user's single account balance, please refer to the currency symbol [Quotation API](/connect/en/#get-the-latest-quotation-get)
 
 ```shell
 curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/BTC"

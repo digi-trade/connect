@@ -2,7 +2,7 @@
 
 Cabital Connect is subject to regulatory requirements. The access partner must provide the identity information (each field) consistent with this party. For field descriptions, please refer to the API for linking accounts with the same name.
 
-## Get user connection status
+## Get User Connection Status
 
 
 ```shell
@@ -71,7 +71,7 @@ Field | Type | Description
 --------- | ------- | ---------------
 name | string | The full name of the customer, in accordance with the usual order on the document, such as First Name + (Middle Name) + Last Name
 id | string |ID on the identity document
-id_document | string(ENUM) | Identity document type, could be one of `ID,PASSPORT,DRIVER_LICENSE`
+id_document | string(ENUM) | Identity document type (`ID,PASSPORT,DRIVER_LICENSE`)
 issued_by | string | The country where the identity document was issued
 dob | string | Date of birth format in `YYYYMMDD`
 
@@ -92,4 +92,5 @@ Submit user information to get the verification result of the same name control.
 
 ### 错误消息
 
-- 400 Connection Status must be in CREATED or MISMATCHED
+
+- HTTP 400 : Connection Status must be in CREATED or MISMATCHED

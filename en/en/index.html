@@ -9,9 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta
             name="description"
-            content="Cabital Connect API 文档"
+            content="Documentation for the Cabital Connect API"
         >
-    <title>Cabital Connect API 文档</title>
+    <title>Cabital Connect API Document</title>
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -288,24 +288,24 @@
   color: #859900;
 }
     </style>
-    <link href="stylesheets/screen-c9d8fa83.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all-b12a2749.js"></script>
+    <link href="../../stylesheets/screen-c9d8fa83.css" rel="stylesheet" media="screen" />
+    <link href="../../stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
+      <script src="../../javascripts/all-b12a2749.js"></script>
 
     <script>
       $(function() { setupCodeCopy(); });
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;]">
+  <body class="en en_en en_en_index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar-cad8cdcb.png" alt="" />
+        <img src="../../images/navbar-cad8cdcb.png" alt="" />
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo-c460f495.svg" class="logo" alt="" />
+      <img src="../../images/logo-c460f495.svg" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
         </div>
@@ -315,92 +315,75 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#5ea2e0cde2" class="toc-h1 toc-link" data-title="简介">简介</a>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#cd47d4902f" class="toc-h1 toc-link" data-title="合作方接入准备">合作方接入准备</a>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+          </li>
+          <li>
+            <a href="#partner-level-setting" class="toc-h1 toc-link" data-title="Partner Level Setting">Partner Level Setting</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#1" class="toc-h2 toc-link" data-title="1. 准备信息">1. 准备信息</a>
+                    <a href="#partner-configuration" class="toc-h2 toc-link" data-title="Partner configuration">Partner configuration</a>
                   </li>
                   <li>
-                    <a href="#2-api" class="toc-h2 toc-link" data-title="2. API资源">2. API资源</a>
-                  </li>
-                  <li>
-                    <a href="#3-resources" class="toc-h2 toc-link" data-title="3. Resources">3. Resources</a>
+                    <a href="#get-the-latest-quotation-get" class="toc-h2 toc-link" data-title="Get the latest quotation (GET)">Get the latest quotation (GET)</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#api" class="toc-h1 toc-link" data-title="API 认证">API 认证</a>
-          </li>
-          <li>
-            <a href="#171d707637" class="toc-h1 toc-link" data-title="合作方配置">合作方配置</a>
+            <a href="#account-connect-related" class="toc-h1 toc-link" data-title="Account Connect related">Account Connect related</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#79fee25901" class="toc-h2 toc-link" data-title="获取合作方的配置">获取合作方的配置</a>
+                    <a href="#get-user-connection-status" class="toc-h2 toc-link" data-title="Get user connection status">Get user connection status</a>
                   </li>
                   <li>
-                    <a href="#get" class="toc-h2 toc-link" data-title="获取最新的报价 (GET)">获取最新的报价 (GET)</a>
-                  </li>
-                  <li>
-                    <a href="#ws" class="toc-h2 toc-link" data-title="获取最新的报价 (WS)">获取最新的报价 (WS)</a>
+                    <a href="#name-match" class="toc-h2 toc-link" data-title="Name Match">Name Match</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#a1f7e38a27" class="toc-h1 toc-link" data-title="账户关联相关">账户关联相关</a>
+            <a href="#account-operation-related" class="toc-h1 toc-link" data-title="Account operation related">Account operation related</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#35926dc96b" class="toc-h2 toc-link" data-title="获取用户关联状况">获取用户关联状况</a>
+                    <a href="#list-of-account-available-balances" class="toc-h2 toc-link" data-title="List of account available balances">List of account available balances</a>
                   </li>
                   <li>
-                    <a href="#eb54a92e30" class="toc-h2 toc-link" data-title="关联同名用户">关联同名用户</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#527200ee4e" class="toc-h1 toc-link" data-title="账户操作相关">账户操作相关</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#9b7d4b6004" class="toc-h2 toc-link" data-title="账户可用余额列表">账户可用余额列表</a>
-                  </li>
-                  <li>
-                    <a href="#f752da1b82" class="toc-h2 toc-link" data-title="账户可用余额单币">账户可用余额单币</a>
+                    <a href="#account-available-balance-in-single-currency" class="toc-h2 toc-link" data-title="Account available balance in single currency">Account available balance in single currency</a>
                   </li>
                   <li>
                     <a href="#36832df916" class="toc-h2 toc-link" data-title="账户单币入账信息">账户单币入账信息</a>
                   </li>
                   <li>
-                    <a href="#cf7cc7379a" class="toc-h2 toc-link" data-title="账户转换货币">账户转换货币</a>
+                    <a href="#currency-conversion" class="toc-h2 toc-link" data-title="Currency conversion">Currency conversion</a>
                   </li>
                   <li>
-                    <a href="#1306c352c3" class="toc-h2 toc-link" data-title="账户划转列表">账户划转列表</a>
+                    <a href="#account-transfer-history" class="toc-h2 toc-link" data-title="Account transfer history">Account transfer history</a>
                   </li>
                   <li>
-                    <a href="#0c165f19f8" class="toc-h2 toc-link" data-title="账户划转详情">账户划转详情</a>
+                    <a href="#account-transfer-details" class="toc-h2 toc-link" data-title="Account transfer details">Account transfer details</a>
                   </li>
                   <li>
-                    <a href="#4e24c408a0" class="toc-h2 toc-link" data-title="账户双向划转">账户双向划转</a>
+                    <a href="#two-way-account-transfer" class="toc-h2 toc-link" data-title="Two-way account transfer">Two-way account transfer</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#callback" class="toc-h1 toc-link" data-title="Callback 事件">Callback 事件</a>
+            <a href="#callback-event" class="toc-h1 toc-link" data-title="Callback event">Callback event</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#b6911a9f93" class="toc-h2 toc-link" data-title="账户关联状态事件">账户关联状态事件</a>
+                    <a href="#account-connect-status-event" class="toc-h2 toc-link" data-title="Account Connect status event">Account Connect status event</a>
                   </li>
                   <li>
-                    <a href="#591069a73d" class="toc-h2 toc-link" data-title="事件签名">事件签名</a>
+                    <a href="#event-signature" class="toc-h2 toc-link" data-title="Event signature">Event signature</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#code" class="toc-h1 toc-link" data-title="错误处理 Code">错误处理 Code</a>
+            <a href="#error-handling-code" class="toc-h1 toc-link" data-title="Error Handling Code">Error Handling Code</a>
           </li>
           <li>
-            <a href="#5988541320" class="toc-h1 toc-link" data-title="版本变化">版本变化</a>
+            <a href="#version-changes" class="toc-h1 toc-link" data-title="Version changes">Version changes</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#0-2-0" class="toc-h2 toc-link" data-title="0.2.0">0.2.0</a>
@@ -415,538 +398,54 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='mailto:developer@cabital.com'>开始集成</a></li>
-            <li><a href='https://cabital.com/'>版权所有 Cabital 2021</a></li>
-            <li><a href='/en/'>English</a></li>
+            <li><a href='mailto:developer@cabital.com'>Sign Up for Partner Key</a></li>
+            <li><a href='https://cabital.com/'>Copyright by Cabital 2021</a></li>
+            <li><a href='/'>中文</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='5ea2e0cde2'>简介</h1>
-<p>欢迎使用Cabital Connect API，Connect API 使合作伙伴与 Cabital 钱包能实现无缝划转的查询，给予用户更多的支付与收款能力。</p>
+        <h1 id='introduction'>Introduction</h1>
+<p>By leveraging Cabital Connect API, you could builds the connection with crypto wallets, which enable credit and debits between partner and Cabital.</p>
 
-<p>API 功能简介：</p>
-
-<ul>
-<li>提供服务端的 Authentication 与 Authorization，打通双方相互调用</li>
-<li>通过关联同名用户接口，完成Cabital Connect功能</li>
-<li>在完成Cabital Connect下，提供用户的账号余额，以及划转到合作伙伴方的同名账户，并支持C+T（转换+划转）</li>
-</ul>
-
-<p>您可以根据本文档提供的API来使用服务</p>
-<h1 id='cd47d4902f'>合作方接入准备</h1>
-<p>本文主要描述合作方Partner使用OpenID Connect (OIDC)协议接入Cabital.</p>
-<h2 id='1'>1. 准备信息</h2>
-<p><strong>合作方Partner需提供给Cabital信息：</strong></p>
-
-<table><thead>
-<tr>
-<th>名称</th>
-<th>配置值</th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Authorized origins</td>
-<td>https://partner.com</td>
-<td></td>
-</tr>
-<tr>
-<td>Authorized redirect URL</td>
-<td>https://partner.com/callback</td>
-<td>Partner Callback URL</td>
-</tr>
-</tbody></table>
-
-<p><strong>Cabital提供给合作方Partner的资料信息：</strong></p>
-
-<table><thead>
-<tr>
-<th>名称</th>
-<th>配置值</th>
-<th>备注</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Client ID</td>
-<td><code>Client_ID</code></td>
-<td>OAuth 2 Client ID</td>
-</tr>
-<tr>
-<td>Client Secret</td>
-<td><code>Client_SECRET</code></td>
-<td>OAuth 2 Client Secret</td>
-</tr>
-<tr>
-<td>Partner Base URL</td>
-<td><a href="https://domain/{partner-id}">https://domain/{partner-id}</a></td>
-<td>Domain URL</td>
-</tr>
-<tr>
-<td>OIDC Configuration</td>
-<td><a href="https://domain/{partner-id}/oidc-configuration">https://domain/{partner-id}/oidc-configuration</a></td>
-<td>openid-configuration信息</td>
-</tr>
-</tbody></table>
-<h2 id='2-api'>2. API资源</h2><h3 id='2-1-auth-request'>2.1 Auth request接口</h3>
-<p>合作方Partner使用Cabital用户Login时重定向到Cabital调用此接口.</p>
-
-<p><strong>重定向URL</strong></p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>https://<span class="o">{</span>Partner Base URL<span class="o">}</span>/oidc/auth
-</code></pre></div>
-<p><strong>主要支持参数：</strong></p>
-
-<table><thead>
-<tr>
-<th style="text-align: left">参数</th>
-<th style="text-align: left"><strong>描述</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left">response_type</td>
-<td style="text-align: left">REQUIRED.  Value is  ‘code’</td>
-</tr>
-<tr>
-<td style="text-align: left">client_id</td>
-<td style="text-align: left">REQUIRED. OAuth2 Client identifier created by Cabital</td>
-</tr>
-<tr>
-<td style="text-align: left">redirect_url</td>
-<td style="text-align: left">REQUIRED. Redirection URI to which the response will be sent. This URI MUST exactly match one of the Redirection URI values for the Client pre-registered at Cabital</td>
-</tr>
-<tr>
-<td style="text-align: left">scope</td>
-<td style="text-align: left">REQUIRED. See the scope options in the table below</td>
-</tr>
-<tr>
-<td style="text-align: left">state</td>
-<td style="text-align: left">OPTIONAL. Opaque value used to maintain state between the request and the callback. Returned as a URL parameter on the authentication response.</td>
-</tr>
-<tr>
-<td style="text-align: left">nonce</td>
-<td style="text-align: left">OPTIONAL. String value used to associate a Client session with an ID Token, and to mitigate replay attacks. Returned as a parameter in the <code>id_token</code></td>
-</tr>
-<tr>
-<td style="text-align: left"></td>
-<td style="text-align: left"></td>
-</tr>
-</tbody></table>
-
-<p><strong>主要支持scopes：</strong></p>
-
-<table><thead>
-<tr>
-<th style="text-align: left"><strong>Scope</strong></th>
-<th style="text-align: left"><strong>描述</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left">openid</td>
-<td style="text-align: left">REQUIRED. Makes the Openid Connect authentication flow possible and includes the <code>id_token</code> in the response</td>
-</tr>
-<tr>
-<td style="text-align: left">profile</td>
-<td style="text-align: left">OPTIONAL. To access the users ‘Userinfo’</td>
-</tr>
-<tr>
-<td style="text-align: left">email</td>
-<td style="text-align: left">OPTIONAL. To include the users email address in the <code>id_token</code></td>
-</tr>
-</tbody></table>
-
-<p><strong>使用HTTP 方法</strong></p>
+<p>Cabitlities：</p>
 
 <ul>
-<li> GET:  Parameters are URL encoded in the query string.</li>
+<li>It provides erver side Authentication &amp; Authorization.</li>
+<li>Through name matching interfaces, estiabilish Cabital Connect between two parties&#39; crypto wallet.</li>
+<li>Query Cabital wallet balance, transfer balance into same beneficia&#39;s wallet. Also, provides Convert interface, to coverert currencies on behavior of user, and attach to transfer order.</li>
 </ul>
-
-<p><strong>错误处理说明信息:</strong></p>
-
-<table><thead>
-<tr>
-<th>HTTP Satus Code</th>
-<th style="text-align: left">Check</th>
-<th>Reponse        Code</th>
-<th style="text-align: left">Reponse Message</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td style="text-align: left">The tenantId, if present in the request URL, must be known to Cabital.</td>
-<td>001201</td>
-<td style="text-align: left">invalid_request</td>
-</tr>
-<tr>
-<td>400</td>
-<td style="text-align: left">The response_type parameter must be “code”.</td>
-<td>001201</td>
-<td style="text-align: left">unsupported_response_type</td>
-</tr>
-<tr>
-<td>400</td>
-<td style="text-align: left">The <code>client_id</code> must refer to a Service in Cabital for which OpenID has been configured.</td>
-<td>001201</td>
-<td style="text-align: left">invalid_client</td>
-</tr>
-<tr>
-<td>400</td>
-<td style="text-align: left">The <code>redirect_uri</code> must be known to Cabital for the Service.</td>
-<td>001201</td>
-<td style="text-align: left">invalid_request</td>
-</tr>
-<tr>
-<td>400</td>
-<td style="text-align: left">The scope must contain “openid”</td>
-<td>001201</td>
-<td style="text-align: left">invalid_scope</td>
-</tr>
-</tbody></table>
-
-<p><strong>例子：</strong></p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>https://<span class="o">{</span>Partner Base URL<span class="o">}</span>/oidc/auth?client_id<span class="o">=</span>demo-client&amp;redirect_uri<span class="o">=</span>http%3A%2F%2Flocalhost%3A3000%2Fcallback&amp;response_type<span class="o">=</span>code&amp;scope<span class="o">=</span>openid+email&amp;state<span class="o">=</span>pnIj1g3GMsX0Rj6FDbVoe3rYbLJzdfejT0EfusiEbis%3D
-</code></pre></div>
-<p><strong>Callback重定向将带有下列参数：</strong></p>
-
-<table><thead>
-<tr>
-<th style="text-align: left"><strong>Parameter name</strong></th>
-<th style="text-align: left"><strong>Explanation</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left">code</td>
-<td style="text-align: left">A code generated for the authentication request by Cabital. The Relying party must treat this code as an opaque value</td>
-</tr>
-<tr>
-<td style="text-align: left">state</td>
-<td style="text-align: left">The value of the state parameter</td>
-</tr>
-</tbody></table>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>https://<span class="o">{</span>Partner Callback URL<span class="o">}</span>/callback?state<span class="o">=</span>57a30714-91e5-4fd7-a917-a4c5c8563e24&amp;code<span class="o">=</span>642de989-2564-405a-a807-5a8d20952e09.57a30714-91e5-4fd7-a917-a4c5c8563e24.d3e0888f-61b1-4d42-b971-156397ba24b5
-</code></pre></div><h3 id='2-2-access-token'>2.2 Access token</h3>
-<p>合作方Partner发送授权code到Cabital获取token信息.</p>
-
-<p><strong>请求URL</strong></p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>https://<span class="o">{</span>Partner Base URL<span class="o">}</span>/oidc/token
-</code></pre></div>
-<p><strong>使用Basic authentication</strong></p>
-
-<p>The Relying party must authenticate itself using Basic authentication.  参考OAuth2 appendix A.2(https://tools.ietf.org/html/rfc6749#appendix-A.2).</p>
-
-<p><strong>使用HTTP 方法</strong></p>
+<h1 id='authentication'>Authentication</h1>
+<p>API Key / Secret is the credential to access Connect API. All the HTTPS calls need to be signed and include following HTTP Headers:</p>
 
 <ul>
-<li> POST: the parameters are sent in the body of a request with <code>Content-Type: application/x-www-form-urlencoded</code>.</li>
+<li>ACCESS-KEY Customer Access Key, provided by Cabital</li>
+<li>ACCESS-SIGN The signature build by the algorithm described below. </li>
+<li>ACCESS-TIMESTAMP API Access time stamp</li>
+<li>ACCESS-NONCE We use nonces to ensure that old communications cannot be reused, each API call must used different nounce, otherwise, system will ignore the 2nd request arrived within 60 mins time frame.</li>
 </ul>
 
-<p><strong>请求使用参数</strong></p>
+<p>API Request must include <code>Content-Type</code> as <code>application/json</code>, the body must be in restricted JSON format.</p>
 
-<table><thead>
-<tr>
-<th style="text-align: left"><strong>Parameter name</strong></th>
-<th style="text-align: left"><strong>Explanation</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left">grant_type</td>
-<td style="text-align: left">The expected grant type. Must be the fixed value: authorization_code</td>
-</tr>
-<tr>
-<td style="text-align: left">code</td>
-<td style="text-align: left">The code as received from Cabital in the Authentication response.</td>
-</tr>
-<tr>
-<td style="text-align: left">redirect_uri</td>
-<td style="text-align: left">URI to send the authorization response back to. Must be the one that is registered in Cabital with the Relying Party</td>
-</tr>
-</tbody></table>
+<p>ACCESS-SIGN Header is the sha256 HMAC hash by <code>time stamp + HTTP method + NONCE + access path + request body</code> with Secret Key.</p>
 
-<p><strong>处理错误信息说明:</strong> </p>
+<p>-The timestamp should be the same as ACCESS-TIMESTAMP
+-The request body is in the form of String, or regarded as empty, especially when accessing the API through GET
+-HTTP method must be uppercase</p>
 
-<p>如果处理失败，Cabital会发送错误响应信息。</p>
+<p>ACCESS-TIMESTAMP is from the Unix Epoch to the current number in seconds. The timestamp of the customer request must be within 30 seconds of the API service time, otherwise it will be considered expired or rejected directly.</p>
 
-<table><thead>
-<tr>
-<th>HTTP Satus Code</th>
-<th style="text-align: left">Check</th>
-<th>Reponse        Code</th>
-<th style="text-align: left">Reponse Message</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td style="text-align: left">The basic authentication must be valid</td>
-<td>001201</td>
-<td style="text-align: left">unauthorized_client</td>
-</tr>
-<tr>
-<td>400</td>
-<td style="text-align: left">The response_type parameter must be “authorization_code”.</td>
-<td>001201</td>
-<td style="text-align: left">unsupported_grant_type</td>
-</tr>
-<tr>
-<td>400</td>
-<td style="text-align: left">The code must be known to Cabital and must have been generated for the Service identified by the basic authentication username.</td>
-<td>001201</td>
-<td style="text-align: left">invalid_request</td>
-</tr>
-<tr>
-<td>400</td>
-<td style="text-align: left">The redirect_uri must be known to Cabital for the Service.</td>
-<td>001201</td>
-<td style="text-align: left">invalid_request</td>
-</tr>
-</tbody></table>
-
-<p>如果处理成功，则返回json报文，此时HTTP header设置”Content-Type: application/json“。</p>
-
-<p><strong>json对象字段如下：</strong></p>
-
-<table><thead>
-<tr>
-<th style="text-align: left"><strong>Attribute name</strong></th>
-<th style="text-align: left"><strong>Explanation</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left">access_token</td>
-<td style="text-align: left">Token needed for sending a UserInfo request. The token is generated by Cabital.</td>
-</tr>
-<tr>
-<td style="text-align: left">token_type</td>
-<td style="text-align: left">The authorization type the token has been generated for, must be the fixed value: Bearer</td>
-</tr>
-<tr>
-<td style="text-align: left">expires_in</td>
-<td style="text-align: left">Validity period of the <code>access_token</code>, in seconds</td>
-</tr>
-<tr>
-<td style="text-align: left">id_token</td>
-<td style="text-align: left">JSON Web Token with information about the authenticated end user and the request.</td>
-</tr>
-<tr>
-<td style="text-align: left">refresh_token</td>
-<td style="text-align: left">Refresh token.</td>
-</tr>
-</tbody></table>
-
-<p>id_token对象通常包含头，签名和内容体，其中payload作为json对象主要有如下信息：</p>
-
-<table><thead>
-<tr>
-<th style="text-align: left"><strong>Attribute name</strong></th>
-<th style="text-align: left"><strong>Explanation</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left">iss</td>
-<td style="text-align: left">Issuer of the token.</td>
-</tr>
-<tr>
-<td style="text-align: left">sub</td>
-<td style="text-align: left">The user identifier within Cabital,  user ID.</td>
-</tr>
-<tr>
-<td style="text-align: left">aud</td>
-<td style="text-align: left">Array of the <code>client_id</code> for which the token was generated and the tenantId of the user.</td>
-</tr>
-<tr>
-<td style="text-align: left">azp</td>
-<td style="text-align: left">The <code>client_id</code> for which the token was generated.</td>
-</tr>
-<tr>
-<td style="text-align: left">auth_time</td>
-<td style="text-align: left">Unix timestamp (rfc3339) of the time at which the user has been successfully authenticated</td>
-</tr>
-<tr>
-<td style="text-align: left">exp</td>
-<td style="text-align: left">Time until the JWT is valid as a Unix timestamp (rfc3339)</td>
-</tr>
-<tr>
-<td style="text-align: left">iat</td>
-<td style="text-align: left">Unix timestamp (rfc3339) at which the JWT was generated</td>
-</tr>
-<tr>
-<td style="text-align: left">nonce</td>
-<td style="text-align: left">The exact same value as the nonce in the authentication request</td>
-</tr>
-<tr>
-<td style="text-align: left">email</td>
-<td style="text-align: left">Email address of the user.</td>
-</tr>
-</tbody></table>
-
-<p>payload内容如下所示：</p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>        <span class="s2">"exp"</span>: 1632897475,
-        <span class="s2">"iat"</span>: 1632897175,
-        <span class="s2">"auth_time"</span>: 1632895778,
-        <span class="s2">"jti"</span>: <span class="s2">"cd43fd67-fe99-4aa0-81f5-9c4e4bf099a1"</span>,
-        <span class="s2">"iss"</span>: <span class="s2">"https://authserver.latibac.com/auth/realms/tibyb"</span>,
-        <span class="s2">"aud"</span>: <span class="s2">"demo-client"</span>,
-        <span class="s2">"sub"</span>: <span class="s2">"2cdcae60-a52c-40cd-9489-0c7b4771cc1a"</span>,
-        <span class="s2">"typ"</span>: <span class="s2">"ID"</span>,
-        <span class="s2">"azp"</span>: <span class="s2">"demo-client"</span>,
-        <span class="s2">"session_state"</span>: <span class="s2">"57a30714-91e5-4fd7-a917-a4c5c8563e24"</span>,
-        <span class="s2">"at_hash"</span>: <span class="s2">"Iskqxf47ShhOLWZB-WaXNw"</span>,
-        <span class="s2">"acr"</span>: <span class="s2">"0"</span>,
-        <span class="s2">"name"</span>: <span class="s2">"Karay Hua"</span>,
-        <span class="s2">"email"</span>: <span class="s2">"karay.hua@cabital.com"</span>
-</code></pre></div><h3 id='2-3-userinfo'>2.3 UserInfo</h3>
-<p>合作方Partner可以使用返回字段<code>sub</code>识别唯一账号，如果没有需要的账户信息，需要调用UserInfo请求。</p>
-
-<p><strong>使用HTTP 方法</strong></p>
-
-<ul>
-<li> GET: in that case, the parameters are URL encoded in the query string.</li>
-</ul>
-
-<p><strong>使用URL</strong></p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>https://<span class="o">{</span>Partner Base URL<span class="o">}</span>/oidc/userinfo
-</code></pre></div>
-<p><strong>重定向请求带有如下参数：</strong></p>
-
-<p>HTTP header中设置: Authorization: Bearer The <code>access_token</code> is taken from the Access Token response.</p>
-
-<p>如果处理失败，Cabital会发送错误响应信息。</p>
-
-<p><strong>处理错误信息说明</strong></p>
-
-<table><thead>
-<tr>
-<th>HTTP Satus Code</th>
-<th style="text-align: left">Check</th>
-<th>Reponse        Code</th>
-<th style="text-align: left">Reponse Message</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>403</td>
-<td style="text-align: left">The authentication must be valid, unauthorized token</td>
-<td></td>
-<td style="text-align: left"></td>
-</tr>
-</tbody></table>
-
-<p>如果处理成功，则返回json报文，此时HTTP header设置”Content-Type: application/json“。</p>
-
-<p><strong>json对象字段如下：</strong></p>
-
-<table><thead>
-<tr>
-<th style="text-align: left"><strong>Attribute name</strong></th>
-<th style="text-align: left"><strong>Explanation</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left">sub</td>
-<td style="text-align: left">The user identifier within Cabital,  user ID.</td>
-</tr>
-<tr>
-<td style="text-align: left">mail</td>
-<td style="text-align: left">Email address of the user.</td>
-</tr>
-<tr>
-<td style="text-align: left">kyc_token</td>
-<td style="text-align: left">KYC token.</td>
-</tr>
-</tbody></table>
-<h4 id='2-4-refresh-token'>2.4 Refresh token</h4>
-<p>刷新token接口</p>
-
-<p><strong>使用HTTP 方法</strong></p>
-
-<ul>
-<li> POST: the parameters are sent in the body of a request with <code>Content-Type: application/x-www-form-urlencoded</code>.</li>
-</ul>
-
-<p><strong>使用URL</strong></p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>https://Base-url/<span class="o">{</span>partner-id<span class="o">}</span>/oidc/token
-</code></pre></div>
-<p><strong>重定向请求带有如下参数</strong></p>
-
-<p>HTTP header中设置: Authorization: Bearer The <code>access_token</code> is taken from the Access Token response.</p>
-
-<table><thead>
-<tr>
-<th style="text-align: left"><strong>Parameter</strong></th>
-<th style="text-align: left"><strong>Description</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left">grant_type</td>
-<td style="text-align: left">The expected grant type. Must be the fixed value: <code>refresh_token</code></td>
-</tr>
-<tr>
-<td style="text-align: left">refresh_token</td>
-<td style="text-align: left">The refresh token as received from Cabital.</td>
-</tr>
-<tr>
-<td style="text-align: left">scope</td>
-<td style="text-align: left">OPTIONAL. The scope items requested in the response. If not used in the request, Cabital will use the scope from the authentication request.</td>
-</tr>
-</tbody></table>
-
-<p>Response信息参考<strong>Access token</strong>接口</p>
-
-<p><strong>Token生命周期有如下规则：</strong></p>
-
-<table><thead>
-<tr>
-<th style="text-align: left"></th>
-<th style="text-align: left"><strong>Access Token</strong></th>
-<th style="text-align: left"><strong>Refresh Token</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left">Expires</td>
-<td style="text-align: left">Default 3600 seconds (1 hour).</td>
-<td style="text-align: left">Default 86400 seconds (24 hours / 1 day).</td>
-</tr>
-</tbody></table>
-
-<p>当用户更改密码和用户不正常时候，refresh token会失效，需要用户再次验证身份。</p>
-<h2 id='3-resources'>3. Resources</h2>
-<ul>
-<li><p><a href="https://openid.net/connect/">OpenID Connect</a></p></li>
-<li><p><a href="https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect Core 1.0 incorporating errata set 1</a></p></li>
-<li><p><a href="https://tools.ietf.org/html/rfc7636">Proof Key for Code Exchange by OAuth Public Clients</a></p></li>
-<li><p><a href="https://tools.ietf.org/html/draft-ietf-oauth-token-exchange-19">OAuth 2.0 Token Exchange</a></p></li>
-<li><p><a href="https://tools.ietf.org/html/draft-ietf-oauth-mtls-17">OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens</a></p></li>
-<li><p><a href="https://tools.ietf.org/html/rfc7523">JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants</a></p></li>
-</ul>
-<h1 id='api'>API 认证</h1>
-<p>API Key是客户访问 Connect API 认证的唯一方法，所有的API都需要签名并包含以下HTTP Header:</p>
-
-<ul>
-<li>ACCESS-KEY 客户的Access Key，请联系服务顾问获取</li>
-<li>ACCESS-SIGN 在客户系统中根据下面的规则生成的消息签名</li>
-<li>ACCESS-TIMESTAMP API访问的时间戳</li>
-<li>ACCESS-NONCE 请求发送的唯一的数字或者字符串，每个API请求必须选择不同的Nonce，接收系统会以NONCE作为调用消息的幂等处理，幂等处理有60分钟的时间区间，在60分钟内的系统会自动忽略第一笔之外的请求，超过60分钟提交同样的请求将视为新的调用。</li>
-</ul>
-
-<p>所有的访问必须设置 <code>Content-Type</code> 为 <code>application/json</code>，并且内容为正规的的JSON。</p>
-
-<p>ACCESS-SIGN Header是通过sha256 HMAC的算法以Secret Key计算<code>时间戳 + HTTP方法 + NONCE + 访问路径 + 请求体</code>。</p>
-
-<ul>
-<li>时间戳应该与ACCESS-TIMESTAMP相同</li>
-<li>请求体为String形式，或者视为空尤其在通过GET方式访问API时</li>
-<li>HTTP方法必须为大写英文</li>
-</ul>
-
-<p>ACCESS-TIMESTAMP 以秒为单位从Unix Epoch到当前的数字，客户请求的时间戳必须与API服务的时间差别30秒以内，否则将被认为是过期或者直接拒绝。</p>
-
-<aside class="warning">请不要分享你的Secrets，否则会造成信息泄漏以及不必要的交易费损失。如Secret出现异常，请立刻与你的服务顾问联系并立刻更新。</aside>
-<h1 id='171d707637'>合作方配置</h1>
-<p>合作方系统API是提供给合作方用来感知合作开户状态，系统基础设定，和非用户级别的设定。</p>
-<h2 id='79fee25901'>获取合作方的配置</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/config"</span>
-</code></pre></div><h3 id='http'>HTTP 请求</h3>
+<aside class="warning">
+Please do not share your Secret, otherwise it will cause information leakage and unnecessary loss of transaction fees. If Secret is leaked, please contact your service consultant and update immediately.</aside>
+<h1 id='partner-level-setting'>Partner Level Setting</h1>
+<p>The partner system API is provided to the partner to perceive the status of cooperative account opening, system basic settings, and non-user level settings.</p>
+<h2 id='partner-configuration'>Partner configuration</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/config"</span>
+</code></pre></div><h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /api/v1/config</code></p>
 
 <blockquote>
-<p>获得以下JSON结构体:</p>
+<p>Response Sample:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"currencies"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -1002,110 +501,82 @@
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='3a66ff84d2'>字段定义</h3>
-<table><thead>
-<tr>
-<th>字段</th>
-<th>类型</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>symobl</td>
-<td>string(ENUM)</td>
-<td>货币标志</td>
-</tr>
-<tr>
-<td>type</td>
-<td>int(ENUM)</td>
-<td>货币类型，详见下面解释</td>
-</tr>
-<tr>
-<td>deposit_methods</td>
-<td>list</td>
-<td>当前入金方式</td>
-</tr>
-<tr>
-<td>withdraw_methods</td>
-<td>list</td>
-<td>当前出金方式</td>
-</tr>
-<tr>
-<td>config</td>
-<td>list(object)</td>
-<td>该币种的限制和配置</td>
-</tr>
-</tbody></table>
+</span></code></pre></div><h3 id='request-object'>Request Object</h3>
+<p>symobl | string(ENUM) | currency symbol
+type | int(ENUM) | currency type, see the explanation below for details
+deposit_methods | list | Current deposit methods
+withdraw_methods | list | Current withdrawal method
+config | list(object) | restrictions and configuration of the currency</p>
 
-<p>Config 对象定义</p>
+<p>Config object definition</p>
 
 <table><thead>
 <tr>
-<th>字段</th>
-<th>类型</th>
-<th>描述</th>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>allow</td>
 <td>bool</td>
-<td>允许（该允许使用）</td>
+<td>availability of the currency (killer switch)</td>
 </tr>
 <tr>
 <td>min</td>
 <td>string(number)</td>
-<td>交易最小每笔</td>
+<td>minimum per transaction</td>
 </tr>
 <tr>
 <td>max</td>
 <td>string(number)</td>
-<td>交易最大每笔</td>
+<td>Maximum per transaction</td>
 </tr>
 </tbody></table>
-<h3 id='enum'>Enum解释</h3>
+<h3 id='enum'>Enum</h3>
 <ul>
-<li>货币类型 type</li>
+<li>Currency type</li>
 </ul>
 
 <table><thead>
 <tr>
-<th>Bit位</th>
-<th>描述</th>
+<th>Value</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>1</td>
-<td>法币</td>
+<td>FIAT</td>
 </tr>
 <tr>
 <td>2</td>
-<td>数字货币</td>
+<td>Crypto Currency</td>
 </tr>
 </tbody></table>
 
 <aside class="success">
-限额为整个合作方，单笔的限制
+The limit is for the entire partner, limit of a single transaction
 </aside>
-<h2 id='get'>获取最新的报价 (GET)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/quotes/USDT-EUR"</span>
-</code></pre></div><h3 id='http-2'>HTTP 请求</h3>
+<h2 id='get-the-latest-quotation-get'>Get the latest quotation (GET)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/quotes/USDT-EUR"</span>
+</code></pre></div><h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /api/v1/quotes/&lt;code_pair&gt;</code></p>
-<h3 id='url'>URL参数</h3>
+<h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
-<th>参数</th>
-<th>是否必须</th>
-<th>描述</th>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>code_pair</td>
 <td>true</td>
-<td>报价的CODE Pair，以<code>-</code>作为分割符，Cabital 系统会忽视传入的次序，并以自身规则进行排序，所以一个货币对，不论传入的次序和买卖关系，始终返回一种报价，比如USDT-EUR。</td>
+<td>The CODE Pair of the quote uses <code>-</code> as the separator. The Cabital system will ignore the incoming order and sort according to its own rules. Therefore, a currency pair will always return one regardless of the incoming order and the buying and selling relationship. A quotation, such as USDT-EUR.</td>
 </tr>
 </tbody></table>
 
 <blockquote>
-<p>获得以下JSON结构体:</p>
+<p>Response Sample</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"ask"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.864962"</span><span class="p">,</span><span class="w">
@@ -1114,73 +585,71 @@
     </span><span class="nl">"valid_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
     </span><span class="nl">"bid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.16424"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='3a66ff84d2-2'>字段定义</h3>
+</span></code></pre></div><h3 id='response-object'>Response Object</h3>
 <table><thead>
 <tr>
-<th>字段</th>
-<th>类型</th>
-<th>描述</th>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>ask</td>
 <td>string(number)</td>
-<td>卖 CODE1 换取 CODE2 的报价</td>
+<td>Sell CODE1 in exchange for CODE2 offer</td>
 </tr>
 <tr>
 <td>valid_until</td>
 <td>number(timestamp)</td>
-<td>以秒为单位从Unix Epoch到当前的数字，用来表示该报价的有效时间</td>
+<td>The number in seconds from the Unix Epoch to the current, used to indicate the effective time of the quote</td>
 </tr>
 <tr>
 <td>quote_id</td>
 <td>string</td>
-<td>报价的唯一ID，格式为 事件戳:报价货币对:报价目的</td>
+<td>The unique ID of the quotation, the format is event stamp: quotation currency pair: quotation purpose</td>
 </tr>
 <tr>
 <td>quote</td>
 <td>string</td>
-<td>报价的Pair，左侧为Base，右侧为Quote，报价以Cabital为中心</td>
+<td>The quoted Pair, the left is Base, the right is Quote, and the quote is centered on Cabital</td>
 </tr>
 <tr>
 <td>valid_interval</td>
 <td>number</td>
-<td>报价有效时间宽度，以秒记</td>
+<td>The effective time width of the quotation, in seconds</td>
 </tr>
 <tr>
 <td>bid</td>
 <td>string(number)</td>
-<td>卖 CODE2 换取 CODE1 的报价</td>
+<td>Sell CODE2 in exchange for CODE1&#39;s quotation</td>
 </tr>
 </tbody></table>
 
 <aside class="success">
-法币的符号以 <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO-4217</a> 为标准，数字货币依照 <a href="https://coinmarketcap.com/all/views/all/">CoinMarketCap</a> 列表
+The symbol of FIAT is based on <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO-4217</a>, and the crypto currency is based on <a href="https://coinmarketcap.com/ all/views/all/">CoinMarketCap</a> list
 </aside>
-<h2 id='ws'>获取最新的报价 (WS)</h2>
-<p>TBD</p>
-<h1 id='a1f7e38a27'>账户关联相关</h1>
-<p>Cabital Connect 应监管要求，接入合作方必须提供与本方一致的身份信息（每一个字段），字段阐述请参考关联同名账户API。</p>
-<h2 id='35926dc96b'>获取用户关联状况</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/detail"</span>
-</code></pre></div><h3 id='http'>HTTP 请求</h3>
+<h1 id='account-connect-related'>Account Connect related</h1>
+<p>Cabital Connect is subject to regulatory requirements. The access partner must provide the identity information (each field) consistent with this party. For field descriptions, please refer to the API for linking accounts with the same name.</p>
+<h2 id='get-user-connection-status'>Get user connection status</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/detail"</span>
+</code></pre></div><h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /api/v1/accounts/&lt;account_id&gt;/detail</code></p>
-<h3 id='url'>URL参数</h3>
+<h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
-<th>参数</th>
-<th>是否必须</th>
-<th>描述</th>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>account_id</td>
 <td>true</td>
-<td>Connect的Cabital账户id</td>
+<td>Cabital Connect Account Id</td>
 </tr>
 </tbody></table>
 
 <blockquote>
-<p>获得以下JSON结构体:</p>
+<p>Response Sample:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"match_status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MATCHED"</span><span class="p">,</span><span class="w">
@@ -1192,88 +661,97 @@
 </span></code></pre></div>
 <table><thead>
 <tr>
-<th>字段</th>
-<th>类型</th>
-<th>描述</th>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>account_status</td>
 <td>string(ENUM)</td>
-<td>账户关联状态，详见事件定义</td>
+<td>Stratus, see the definition in Events</td>
 </tr>
 <tr>
 <td>otp_ready</td>
 <td>bool</td>
-<td>客户是否已经在 Cabital 绑定完成OTP，其在提现的时候需要附上。</td>
+<td>Whether the customer has completed the OTP binding in Cabital, it needs to be attached when withdrawing.</td>
 </tr>
 <tr>
 <td>email_address?</td>
 <td>string</td>
-<td>用户在本方的 Email， 供合作方匹配</td>
+<td>The user’s Email for the partner to match</td>
+</tr>
+<tr>
+<td>kyc_token</td>
+<td>string</td>
+<td>The user&#39;s KYC Token for the partner to apply</td>
+</tr>
+<tr>
+<td>limits</td>
+<td>object</td>
+<td>Current payment limit</td>
 </tr>
 </tbody></table>
 
-<p>ext_id?
-kyc_token | string | 用户在本方的 KYC Token 供合作方使用
-limits | object | 当前提款限额 （待定）</p>
-
 <aside class="success">
-单个账户的限额
+Single account limit
 </aside>
-<h2 id='eb54a92e30'>关联同名用户</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/match"</span> <span class="se">\</span>
+<h2 id='name-match'>Name Match</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/match"</span> <span class="se">\</span>
   <span class="nt">-X</span> <span class="s2">"PUT"</span> <span class="se">\</span>
   <span class="nt">-d</span> <span class="s1">'{ "name": "John Doe", "id": "J12345678D", "id_document": "PASSPORT", "dob": "19700101" }'</span> 
-</code></pre></div><h3 id='http-2'>HTTP请求</h3>
+</code></pre></div><h3 id='http-request-2'>HTTP Request</h3>
 <p><code>PUT /api/v1/accounts/&lt;account_id&gt;/match</code></p>
-<h3 id='url-2'>URL参数</h3>
+<h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
-<th>参数</th>
-<th>是否必须</th>
-<th>描述</th>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>account_id</td>
 <td>true</td>
-<td>Connect的Cabital账户id</td>
+<td>Cabital Connect Account Id</td>
 </tr>
 </tbody></table>
-<h3 id='a526db39fb'>请求体</h3>
+<h3 id='request-body'>Request Body</h3>
 <table><thead>
 <tr>
-<th>字段</th>
-<th>类型</th>
-<th>描述</th>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>name</td>
 <td>string</td>
-<td>客户本人的全名，按照身份证件上的常用顺序，如First Name +（Middle Name） + Last Name</td>
+<td>The full name of the customer, in accordance with the usual order on the document, such as First Name + (Middle Name) + Last Name</td>
 </tr>
 <tr>
 <td>id</td>
 <td>string</td>
-<td>身份文件上的ID</td>
+<td>ID on the identity document</td>
 </tr>
 <tr>
 <td>id_document</td>
 <td>string(ENUM)</td>
-<td>身份文件类型 <code>ID,PASSPORT,DRIVER_LICENSE</code></td>
+<td>Identity document type, could be one of <code>ID,PASSPORT,DRIVER_LICENSE</code></td>
+</tr>
+<tr>
+<td>issued_by</td>
+<td>string</td>
+<td>The country where the identity document was issued</td>
 </tr>
 <tr>
 <td>dob</td>
 <td>string</td>
-<td>身份文件上的生日（Date of birth）格式为YYYYMMDD</td>
+<td>Date of birth format in <code>YYYYMMDD</code></td>
 </tr>
 </tbody></table>
 
-<!-- issued_by | string | 身份文件颁发国家 -->
-
 <blockquote>
-<p>得以下JSON结构体:</p>
+<p>Sample Response:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MISMATCH"</span><span class="p">,</span><span class="w">
@@ -1283,63 +761,63 @@ limits | object | 当前提款限额 （待定）</p>
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>提交用户信息，以获得同名验证结果</p>
+<p>Submit user information to get the verification result of the same name control.</p>
 <h3 id='c1f957ec0c'>错误消息</h3>
 <ul>
-<li>400 用户状态必须为 CREATED 或者 MISMATCHED</li>
+<li>400 Connection Status must be in CREATED or MISMATCHED</li>
 </ul>
-<h1 id='527200ee4e'>账户操作相关</h1>
-<p>账户操作业务错误列表</p>
+<h1 id='account-operation-related'>Account operation related</h1>
+<p>List of Account Operation Business Errors</p>
 
 <table><thead>
 <tr>
-<th>错误</th>
-<th>含义</th>
+<th>Error</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>PA001</td>
-<td>Cabital account id 不存在</td>
+<td>Cabital account id does not exist</td>
 </tr>
 <tr>
 <td>PA002</td>
-<td>账户可用余额不足</td>
+<td>Insufficient account available balance</td>
 </tr>
 <tr>
 <td>PA003</td>
-<td>该笔交易未达到最小限额</td>
+<td>The transaction has not reached the minimum limit</td>
 </tr>
 <tr>
 <td>PA004</td>
-<td>该笔交易超过最大限额</td>
+<td>The transaction exceeds the maximum limit</td>
 </tr>
 <tr>
 <td>PA005</td>
-<td>请求的交易类型不可用</td>
+<td>The requested transaction type is not available</td>
 </tr>
 <tr>
 <td>PA006</td>
-<td>请求的交易请求的币种不可用</td>
+<td>The currency of the requested transaction request is not available</td>
 </tr>
 <tr>
 <td>PA007</td>
-<td>Quote 已经过期</td>
+<td>Quote has been expired</td>
 </tr>
 <tr>
 <td>PA008</td>
-<td>2FA（OTP）不正确</td>
+<td>Incorrect 2FA (OTP)</td>
 </tr>
 <tr>
 <td>PA009</td>
-<td>该客户的KYC状态尚未匹配</td>
+<td>The customer’s KYC status has not yet been matched</td>
 </tr>
 <tr>
 <td>PA010</td>
-<td>2FA (OTP) 特指 Google Authenticator未设置</td>
+<td>2FA (OTP) is not set properly</td>
 </tr>
 <tr>
 <td>PA011</td>
-<td>Convert的Quote用法不正确（Invalid Calculation）</td>
+<td>Convert&#39;s Quote usage is incorrect (Invalid Calculation)</td>
 </tr>
 </tbody></table>
 
@@ -1356,7 +834,7 @@ curl "http://partner.cabital.com/api/v1/limit" \
 `GET /api/v1/limit`
 
 
-> 获得以下JSON结构体:
+> Response Sample:
 
 ```json
 [
@@ -1384,7 +862,7 @@ curl "http://partner.cabital.com/api/v1/limit" \
 
 
 
-> 获得以下JSON结构体:
+> Response Sample:
 
 ```json
 [
@@ -1423,21 +901,21 @@ curl "http://partner.cabital.com/api/v1/limit" \
 
 获取用户的所有账户余额
 
-### HTTP请求
+### HTTP Request
 
 `GET /api/v1/accounts/<account_id>/balances`
 
-### URL参数
+### URL Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-account_id | true | Cabital提供的账户id -->
-<h2 id='9b7d4b6004'>账户可用余额列表</h2>
-<p>获取用户的所有账户余额</p>
+account_id | true | Cabital Connect Account Id -->
+<h2 id='list-of-account-available-balances'>List of account available balances</h2>
+<p>Get all account balances of the user</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/{account_id}/balances"</span>
 </code></pre></div>
 <blockquote>
-<p>获得以下JSON结构体:</p>
+<p>Response Sample:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
@@ -1461,9 +939,9 @@ account_id | true | Cabital提供的账户id -->
     </span><span class="nl">"balances"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre></div><h3 id='http'>HTTP请求</h3>
+</span></code></pre></div><h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /api/v1/accounts/&lt;account_id&gt;/balances</code></p>
-<h3 id='url'>URL参数</h3>
+<h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1474,23 +952,23 @@ account_id | true | Cabital提供的账户id -->
 <tr>
 <td>account_id</td>
 <td>true</td>
-<td>Cabital提供的账户id</td>
+<td>Cabital Connect Account Id</td>
 </tr>
 </tbody></table>
-<h2 id='f752da1b82'>账户可用余额单币</h2>
-<p>获取用户的单一账户余额，货币符号请参考<a href="/?shell#get">报价API</a></p>
+<h2 id='account-available-balance-in-single-currency'>Account available balance in single currency</h2>
+<p>Get the user&#39;s single account balance, please refer to the currency symbol <a href="/?shell#get">报价API</a></p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/BTC"</span>
 </code></pre></div>
 <blockquote>
-<p>获得以下JSON结构体:</p>
+<p>Response Sample:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"balances"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.12345678"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-2'>HTTP请求</h3>
+</span></code></pre></div><h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /api/v1/accounts/&lt;account_id&gt;/balances/&lt;symbol&gt;</code></p>
-<h3 id='url-2'>URL参数</h3>
+<h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1501,7 +979,7 @@ account_id | true | Cabital提供的账户id -->
 <tr>
 <td>account_id</td>
 <td>true</td>
-<td>Cabital提供的账户id</td>
+<td>Cabital Connect Account Id</td>
 </tr>
 <tr>
 <td>symbol</td>
@@ -1514,7 +992,7 @@ account_id | true | Cabital提供的账户id -->
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/EUR/deposit/SEPA"</span>
 </code></pre></div>
 <blockquote>
-<p>获得以下JSON结构体:</p>
+<p>Response Sample:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SEPA"</span><span class="p">,</span><span class="w">
@@ -1528,9 +1006,9 @@ account_id | true | Cabital提供的账户id -->
     </span><span class="nl">"bank_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lithuania"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-3'>HTTP请求</h3>
+</span></code></pre></div><h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET /api/v1/accounts/&lt;account_id&gt;/balances/&lt;symbol&gt;/deposit/&lt;method&gt;</code></p>
-<h3 id='url-3'>URL参数</h3>
+<h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1541,21 +1019,21 @@ account_id | true | Cabital提供的账户id -->
 <tr>
 <td>account_id</td>
 <td>true</td>
-<td>Cabital提供的账户id</td>
+<td>Cabital Connect Account Id</td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>true</td>
-<td>货币的Symbol</td>
+<td>Currency symbol</td>
 </tr>
 <tr>
 <td>method</td>
 <td>false</td>
-<td>入币方式，非必须，如缺失将使用默认方法，具体方法请参考<a href="/?shell#79fee25901">配置API</a></td>
+<td>The method of depositing currency is not required. If missing, the default method will be used. Please refer to the specific method<a href="/?shell#79fee25901">配置API</a></td>
 </tr>
 </tbody></table>
-<h2 id='cf7cc7379a'>账户转换货币</h2>
-<p>在Cabital的账户余额间通过转换的方法，兑换不同种的货币。通过转换货币，可以将Cabital方不支持划转的货币，通过先转换后划转的方式进行交易(C+T)</p>
+<h2 id='currency-conversion'>Currency conversion</h2>
+<p>Through the method of conversion between Cabital&#39;s account balances, exchange different currencies. By converting currencies, you can trade currencies that Cabital does not support transfer by converting first and then transferring (C+T)</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/conversions"</span>
 <span class="nt">-d</span> <span class="s1">'{
     "quote_id": "20210416225049:BTC-USDT:Customer",
@@ -1567,7 +1045,7 @@ account_id | true | Cabital提供的账户id -->
 }'</span>
 </code></pre></div>
 <blockquote>
-<p>提交JSON结构体:</p>
+<p>Request Sample:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"quote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20210416225049:BTC-USDT:Customer"</span><span class="p">,</span><span class="w">
@@ -1579,15 +1057,15 @@ account_id | true | Cabital提供的账户id -->
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>获得以下JSON结构体:</p>
+<p>Response Sample:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"transaction_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d81adf6d-0322-41d7-8c32-669203e35f11"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-4'>HTTP请求</h3>
+</span></code></pre></div><h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST /api/v1/accounts/&lt;account_id&gt;/conversions</code></p>
-<h3 id='url-4'>URL参数</h3>
+<h3 id='url-parameters-4'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1598,62 +1076,62 @@ account_id | true | Cabital提供的账户id -->
 <tr>
 <td>account_id</td>
 <td>true</td>
-<td>Cabital提供的账户id</td>
+<td>Cabital Connect Account Id</td>
 </tr>
 </tbody></table>
-<h3 id='bc2b52268f'>提交参数</h3>
+<h3 id='request-object'>Request Object</h3>
 <table><thead>
 <tr>
-<th>字段</th>
-<th>类型</th>
-<th>描述</th>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>quote_id</td>
 <td>string</td>
-<td>报价的唯一标识符</td>
+<td>The unique identifier of the quote</td>
 </tr>
 <tr>
 <td>quote</td>
 <td>string(number)</td>
-<td>报价</td>
+<td>quote</td>
 </tr>
 <tr>
 <td>pair</td>
 <td>string</td>
-<td>报价的货币对，左侧为买，右侧为卖</td>
+<td>The currency pair quoted, the left side is buying, the right side is selling</td>
 </tr>
 <tr>
 <td>buy_amount</td>
 <td>string(number)</td>
-<td>买入数量</td>
+<td>buy amount</td>
 </tr>
 <tr>
 <td>sell_amount</td>
 <td>string(number)</td>
-<td>卖出数量</td>
+<td>sell amount</td>
 </tr>
 <tr>
 <td>major_ccy</td>
 <td>string</td>
-<td>主要货，用于转换限额判定</td>
+<td>Major currency, used to determine the conversion quota</td>
 </tr>
 </tbody></table>
 
 <aside class="warning">
-<b>注意事项：</b>
+<b>Attention：</b>
 <ul>
-  <li>一定要注意pair的方向，左侧为买入货币，右侧为卖出货币。</li>
-  <li>由于报价支持正反向（Ask & Bid），不论买入还是卖出，皆为同一个报价对。</li>
+  <li>Be sure to pay attention to the direction of the pair, the left side is the buying currency, and the right side is the selling currency. </li>
+  <li>Because the quotation supports Ask & Bid, no matter buying or selling, it is the same quotation pair. </li>
 </ul>
 </aside>
-<h2 id='1306c352c3'>账户划转列表</h2>
-<p>查询划转历史记录，支持参数查询和分页。</p>
+<h2 id='account-transfer-history'>Account transfer history</h2>
+<p>Query transfer history records, support filter query and pagination.</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"</span>
 </code></pre></div>
 <blockquote>
-<p>返回JSON结构体:</p>
+<p>Response Sample:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"pagination_response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1680,14 +1158,14 @@ account_id | true | Cabital提供的账户id -->
     </span><span class="p">},</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-5'>HTTP请求</h3>
+</span></code></pre></div><h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET /api/v1/accounts/&lt;account_id&gt;/transfers</code></p>
-<h3 id='url-5'>URL参数</h3>
+<h3 id='url-parameters-5'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>必须</th>
-<th>默认值</th>
+<th>Required</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -1695,101 +1173,101 @@ account_id | true | Cabital提供的账户id -->
 <td>account_id</td>
 <td>true</td>
 <td>--</td>
-<td>Cabital提供的账户id</td>
+<td>Cabital Connect Account Id</td>
 </tr>
 <tr>
 <td>direction</td>
 <td>false</td>
-<td>全部</td>
-<td>方向过滤</td>
+<td>2 Ways</td>
+<td>filter by direction <code>CREDIT</code> / <code>DEBIT</code></td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>false</td>
-<td>全部</td>
-<td>币种过滤</td>
+<td>all currencies</td>
+<td>filter for currencies</td>
 </tr>
 <tr>
 <td>cursor</td>
 <td>false</td>
 <td>0</td>
-<td>查询结果集的游标位置</td>
+<td>result set cursor</td>
 </tr>
 <tr>
 <td>page_size</td>
 <td>false</td>
 <td>10</td>
-<td>取值范围为（1-30）</td>
+<td>page size（1-30）</td>
 </tr>
 <tr>
 <td>has_coversion</td>
 <td>false</td>
-<td>全部</td>
-<td>bool型，过滤是否有相关转换订单</td>
+<td>both</td>
+<td>bool type, filter whether there are related conversion orders</td>
 </tr>
 <tr>
 <td>created_from</td>
 <td>false</td>
 <td>0</td>
-<td>创建订单起始时间（Unix Time Epoch的秒数）</td>
+<td>Create order start time (Unix Time Epoch in seconds)</td>
 </tr>
 <tr>
 <td>created_to</td>
 <td>false</td>
 <td>NOW</td>
-<td>创建订单结束时间（Unix Time Epoch的秒数）</td>
+<td>Create order end time (Unix Time Epoch in seconds)</td>
 </tr>
 </tbody></table>
-<h3 id='transfers'>返回transfers对象描述</h3>
+<h3 id='response-object'>Response Object</h3>
 <table><thead>
 <tr>
-<th>字段</th>
-<th>类型</th>
-<th>描述</th>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>transfer_id</td>
 <td>string(uuid)</td>
-<td>划转订单ID</td>
+<td>Transfer order id</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>string(number)</td>
-<td>数量</td>
+<td>amount</td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>string</td>
-<td>划转的货币</td>
+<td>currency symbol</td>
 </tr>
 <tr>
 <td>direction</td>
 <td>string(enum)</td>
-<td>划转的方向，以Cabital为中心，<code>CREDIT</code>为充值，<code>DEBIT</code>为提款</td>
+<td>The direction of the transfer, with Cabital as the center, <code>CREDIT</code> for top up, and <code>DEBIT</code> for withdraw.</td>
 </tr>
 <tr>
 <td>conversion_id</td>
 <td>string(uuid)</td>
-<td>C+T关联交易中的转换订单ID，非必须</td>
+<td>The conversion order ID in C+T related transactions, optional</td>
 </tr>
 <tr>
 <td>external_id</td>
 <td>string(50)</td>
-<td>合作方的第三方ID，非必需</td>
+<td>The third-party ID of the partner</td>
 </tr>
 <tr>
 <td>status</td>
 <td>string(enum)</td>
-<td>划转的结果，SUCCESS / FAILED</td>
+<td>The result of the transfer, SUCCESS / FAILED</td>
 </tr>
 </tbody></table>
-<h2 id='0c165f19f8'>账户划转详情</h2>
-<p>在 Cabital 与合作方的同名账户之间进行划转。</p>
+<h2 id='account-transfer-details'>Account transfer details</h2>
+<p>Transfer detail</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/4c416854-8970-4838-99ad-febc437ac81d"</span>
 </code></pre></div>
 <blockquote>
-<p>返回JSON结构体:</p>
+<p>Response Sample:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"transfer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4c416854-8970-4838-99ad-febc437ac81d"</span><span class="p">,</span><span class="w">
@@ -1801,73 +1279,73 @@ account_id | true | Cabital提供的账户id -->
   </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1633445162</span><span class="p">,</span><span class="w">
   </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-6'>HTTP请求</h3>
+</span></code></pre></div><h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET /api/v1/accounts/&lt;account_id&gt;/transfers/&lt;trasfer_id&gt;</code></p>
-<h3 id='url-6'>URL参数</h3>
+<h3 id='url-parameters-6'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>必须</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>account_id</td>
 <td>true</td>
-<td>Cabital提供的账户id</td>
+<td>Cabital Connect Account Id</td>
 </tr>
 <tr>
 <td>trasfer_id</td>
 <td>true</td>
-<td>划转订单id</td>
+<td>Transfer order id</td>
 </tr>
 </tbody></table>
-<h3 id='transfers-2'>返回transfers对象描述</h3>
+<h3 id='response-object-2'>Response Object</h3>
 <table><thead>
 <tr>
-<th>字段</th>
-<th>类型</th>
-<th>描述</th>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>transfer_id</td>
 <td>string(uuid)</td>
-<td>划转订单ID</td>
+<td>Transfer order id</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>string(number)</td>
-<td>数量</td>
+<td>amount</td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>string</td>
-<td>划转的货币</td>
+<td>currency symbol</td>
 </tr>
 <tr>
 <td>direction</td>
 <td>string(enum)</td>
-<td>划转的方向，以Cabital为中心，<code>CREDIT</code>为充值，<code>DEBIT</code>为提款</td>
+<td>The direction of the transfer, with Cabital as the center, <code>CREDIT</code> for top up, and <code>DEBIT</code> for withdraw.</td>
 </tr>
 <tr>
 <td>conversion_id</td>
 <td>string(uuid)</td>
-<td>C+T关联交易中的转换订单ID，非必须</td>
+<td>The conversion order ID in C+T related transactions, optional</td>
 </tr>
 <tr>
 <td>external_id</td>
 <td>string(50)</td>
-<td>合作方的第三方ID，非必需</td>
+<td>The third-party ID of the partner, not required</td>
 </tr>
 <tr>
 <td>status</td>
 <td>string(enum)</td>
-<td>划转的结果，SUCCESS / FAILED</td>
+<td>The result of the transfer, SUCCESS / FAILED</td>
 </tr>
 </tbody></table>
-<h2 id='4e24c408a0'>账户双向划转</h2>
-<p>在 Cabital 与合作方的同名账户之间进行划转。</p>
+<h2 id='two-way-account-transfer'>Two-way account transfer</h2>
+<p>Transfer between Cabital and the partner’s account under the same name.</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"</span>
 <span class="nt">-d</span> <span class="s1">'{
     "amount": "1000.365",
@@ -1878,7 +1356,7 @@ account_id | true | Cabital提供的账户id -->
 }'</span>
 </code></pre></div>
 <blockquote>
-<p>提交JSON结构体:</p>
+<p>Request Sample:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000.365"</span><span class="p">,</span><span class="w">
@@ -1889,15 +1367,15 @@ account_id | true | Cabital提供的账户id -->
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>获得以下JSON结构体:</p>
+<p>Response Sample:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"transfer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4c416854-8970-4838-99ad-febc437ac81d"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-7'>HTTP请求</h3>
+</span></code></pre></div><h3 id='http-request-7'>HTTP Request</h3>
 <p><code>POST /api/v1/accounts/&lt;account_id&gt;/transfers</code></p>
-<h3 id='url-7'>URL参数</h3>
+<h3 id='url-parameters-7'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1908,129 +1386,127 @@ account_id | true | Cabital提供的账户id -->
 <tr>
 <td>account_id</td>
 <td>true</td>
-<td>Cabital提供的账户id</td>
+<td>Cabital Connect Account Id</td>
 </tr>
 </tbody></table>
-<h3 id='178f110638'>提交对象描述</h3>
+<h3 id='request-object-2'>Request Object</h3>
 <table><thead>
 <tr>
-<th>字段</th>
-<th>类型</th>
-<th>描述</th>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>amount</td>
 <td>string(number)</td>
-<td>数量</td>
+<td>amount</td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>string</td>
-<td>划转的货币</td>
+<td>currency symbol</td>
 </tr>
 <tr>
 <td>otp</td>
 <td>string</td>
-<td>OTP的数值，特质Google Authenticator</td>
+<td>OTP Number (6 digits from Google Authenticator)</td>
 </tr>
 <tr>
 <td>direction</td>
 <td>string(enum)</td>
-<td>划转的方向，以Cabital为中心，<code>CREDIT</code>为充值，<code>DEBIT</code>为提款</td>
+<td>The direction of the transfer, with Cabital as the center, <code>CREDIT</code> for top up, and <code>DEBIT</code> for withdraw.</td>
 </tr>
 <tr>
 <td>conversion_id</td>
 <td>string(uuid)</td>
-<td>C+T关联交易中的转换订单ID，非必须</td>
+<td>The conversion order ID in C+T related transactions, optional</td>
 </tr>
 <tr>
 <td>external_id</td>
 <td>string(50)</td>
-<td>合作方的唯一订单号，如重复订单将拒绝</td>
+<td>The third-party ID of the partner, must be unique for one partner</td>
 </tr>
 </tbody></table>
-<h3 id='85676544e1'>返回对象描述</h3>
+<h3 id='response-object-3'>Response Object</h3>
 <table><thead>
 <tr>
-<th>字段</th>
-<th>类型</th>
-<th>描述</th>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>transfer_id</td>
 <td>string(uuid)</td>
-<td>划转订单ID</td>
+<td>transfer id</td>
 </tr>
 <tr>
 <td>external_id</td>
 <td>string(50)</td>
-<td></td>
+<td>The third-party ID of the partner, must be unique for one partner</td>
 </tr>
 <tr>
 <td>status</td>
 <td>string(enum)</td>
-<td>划转的结果</td>
+<td>The result of the transfer, SUCCESS / FAILED</td>
 </tr>
 </tbody></table>
+<h1 id='callback-event'>Callback event</h1>
+<p>Callback events are expected to arrive in 1-5 minutes on average, but in theory it may take up to 24 hours. If you miss the Callback event for some reason, don’t worry, we will resend the failed Callback event at any time. If the Callback event request fails, we will try to resend it four times: after 5 minutes, 1 hour, 5 hours, and 18 hours, until the request succeeds and obtains a 2XX return code.</p>
 
-<!-- ### OTP的使用！！！ -->
-<h1 id='callback'>Callback 事件</h1>
-<p>Callback 事件预计平均会在 1-5 分钟后到达，但理论上可能需要长达 24 小时。如果由于某种原因您错过了 Callback 事件，请不要担心：我们会记录尝试发送的所有内容，并且可以随时重新发送失败的 Callback 事件。如果 Callback 事件请求失败，我们会尝试重新发送四次：5 分钟、1 小时、5 小时和 18 小时后，直到请求成功获得 2XX 返回码的。</p>
-
-<p>我们建议您等待 Callback 事件不超过一天，然后向我们的服务器发送请求以获取有关资源的状态信息。</p>
-<h2 id='b6911a9f93'>账户关联状态事件</h2>
-<p>当用户从对手方发起连接后，系统会根据现在的关联状态发送账户关联状态事件，其包含以下几个状态：</p>
+<p>We recommend that you wait no more than a day for the Callback event, and then send a request to our server to obtain status information about the resource.</p>
+<h2 id='account-connect-status-event'>Account Connect status event</h2>
+<p>When the user initiates a connection from the counterparty, the system will send an account association status event based on the current connection status, which includes the following states:</p>
 
 <table><thead>
 <tr>
-<th>类型</th>
-<th>描述</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>INITIALIZED</td>
-<td>用户成功连接，还未在 Cabital 提交 KYC</td>
+<td>The user is successfully registered and has not yet submitted KYC in Cabital</td>
 </tr>
 <tr>
 <td>PENDING</td>
-<td>Cabital处理用户材料中</td>
+<td>Cabital processing user identification documents</td>
 </tr>
 <tr>
 <td>TEMPORARY_REJECTED</td>
-<td>用户被 Cabital 要求提供正确材料</td>
+<td>The user is requested by Cabital to provide more materials</td>
 </tr>
 <tr>
 <td>FINAL_REJECTED</td>
-<td>用户被 Cabital 最终拒绝开户</td>
+<td>The user was finally rejected by Cabital</td>
 </tr>
 <tr>
 <td>CREATED</td>
-<td>用户成功 KYC，Cabital 账户开通，等待合作方提交同名验证。</td>
+<td>The user passed Cabital&#39;s KYC, and the Cabital account is opened, waiting for the partner to submit the same name verification.</td>
 </tr>
 <tr>
 <td>MATCHING</td>
-<td>合作方已提交，同名验证人工审核中</td>
+<td>The partner has been submitted, the same name verification is under manual review</td>
 </tr>
 <tr>
 <td>MATCHED</td>
-<td>同名验证通过，完全开通同账户转账</td>
+<td>Same name verification is passed, the same account transfer is fully availalbe</td>
 </tr>
 <tr>
 <td>MISMATCHED</td>
-<td>同名验证拒绝，多种因素</td>
+<td>Same name verification rejection, multiple reasons</td>
 </tr>
 <tr>
 <td>UNLINKED</td>
-<td>用户/ Cabital 主动关闭与合作方的某账户关联</td>
+<td>The user / Cabital actively closes the connection with an account of the partner</td>
 </tr>
 </tbody></table>
 
 <!-- READYFORMATCHING | 我方KYC通过，等待合作方提交同名验证 (以后）-->
 
-<p>账户关联的状态发生变化时，我们将向您发送带有 JSON 负载的 POST 请求到集成时提供给我们的 URL。</p>
-<h3 id='json-payload'>事件内容 JSON Payload</h3>
+<p>When the status of the account connection changes, we will send you a POST request with a JSON payload to the URL provided to us during integration.</p>
+<h3 id='json-payload'>JSON Payload</h3>
 <blockquote>
 <p>JSON Payload</p>
 </blockquote>
@@ -2045,47 +1521,47 @@ account_id | true | Cabital提供的账户id -->
 </span></code></pre></div>
 <table><thead>
 <tr>
-<th>字段</th>
-<th>类型</th>
-<th>必须</th>
-<th>描述</th>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>account_uuid</td>
 <td>string</td>
 <td>true</td>
-<td>本方的账户Id</td>
+<td>This party&#39;s account Id</td>
 </tr>
 <tr>
 <td>user_email</td>
 <td>string</td>
 <td>true</td>
-<td>账户的主用户email</td>
+<td>The user email of the account</td>
 </tr>
 <tr>
 <td>user_ext_ref</td>
 <td>string</td>
 <td>true</td>
-<td>合作方填入的外部Id</td>
+<td>External Id entered by the partner</td>
 </tr>
 <tr>
 <td>staus</td>
 <td>string(enum)</td>
 <td>true</td>
-<td>账户关联的状态</td>
+<td>status of account association</td>
 </tr>
 <tr>
 <td>staus</td>
 <td>datestamp</td>
 <td>true</td>
-<td>事件产生的时间，格式为<a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a></td>
+<td>The time when the event occurred, in the format <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a></td>
 </tr>
 <tr>
 <td>data</td>
 <td>object</td>
 <td>false</td>
-<td>账户关联的一些额外数据，比如Shared Token</td>
+<td>Some additional data associated with the account, such as Shared Token</td>
 </tr>
 </tbody></table>
 
@@ -2116,7 +1592,7 @@ account_id | true | Cabital提供的账户id -->
 }
 ```
 
-字段 | 类型 | 描述
+Field | Type | Description
 --------- | ------- | -----------
 transfer_id | string(uuid) | 划转订单ID
 amount | string(number) | 数量
@@ -2125,74 +1601,74 @@ direction | string(enum) | 划转的方向，以Cabital为中心，`CREDIT`为�
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必需
 status | string(enum) | 划转的结果，SUCCESS / FAILED -->
-<h2 id='591069a73d'>事件签名</h2>
-<p>Webhook 签名规则与API认证一致，请参考<a href="#api">API认证</a></p>
-<h1 id='code'>错误处理 Code</h1>
-<p>系统通常错误处理</p>
+<h2 id='event-signature'>Event signature</h2>
+<p>Webhook signature rules are consistent with API authentication, please refer to <a href="#api">API authentication</a></p>
+<h1 id='error-handling-code'>Error Handling Code</h1>
+<p>System error handling</p>
 
 <table><thead>
 <tr>
-<th>错误代码</th>
-<th>含义</th>
+<th>Error code</th>
+<th>Meaning</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request -- 访问参数有错误</td>
+<td>Bad Request - There is an error in parameters</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized -- API Secret 错误，或者 Request 签名错误。</td>
+<td>Unauthorized - API Secret error, or Request signature error.</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden -- 通常为客户已经取消与合作方的账户关联，需要合作方发起重新关联。（Unlink状态）</td>
+<td>Forbidden - Usually the customer has canceled the association with the partner&#39;s account, and the partner needs to initiate a re-association. (Unlink status)</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- 特定的资源不存在</td>
+<td>Not Found - The specific resource does not exist</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed -- 访问的方法不正确</td>
+<td>Method Not Allowed - The method of access is incorrect</td>
 </tr>
 <tr>
 <td>406</td>
-<td>Not Acceptable -- 格式强制要求是JSON，不允许</td>
+<td>Not Acceptable - The mandatory format is JSON, not allowed</td>
 </tr>
 <tr>
 <td>409</td>
-<td>Conflict -- 消息违反幂等性（NONCE）</td>
+<td>Conflict - The message violates idempotence (NONCE)</td>
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests -- 访问频率过高</td>
+<td>Too Many Requests - Too many requests</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error -- 本方出现服务器错误，请重试.</td>
+<td>Internal Server Error - A server error occurred on this party, please try again.</td>
 </tr>
 <tr>
 <td>503</td>
-<td>Service Unavailable -- 本方服务不可用，请稍后重试.</td>
+<td>Service Unavailable - Our service is unavailable, please try again later.</td>
 </tr>
 </tbody></table>
-<h1 id='5988541320'>版本变化</h1><h2 id='0-2-0'>0.2.0</h2>
+<h1 id='version-changes'>Version changes</h1><h2 id='0-2-0'>0.2.0</h2>
 <ul>
-<li>规范了产品名称，从 <code>partner</code> 转换为 <code>cabital connect</code></li>
-<li>增加了合作方准备文档，为合作方接入本方系统做准备</li>
-<li>Connect 状态命名的细微调整，细化了<code>Rejected</code>的两种不同性质</li>
-<li>增加了账户的错误处理，并调整了状态，转换为config里面</li>
+<li>Standardized the product name, changed from <code>partner</code> to <code>cabital connect</code></li>
+<li>Added partner preparation documents to prepare for the partner&#39;s access to its own system</li>
+<li>Minor adjustments in the naming of the Connect status, which refines the two different properties of <code>Rejected</code></li>
+<li>Added error handling of the account, adjusted the status, and converted it to config</li>
 </ul>
 <h2 id='0-1-1'>0.1.1</h2>
 <ul>
-<li>恢复了 API-Key，便于已经集成 CaaS 的合作方，集成 Connect</li>
-<li>由于使用API-Key，移除访问 Path 中的 Partner Id</li>
-<li>增加更多 API 细节，以及错误处理</li>
+<li>API-Key has been restored to speed up the integration of Connect for partners who have integrated CaaS</li>
+<li>Due to the use of API-Key, remove the Partner Id in the access Path</li>
+<li>Add more API details and error handling</li>
 </ul>
 <h2 id='0-1-0'>0.1.0</h2>
 <ul>
-<li>提供最初的 Partner API 文档</li>
+<li>Provide the original Partner API documentation</li>
 </ul>
 
       </div>

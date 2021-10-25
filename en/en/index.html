@@ -324,10 +324,10 @@
             <a href="#partner-level-setting" class="toc-h1 toc-link" data-title="Partner Level Setting">Partner Level Setting</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#partner-configuration" class="toc-h2 toc-link" data-title="Partner configuration">Partner configuration</a>
+                    <a href="#partner-configuration" class="toc-h2 toc-link" data-title="Partner Configuration">Partner Configuration</a>
                   </li>
                   <li>
-                    <a href="#get-the-latest-quotation-get" class="toc-h2 toc-link" data-title="Get the latest quotation (GET)">Get the latest quotation (GET)</a>
+                    <a href="#get-the-latest-quotation-get" class="toc-h2 toc-link" data-title="Get the Latest Quotation (GET)">Get the Latest Quotation (GET)</a>
                   </li>
               </ul>
           </li>
@@ -335,7 +335,7 @@
             <a href="#account-connect-related" class="toc-h1 toc-link" data-title="Account Connect related">Account Connect related</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-user-connection-status" class="toc-h2 toc-link" data-title="Get user connection status">Get user connection status</a>
+                    <a href="#get-user-connection-status" class="toc-h2 toc-link" data-title="Get User Connection Status">Get User Connection Status</a>
                   </li>
                   <li>
                     <a href="#name-match" class="toc-h2 toc-link" data-title="Name Match">Name Match</a>
@@ -343,13 +343,13 @@
               </ul>
           </li>
           <li>
-            <a href="#account-operation-related" class="toc-h1 toc-link" data-title="Account operation related">Account operation related</a>
+            <a href="#account-operations" class="toc-h1 toc-link" data-title="Account Operations">Account Operations</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#list-of-account-available-balances" class="toc-h2 toc-link" data-title="List of account available balances">List of account available balances</a>
+                    <a href="#list-of-available-account-balances" class="toc-h2 toc-link" data-title="List of Available Account Balances">List of Available Account Balances</a>
                   </li>
                   <li>
-                    <a href="#account-available-balance-in-single-currency" class="toc-h2 toc-link" data-title="Account available balance in single currency">Account available balance in single currency</a>
+                    <a href="#available-account-balance-in-a-single-currency" class="toc-h2 toc-link" data-title="Available Account Balance in a Single Currency">Available Account Balance in a Single Currency</a>
                   </li>
                   <li>
                     <a href="#account-currency-deposite-information" class="toc-h2 toc-link" data-title="Account Currency Deposite Information">Account Currency Deposite Information</a>
@@ -407,40 +407,44 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>By leveraging Cabital Connect API, you could builds the connection with crypto wallets, which enable credit and debits between partner and Cabital.</p>
+<p>By leveraging our Cabital Connect API, you can build a connection to crypto wallets to enable credit and debit functionality between Cabital and yourself (a partner). </p>
 
-<p>Cabitlities：</p>
+<p>Cabital Connect Cabailities：</p>
 
 <ul>
-<li>It provides erver side Authentication &amp; Authorization.</li>
-<li>Through name matching interfaces, estiabilish Cabital Connect between two parties&#39; crypto wallet.</li>
-<li>Query Cabital wallet balance, transfer balance into same beneficia&#39;s wallet. Also, provides Convert interface, to coverert currencies on behavior of user, and attach to transfer order.</li>
+<li>Server-side Authentication &amp; Authorization.</li>
+<li>Estiabilish Cabital Connect between two parties&#39; crypto wallets through name matching interfaces</li>
+<li>Query Cabital wallet balance, transfer balance into same beneficiary&#39;s wallet. </li>
+<li>Convert currencies on behavior of user - and attach to transfer order.</li>
 </ul>
 <h1 id='authentication'>Authentication</h1>
 <p>API Key / Secret is the credential to access Connect API. All the HTTPS calls need to be signed and include following HTTP Headers:</p>
 
 <ul>
-<li>ACCESS-KEY Customer Access Key, provided by Cabital</li>
-<li>ACCESS-SIGN The signature build by the algorithm described below. </li>
-<li>ACCESS-TIMESTAMP API Access time stamp</li>
-<li>ACCESS-NONCE We use nonces to ensure that old communications cannot be reused, each API call must used different nounce, otherwise, system will ignore the 2nd request arrived within 60 mins time frame.</li>
+<li>ACCESS-KEY: Customer Access Key, provided by Cabital</li>
+<li>ACCESS-SIGN: The signature build by the algorithm described below. </li>
+<li>ACCESS-TIMESTAMP: API Access time stamp</li>
+<li>ACCESS-NONCE: We use nonces to ensure that old communications cannot be reused. Each API call must used different nounce, otherwise, system will ignore the 2nd request arrived within 60 mins time frame.</li>
 </ul>
 
-<p>API Request must include <code>Content-Type</code> as <code>application/json</code>, the body must be in restricted JSON format.</p>
+<p>API Request must include <code>Content-Type</code> as <code>application/json</code> and the body must be in restricted JSON format.</p>
 
 <p>ACCESS-SIGN Header is the sha256 HMAC hash by <code>time stamp + HTTP method + NONCE + access path + request body</code> with Secret Key.</p>
 
-<p>-The timestamp should be the same as ACCESS-TIMESTAMP
--The request body is in the form of String, or regarded as empty, especially when accessing the API through GET
--HTTP method must be uppercase</p>
+<ul>
+<li>The timestamp should be the same as ACCESS-TIMESTAMP. </li>
+<li>The request body is in the form of String, or regarded as empty, especially when accessing the API through GET</li>
+<li>HTTP method must be uppercase, i.e. <code>GET</code> or <code>POST</code></li>
+</ul>
 
 <p>ACCESS-TIMESTAMP is from the Unix Epoch to the current number in seconds. The timestamp of the customer request must be within 30 seconds of the API service time, otherwise it will be considered expired or rejected directly.</p>
 
 <aside class="warning">
-Please do not share your Secret, otherwise it will cause information leakage and unnecessary loss of transaction fees. If Secret is leaked, please contact your service consultant and update immediately.</aside>
+Please do not share your Secret. Otherwise, it may cause information leakage and an unnecessary loss of transaction fees. If your Secret is leaked, please contact your service consultant immediately.
+</aside>
 <h1 id='partner-level-setting'>Partner Level Setting</h1>
 <p>The partner system API is provided to the partner to perceive the status of cooperative account opening, system basic settings, and non-user level settings.</p>
-<h2 id='partner-configuration'>Partner configuration</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/config"</span>
+<h2 id='partner-configuration'>Partner Configuration</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/config"</span>
 </code></pre></div><h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /api/v1/config</code></p>
 
@@ -525,12 +529,12 @@ config | list(object) | restrictions and configuration of the currency</p>
 <tr>
 <td>min</td>
 <td>string(number)</td>
-<td>minimum per transaction</td>
+<td>minimum amount per transaction</td>
 </tr>
 <tr>
 <td>max</td>
 <td>string(number)</td>
-<td>Maximum per transaction</td>
+<td>maximum amount per transaction</td>
 </tr>
 </tbody></table>
 <h3 id='enum'>Enum</h3>
@@ -557,7 +561,7 @@ config | list(object) | restrictions and configuration of the currency</p>
 <aside class="success">
 The limit is for the entire partner, limit of a single transaction
 </aside>
-<h2 id='get-the-latest-quotation-get'>Get the latest quotation (GET)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/quotes/USDT-EUR"</span>
+<h2 id='get-the-latest-quotation-get'>Get the Latest Quotation (GET)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/quotes/USDT-EUR"</span>
 </code></pre></div><h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /api/v1/quotes/&lt;code_pair&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
@@ -571,7 +575,7 @@ The limit is for the entire partner, limit of a single transaction
 <tr>
 <td>code_pair</td>
 <td>true</td>
-<td>The CODE Pair of the quote uses <code>-</code> as the separator. The Cabital system will ignore the incoming order and sort according to its own rules. Therefore, a currency pair will always return one regardless of the incoming order and the buying and selling relationship. A quotation, such as USDT-EUR.</td>
+<td>The code_pair parameter uses <code>-</code> as the separator. The Cabital system will ignore the incoming order and sort according to its own rules. Therefore, a currency pair will always return the quotes in the same code pair order regardless of the incoming order and the buying and selling relationship, i.e. fetch USDT-EUR or EUR-USDT will return quotes in USDT-EUR pair.</td>
 </tr>
 </tbody></table>
 
@@ -596,7 +600,7 @@ The limit is for the entire partner, limit of a single transaction
 <tr>
 <td>ask</td>
 <td>string(number)</td>
-<td>Sell CODE1 in exchange for CODE2 offer</td>
+<td>Sell <em>Left Code</em> in exchange for <em>Right Code</em> price</td>
 </tr>
 <tr>
 <td>valid_until</td>
@@ -606,22 +610,17 @@ The limit is for the entire partner, limit of a single transaction
 <tr>
 <td>quote_id</td>
 <td>string</td>
-<td>The unique ID of the quotation, the format is event stamp: quotation currency pair: quotation purpose</td>
-</tr>
-<tr>
-<td>quote</td>
-<td>string</td>
-<td>The quoted Pair, the left is Base, the right is Quote, and the quote is centered on Cabital</td>
+<td>The unique ID of the quotation, the format is [timestamp:quotation pair: quotation purpose]</td>
 </tr>
 <tr>
 <td>valid_interval</td>
 <td>number</td>
-<td>The effective time width of the quotation, in seconds</td>
+<td>The effective time duration of the quotation, in seconds</td>
 </tr>
 <tr>
 <td>bid</td>
 <td>string(number)</td>
-<td>Sell CODE2 in exchange for CODE1&#39;s quotation</td>
+<td>Sell <em>Right Code</em> in exchange for <em>Left Code</em> quotation</td>
 </tr>
 </tbody></table>
 
@@ -630,7 +629,7 @@ The symbol of FIAT is based on <a href="https://en.wikipedia.org/wiki/ISO_4217">
 </aside>
 <h1 id='account-connect-related'>Account Connect related</h1>
 <p>Cabital Connect is subject to regulatory requirements. The access partner must provide the identity information (each field) consistent with this party. For field descriptions, please refer to the API for linking accounts with the same name.</p>
-<h2 id='get-user-connection-status'>Get user connection status</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/detail"</span>
+<h2 id='get-user-connection-status'>Get User Connection Status</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/detail"</span>
 </code></pre></div><h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /api/v1/accounts/&lt;account_id&gt;/detail</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
@@ -736,7 +735,7 @@ Single account limit
 <tr>
 <td>id_document</td>
 <td>string(ENUM)</td>
-<td>Identity document type, could be one of <code>ID,PASSPORT,DRIVER_LICENSE</code></td>
+<td>Identity document type (<code>ID,PASSPORT,DRIVER_LICENSE</code>)</td>
 </tr>
 <tr>
 <td>issued_by</td>
@@ -764,9 +763,9 @@ Single account limit
 <p>Submit user information to get the verification result of the same name control.</p>
 <h3 id='c1f957ec0c'>错误消息</h3>
 <ul>
-<li>400 Connection Status must be in CREATED or MISMATCHED</li>
+<li>HTTP 400 : Connection Status must be in CREATED or MISMATCHED</li>
 </ul>
-<h1 id='account-operation-related'>Account operation related</h1>
+<h1 id='account-operations'>Account Operations</h1>
 <p>List of Account Operation Business Errors</p>
 
 <table><thead>
@@ -910,7 +909,7 @@ curl "http://partner.cabital.com/api/v1/limit" \
 Parameter | Default | Description
 --------- | ------- | -----------
 account_id | true | Cabital Connect Account Id -->
-<h2 id='list-of-account-available-balances'>List of account available balances</h2>
+<h2 id='list-of-available-account-balances'>List of Available Account Balances</h2>
 <p>Get all account balances of the user</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/{account_id}/balances"</span>
 </code></pre></div>
@@ -955,8 +954,8 @@ account_id | true | Cabital Connect Account Id -->
 <td>Cabital Connect Account Id</td>
 </tr>
 </tbody></table>
-<h2 id='account-available-balance-in-single-currency'>Account available balance in single currency</h2>
-<p>Get the user&#39;s single account balance, please refer to the currency symbol <a href="/?shell#get">报价API</a></p>
+<h2 id='available-account-balance-in-a-single-currency'>Available Account Balance in a Single Currency</h2>
+<p>Get the user&#39;s single account balance, please refer to the currency symbol <a href="/connect/en/#get-the-latest-quotation-get">Quotation API</a></p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/BTC"</span>
 </code></pre></div>
 <blockquote>

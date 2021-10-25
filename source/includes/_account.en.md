@@ -1,20 +1,20 @@
-# 账户操作相关
+# Account operation related
 
-账户操作业务错误列表
+List of Account Operation Business Errors
 
-错误 | 含义
+Error | Description
 ---------- | -------
-PA001 | Cabital account id 不存在
-PA002 | 账户可用余额不足
-PA003 | 该笔交易未达到最小限额
-PA004 | 该笔交易超过最大限额
-PA005 | 请求的交易类型不可用
-PA006 | 请求的交易请求的币种不可用
-PA007 | Quote 已经过期
-PA008 | 2FA（OTP）不正确
-PA009 | 该客户的KYC状态尚未匹配
-PA010 | 2FA (OTP) 特指 Google Authenticator未设置
-PA011 | Convert的Quote用法不正确（Invalid Calculation）
+PA001 | Cabital account id does not exist
+PA002 | Insufficient account available balance
+PA003 | The transaction has not reached the minimum limit
+PA004 | The transaction exceeds the maximum limit
+PA005 | The requested transaction type is not available
+PA006 | The currency of the requested transaction request is not available
+PA007 | Quote has been expired
+PA008 | Incorrect 2FA (OTP)
+PA009 | The customer’s KYC status has not yet been matched
+PA010 | 2FA (OTP) is not set properly
+PA011 | Convert's Quote usage is incorrect (Invalid Calculation)
 
 <!-- ## 获取用户提现限额
 
@@ -29,7 +29,7 @@ curl "http://partner.cabital.com/api/v1/limit" \
 `GET /api/v1/limit`
 
 
-> 获得以下JSON结构体:
+> Response Sample:
 
 ```json
 [
@@ -57,7 +57,7 @@ curl "http://partner.cabital.com/api/v1/limit" \
 
 
 
-> 获得以下JSON结构体:
+> Response Sample:
 
 ```json
 [
@@ -96,26 +96,26 @@ curl "http://partner.cabital.com/api/v1/limit" \
 
 获取用户的所有账户余额
 
-### HTTP请求
+### HTTP Request
 
 `GET /api/v1/accounts/<account_id>/balances`
 
-### URL参数
+### URL Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-account_id | true | Cabital提供的账户id -->
+account_id | true | Cabital Connect Account Id -->
 
 
-## 账户可用余额列表
+## List of account available balances
 
-获取用户的所有账户余额
+Get all account balances of the user
 
 ```shell
 curl "/api/v1/accounts/{account_id}/balances"
 ```
 
-> 获得以下JSON结构体:
+> Response Sample:
 
 ```json
 [
@@ -142,25 +142,25 @@ curl "/api/v1/accounts/{account_id}/balances"
 ]
 ```
 
-### HTTP请求
+### HTTP Request
 
 `GET /api/v1/accounts/<account_id>/balances`
 
-### URL参数
+### URL Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-account_id | true | Cabital提供的账户id
+account_id | true | Cabital Connect Account Id
 
-## 账户可用余额单币
+## Account available balance in single currency
 
-获取用户的单一账户余额，货币符号请参考[报价API](/?shell#get)
+Get the user's single account balance, please refer to the currency symbol [报价API](/?shell#get)
 
 ```shell
 curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/BTC"
 ```
 
-> 获得以下JSON结构体:
+> Response Sample:
 
 ```json
 {
@@ -169,15 +169,15 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/BTC"
 }
 ```
 
-### HTTP请求
+### HTTP Request
 
 `GET /api/v1/accounts/<account_id>/balances/<symbol>`
 
-### URL参数
+### URL Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-account_id | true | Cabital提供的账户id
+account_id | true | Cabital Connect Account Id
 symbol | true | 货币的Symbol
 
 
@@ -189,7 +189,7 @@ symbol | true | 货币的Symbol
 curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/EUR/deposit/SEPA"
 ```
 
-> 获得以下JSON结构体:
+> Response Sample:
 
 ```json
 {
@@ -206,21 +206,21 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/EUR/deposit
 }
 ```
 
-### HTTP请求
+### HTTP Request
 
 `GET /api/v1/accounts/<account_id>/balances/<symbol>/deposit/<method>`
 
-### URL参数
+### URL Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-account_id | true | Cabital提供的账户id
-symbol | true | 货币的Symbol
-method | false | 入币方式，非必须，如缺失将使用默认方法，具体方法请参考[配置API](/?shell#79fee25901)
+account_id | true | Cabital Connect Account Id
+symbol | true | Currency symbol
+method | false | The method of depositing currency is not required. If missing, the default method will be used. Please refer to the specific method[配置API](/?shell#79fee25901)
 
-## 账户转换货币
+## Currency conversion 
 
-在Cabital的账户余额间通过转换的方法，兑换不同种的货币。通过转换货币，可以将Cabital方不支持划转的货币，通过先转换后划转的方式进行交易(C+T)
+Through the method of conversion between Cabital's account balances, exchange different currencies. By converting currencies, you can trade currencies that Cabital does not support transfer by converting first and then transferring (C+T)
 
 ```shell
 curl -X POST "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/conversions"
@@ -234,7 +234,7 @@ curl -X POST "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/conversions"
 }'
 ```
 
-> 提交JSON结构体:
+> Request Sample:
 
 ```json
 {
@@ -247,7 +247,7 @@ curl -X POST "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/conversions"
 }
 ```
 
-> 获得以下JSON结构体:
+> Response Sample:
 
 ```json
 {
@@ -256,45 +256,45 @@ curl -X POST "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/conversions"
 }
 ```
 
-### HTTP请求
+### HTTP Request
 
 `POST /api/v1/accounts/<account_id>/conversions`
 
-### URL参数
+### URL Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-account_id | true | Cabital提供的账户id
+account_id | true | Cabital Connect Account Id
 
 
-### 提交参数
+### Request Object
 
-字段 | 类型 | 描述
+Field | Type | Description
 --------- | ------- | -----------
-quote_id | string | 报价的唯一标识符
-quote | string(number) | 报价
-pair | string | 报价的货币对，左侧为买，右侧为卖
-buy_amount | string(number) | 买入数量
-sell_amount | string(number) | 卖出数量
-major_ccy | string | 主要货，用于转换限额判定
+quote_id | string | The unique identifier of the quote
+quote | string(number) | quote
+pair | string | The currency pair quoted, the left side is buying, the right side is selling
+buy_amount | string(number) | buy amount
+sell_amount | string(number) | sell amount
+major_ccy | string | Major currency, used to determine the conversion quota
 
 <aside class="warning">
-<b>注意事项：</b>
+<b>Attention：</b>
 <ul>
-  <li>一定要注意pair的方向，左侧为买入货币，右侧为卖出货币。</li>
-  <li>由于报价支持正反向（Ask & Bid），不论买入还是卖出，皆为同一个报价对。</li>
+  <li>Be sure to pay attention to the direction of the pair, the left side is the buying currency, and the right side is the selling currency. </li>
+  <li>Because the quotation supports Ask & Bid, no matter buying or selling, it is the same quotation pair. </li>
 </ul>
 </aside>
 
-## 账户划转列表
+## Account transfer history
 
-查询划转历史记录，支持参数查询和分页。
+Query transfer history records, support filter query and pagination.
 
 ```shell
 curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
 ```
 
-> 返回JSON结构体:
+> Response Sample:
 
 ```json
 {
@@ -324,43 +324,45 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
 }
 ```
 
-### HTTP请求
+### HTTP Request
 
 `GET /api/v1/accounts/<account_id>/transfers`
 
-### URL参数
+### URL Parameters
 
-Parameter | 必须 | 默认值 | Description
+Parameter | Required | Default | Description
 --------- | ------- | ----------- | -----------
-account_id | true | -- | Cabital提供的账户id
-direction | false | 全部 | 方向过滤
-symbol | false | 全部 | 币种过滤
-cursor | false | 0 | 查询结果集的游标位置
-page_size | false | 10 | 取值范围为（1-30）
-has_coversion | false | 全部 | bool型，过滤是否有相关转换订单
-created_from | false | 0 | 创建订单起始时间（Unix Time Epoch的秒数）
-created_to | false | NOW | 创建订单结束时间（Unix Time Epoch的秒数）
+account_id | true | -- | Cabital Connect Account Id
+direction | false | 2 Ways | filter by direction `CREDIT` / `DEBIT`
+symbol | false | all currencies | filter for currencies
+cursor | false | 0 | result set cursor
+page_size | false | 10 | page size（1-30）
+has_coversion | false | both | bool type, filter whether there are related conversion orders
+created_from | false | 0 | Create order start time (Unix Time Epoch in seconds)
+created_to | false | NOW | Create order end time (Unix Time Epoch in seconds)
 
-### 返回transfers对象描述
+### Response Object
 
-字段 | 类型 | 描述
+Field | Type | Description
 --------- | ------- | -----------
-transfer_id | string(uuid) | 划转订单ID
-amount | string(number) | 数量
-symbol | string | 划转的货币
-direction | string(enum) | 划转的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
-conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
-external_id | string(50) | 合作方的第三方ID，非必需
-status | string(enum) | 划转的结果，SUCCESS / FAILED
-## 账户划转详情
+transfer_id | string(uuid) | Transfer order id
+amount | string(number) | amount
+symbol | string | currency symbol
+direction | string(enum) |The direction of the transfer, with Cabital as the center, `CREDIT` for top up, and `DEBIT` for withdraw.
+conversion_id | string(uuid) | The conversion order ID in C+T related transactions, optional
+external_id | string(50) | The third-party ID of the partner
+status | string(enum) | The result of the transfer, SUCCESS / FAILED
 
-在 Cabital 与合作方的同名账户之间进行划转。
+
+## Account transfer details
+
+Transfer detail
 
 ```shell
 curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/4c416854-8970-4838-99ad-febc437ac81d"
 ```
 
-> 返回JSON结构体:
+> Response Sample:
 
 ```json
 {
@@ -375,31 +377,32 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/4c416854-8
 }
 ```
 
-### HTTP请求
+### HTTP Request
 
 `GET /api/v1/accounts/<account_id>/transfers/<trasfer_id>`
 
-### URL参数
+### URL Parameters
 
-Parameter | 必须 |  Description
+Parameter | Required |  Description
 --------- | ------- |  -----------
-account_id | true | Cabital提供的账户id
-trasfer_id | true | 划转订单id
+account_id | true | Cabital Connect Account Id
+trasfer_id | true | Transfer order id
 
-### 返回transfers对象描述
+### Response Object
 
-字段 | 类型 | 描述
+Field | Type | Description
 --------- | ------- | -----------
-transfer_id | string(uuid) | 划转订单ID
-amount | string(number) | 数量
-symbol | string | 划转的货币
-direction | string(enum) | 划转的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
-conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
-external_id | string(50) | 合作方的第三方ID，非必需
-status | string(enum) | 划转的结果，SUCCESS / FAILED
-## 账户双向划转
+transfer_id | string(uuid) | Transfer order id
+amount | string(number) | amount
+symbol | string | currency symbol
+direction | string(enum) |The direction of the transfer, with Cabital as the center, `CREDIT` for top up, and `DEBIT` for withdraw.
+conversion_id | string(uuid) | The conversion order ID in C+T related transactions, optional
+external_id | string(50) | The third-party ID of the partner, not required
+status | string(enum) | The result of the transfer, SUCCESS / FAILED
 
-在 Cabital 与合作方的同名账户之间进行划转。
+## Two-way account transfer
+
+Transfer between Cabital and the partner’s account under the same name.
 
 ```shell
 curl -X POST "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
@@ -412,7 +415,7 @@ curl -X POST "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
 }'
 ```
 
-> 提交JSON结构体:
+> Request Sample:
 
 ```json
 {
@@ -424,7 +427,7 @@ curl -X POST "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
 }
 ```
 
-> 获得以下JSON结构体:
+> Response Sample:
 
 ```json
 {
@@ -433,34 +436,34 @@ curl -X POST "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
 }
 ```
 
-### HTTP请求
+### HTTP Request
 
 `POST /api/v1/accounts/<account_id>/transfers`
 
-### URL参数
+### URL Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-account_id | true | Cabital提供的账户id
+account_id | true | Cabital Connect Account Id
 
 
-### 提交对象描述
+### Request Object
 
-字段 | 类型 | 描述
+Field | Type | Description
 --------- | ------- | -----------
-amount | string(number) | 数量
-symbol | string | 划转的货币
-otp | string | OTP的数值，特质Google Authenticator
-direction | string(enum) | 划转的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
-conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
-external_id | string(50) | 合作方的唯一订单号，如重复订单将拒绝
+amount | string(number) | amount
+symbol | string | currency symbol
+otp | string | OTP Number (6 digits from Google Authenticator)
+direction | string(enum) |The direction of the transfer, with Cabital as the center, `CREDIT` for top up, and `DEBIT` for withdraw.
+conversion_id | string(uuid) | The conversion order ID in C+T related transactions, optional
+external_id | string(50) | The third-party ID of the partner, must be unique for one partner
 
-### 返回对象描述
 
-字段 | 类型 | 描述
+
+### Response Object
+
+Field | Type | Description
 --------- | ------- | -----------
-transfer_id | string(uuid) | 划转订单ID
-external_id | string(50) | 
-status | string(enum) | 划转的结果
-
-<!-- ### OTP的使用！！！ -->
+transfer_id | string(uuid) | transfer id
+external_id | string(50) |  The third-party ID of the partner, must be unique for one partner
+status | string(enum) |  The result of the transfer, SUCCESS / FAILED

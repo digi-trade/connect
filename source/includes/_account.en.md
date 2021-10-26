@@ -216,9 +216,9 @@ Parameter | Default | Description
 --------- | ------- | -----------
 account_id | true | Cabital Connect Account Id
 symbol | true | Currency symbol
-method | false | The method of depositing currency is not required. If missing, the default method will be used. Please refer to the specific method[Configuration API](/?shell#79fee25901)
+method | false | The deposit method currency is not required. If missing, the default method will be used. Please use the method defined in[Configuration API](/?shell#79fee25901)
 
-## Currency conversion 
+## Currency Conversion 
 
 Through the method of conversion between Cabital's account balances, exchange different currencies. By converting currencies, you can trade currencies that Cabital does not support transfer by converting first and then transferring (C+T)
 
@@ -286,7 +286,7 @@ major_ccy | string | Major currency, used to determine the conversion quota
 </ul>
 </aside>
 
-## Account transfer history
+## Account Transfer History
 
 Query transfer history records, support filter query and pagination.
 
@@ -354,7 +354,7 @@ external_id | string(50) | The third-party ID of the partner
 status | string(enum) | The result of the transfer, SUCCESS / FAILED
 
 
-## Account transfer details
+## Account Transfer Details
 
 Transfer detail
 
@@ -400,7 +400,7 @@ conversion_id | string(uuid) | The conversion order ID in C+T related transactio
 external_id | string(50) | The third-party ID of the partner, not required
 status | string(enum) | The result of the transfer, SUCCESS / FAILED
 
-## Two-way account transfer
+## Two-way Account Transfer
 
 Transfer between Cabital and the partner’s account under the same name.
 

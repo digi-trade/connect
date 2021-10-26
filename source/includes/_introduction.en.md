@@ -7,4 +7,4 @@ Cabital Connect Cabailities：
 - Server-side Authentication & Authorization.
 - Estiabilish Cabital Connect between two parties' crypto wallets through name matching interfaces
 - Query Cabital wallet balance, transfer balance into same beneficiary's wallet. 
-- Convert currencies on behavior of user - and attach to transfer order.
+- Convert currencies on behalf of user - and attach to transfer order.

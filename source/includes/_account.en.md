@@ -216,7 +216,7 @@ Parameter | Default | Description
 --------- | ------- | -----------
 account_id | true | Cabital Connect Account Id
 symbol | true | Currency symbol
-method | false | The method of depositing currency is not required. If missing, the default method will be used. Please refer to the specific method[配置API](/?shell#79fee25901)
+method | false | The method of depositing currency is not required. If missing, the default method will be used. Please refer to the specific method[Configuration API](/?shell#79fee25901)
 
 ## Currency conversion 
 
@@ -337,7 +337,7 @@ direction | false | 2 Ways | filter by direction `CREDIT` / `DEBIT`
 symbol | false | all currencies | filter for currencies
 cursor | false | 0 | result set cursor
 page_size | false | 10 | page size（1-30）
-has_coversion | false | both | bool type, filter whether there are related conversion orders
+has_conversion | false | both | bool type, filter whether there are related conversion orders
 created_from | false | 0 | Create order start time (Unix Time Epoch in seconds)
 created_to | false | NOW | Create order end time (Unix Time Epoch in seconds)
 

@@ -337,7 +337,7 @@ direction | false | 全部 | 方向过滤
 symbol | false | 全部 | 币种过滤
 cursor | false | 0 | 查询结果集的游标位置
 page_size | false | 10 | 取值范围为（1-30）
-has_coversion | false | 全部 | bool型，过滤是否有相关转换订单
+has_conversion | false | 全部 | bool型，过滤是否有相关转换订单
 created_from | false | 0 | 创建订单起始时间（Unix Time Epoch的秒数）
 created_to | false | NOW | 创建订单结束时间（Unix Time Epoch的秒数）
 

@@ -355,16 +355,16 @@
                     <a href="#account-currency-deposite-information" class="toc-h2 toc-link" data-title="Account Currency Deposite Information">Account Currency Deposite Information</a>
                   </li>
                   <li>
-                    <a href="#currency-conversion" class="toc-h2 toc-link" data-title="Currency conversion">Currency conversion</a>
+                    <a href="#currency-conversion" class="toc-h2 toc-link" data-title="Currency Conversion">Currency Conversion</a>
                   </li>
                   <li>
-                    <a href="#account-transfer-history" class="toc-h2 toc-link" data-title="Account transfer history">Account transfer history</a>
+                    <a href="#account-transfer-history" class="toc-h2 toc-link" data-title="Account Transfer History">Account Transfer History</a>
                   </li>
                   <li>
-                    <a href="#account-transfer-details" class="toc-h2 toc-link" data-title="Account transfer details">Account transfer details</a>
+                    <a href="#account-transfer-details" class="toc-h2 toc-link" data-title="Account Transfer Details">Account Transfer Details</a>
                   </li>
                   <li>
-                    <a href="#two-way-account-transfer" class="toc-h2 toc-link" data-title="Two-way account transfer">Two-way account transfer</a>
+                    <a href="#two-way-account-transfer" class="toc-h2 toc-link" data-title="Two-way Account Transfer">Two-way Account Transfer</a>
                   </li>
               </ul>
           </li>
@@ -1028,10 +1028,10 @@ account_id | true | Cabital Connect Account Id -->
 <tr>
 <td>method</td>
 <td>false</td>
-<td>The method of depositing currency is not required. If missing, the default method will be used. Please refer to the specific method<a href="/?shell#79fee25901">Configuration API</a></td>
+<td>The deposit method currency is not required. If missing, the default method will be used. Please use the method defined in<a href="/?shell#79fee25901">Configuration API</a></td>
 </tr>
 </tbody></table>
-<h2 id='currency-conversion'>Currency conversion</h2>
+<h2 id='currency-conversion'>Currency Conversion</h2>
 <p>Through the method of conversion between Cabital&#39;s account balances, exchange different currencies. By converting currencies, you can trade currencies that Cabital does not support transfer by converting first and then transferring (C+T)</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/conversions"</span>
 <span class="nt">-d</span> <span class="s1">'{
@@ -1125,7 +1125,7 @@ account_id | true | Cabital Connect Account Id -->
   <li>Because the quotation supports Ask & Bid, no matter buying or selling, it is the same quotation pair. </li>
 </ul>
 </aside>
-<h2 id='account-transfer-history'>Account transfer history</h2>
+<h2 id='account-transfer-history'>Account Transfer History</h2>
 <p>Query transfer history records, support filter query and pagination.</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"</span>
 </code></pre></div>
@@ -1261,7 +1261,7 @@ account_id | true | Cabital Connect Account Id -->
 <td>The result of the transfer, SUCCESS / FAILED</td>
 </tr>
 </tbody></table>
-<h2 id='account-transfer-details'>Account transfer details</h2>
+<h2 id='account-transfer-details'>Account Transfer Details</h2>
 <p>Transfer detail</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/4c416854-8970-4838-99ad-febc437ac81d"</span>
 </code></pre></div>
@@ -1343,7 +1343,7 @@ account_id | true | Cabital Connect Account Id -->
 <td>The result of the transfer, SUCCESS / FAILED</td>
 </tr>
 </tbody></table>
-<h2 id='two-way-account-transfer'>Two-way account transfer</h2>
+<h2 id='two-way-account-transfer'>Two-way Account Transfer</h2>
 <p>Transfer between Cabital and the partner’s account under the same name.</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"</span>
 <span class="nt">-d</span> <span class="s1">'{
@@ -1617,7 +1617,7 @@ status | string(enum) | 划转的结果，SUCCESS / FAILED -->
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized - API Secret error, or Request signature error.</td>
+<td>UUnauthorized - API Secret error or Request signature error.</td>
 </tr>
 <tr>
 <td>403</td>
@@ -1633,7 +1633,7 @@ status | string(enum) | 划转的结果，SUCCESS / FAILED -->
 </tr>
 <tr>
 <td>406</td>
-<td>Not Acceptable - The mandatory format is JSON, not allowed</td>
+<td>Not Acceptable - The mandatory format is JSON, no other formats are accepted.</td>
 </tr>
 <tr>
 <td>409</td>

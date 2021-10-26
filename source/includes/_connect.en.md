@@ -90,7 +90,7 @@ dob | string | Date of birth format in `YYYYMMDD`
 
 Submit user information to get the verification result of the same name control.
 
-### 错误消息
+### Error Message
 
 
 - HTTP 400 : Connection Status must be in CREATED or MISMATCHED

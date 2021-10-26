@@ -415,7 +415,7 @@
 <li>Server-side Authentication &amp; Authorization.</li>
 <li>Estiabilish Cabital Connect between two parties&#39; crypto wallets through name matching interfaces</li>
 <li>Query Cabital wallet balance, transfer balance into same beneficiary&#39;s wallet. </li>
-<li>Convert currencies on behavior of user - and attach to transfer order.</li>
+<li>Convert currencies on behalf of user - and attach to transfer order.</li>
 </ul>
 <h1 id='authentication'>Authentication</h1>
 <p>API Key / Secret is the credential to access Connect API. All the HTTPS calls need to be signed and include following HTTP Headers:</p>
@@ -668,7 +668,7 @@ The symbol of FIAT is based on <a href="https://en.wikipedia.org/wiki/ISO_4217">
 <tr>
 <td>account_status</td>
 <td>string(ENUM)</td>
-<td>Stratus, see the definition in Events</td>
+<td>Status, see the definition in Events</td>
 </tr>
 <tr>
 <td>otp_ready</td>
@@ -1028,7 +1028,7 @@ account_id | true | Cabital Connect Account Id -->
 <tr>
 <td>method</td>
 <td>false</td>
-<td>The method of depositing currency is not required. If missing, the default method will be used. Please refer to the specific method<a href="/?shell#79fee25901">配置API</a></td>
+<td>The method of depositing currency is not required. If missing, the default method will be used. Please refer to the specific method<a href="/?shell#79fee25901">Configuration API</a></td>
 </tr>
 </tbody></table>
 <h2 id='currency-conversion'>Currency conversion</h2>
@@ -1199,7 +1199,7 @@ account_id | true | Cabital Connect Account Id -->
 <td>page size（1-30）</td>
 </tr>
 <tr>
-<td>has_coversion</td>
+<td>has_conversion</td>
 <td>false</td>
 <td>both</td>
 <td>bool type, filter whether there are related conversion orders</td>

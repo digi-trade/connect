@@ -35,7 +35,7 @@ account_id | true | Cabital Connect Account Id
 
 Field | Type | Description
 --------- | ------- | ---------------
-account_status | string(ENUM) | Stratus, see the definition in Events
+account_status | string(ENUM) | Status, see the definition in Events
 otp_ready | bool | Whether the customer has completed the OTP binding in Cabital, it needs to be attached when withdrawing.
 email_address? | string | The user’s Email for the partner to match
 kyc_token | string | The user's KYC Token for the partner to apply

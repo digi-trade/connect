@@ -47,7 +47,7 @@ curl "http://partner.cabital.com/partners/partner_id/config"
             }
         },
         {
-            "symobl": "EUR",
+            "symbol": "EUR",
             "type": 1, 
             "deposit_methods": [
                 "SEPA"
@@ -77,7 +77,7 @@ curl "http://partner.cabital.com/partners/partner_id/config"
 
 字段 | 类型 | 描述
 --------- | ------- | ---------------
-symobl | string(ENUM) | 货币标志
+symbol | string(ENUM) | 货币标志
 type | int(ENUM) | 货币类型，详见下面解释
 deposit_methods | list | 当前入金方式
 withdraw_methods | list | 当前出金方式

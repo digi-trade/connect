@@ -136,7 +136,7 @@ Field | Type | Description
 --------- | ------- | ---------------
 ask | string(number) | Sell *Left Code* in exchange for *Right Code* price
 valid_until | number(timestamp) | The number in seconds from the Unix Epoch to the current, used to indicate the effective time of the quote
-quote_id | string | The unique ID of the quotation, the format is [timestamp:quotation pair: quotation purpose]
+quote_id | string | The unique ID of the quotation, the format is [timestamp:quotation currency pair: quotation purpose]
 valid_interval | number | The effective time duration of the quotation, in seconds
 bid | string(number) | Sell *Right Code* in exchange for *Left Code* quotation
 

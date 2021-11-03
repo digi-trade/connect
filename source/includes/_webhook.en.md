@@ -1,24 +1,24 @@
-# Callback event
+# Callback Event
 
-Callback events are expected to arrive in 1-5 minutes on average, but in theory it may take up to 24 hours. If you miss the Callback event for some reason, don’t worry, we will resend the failed Callback event at any time. If the Callback event request fails, we will try to resend it four times: after 5 minutes, 1 hour, 5 hours, and 18 hours, until the request succeeds and obtains a 2XX return code.
+Callback events are expected to arrive within 1-5 minutes on average, but in theory it may take up to 24 hours. If you miss the Callback event for some reason, don’t worry. We will resend the failed Callback event. If the Callback event request fails, we will try to resend it four times: after 5 minutes, 1 hour, 5 hours, and 18 hours, until the request succeeds and obtains a 2XX return code.
 
 We recommend that you wait no more than a day for the Callback event, and then send a request to our server to obtain status information about the resource.
 
 
-## Account Connect status event
+## Account Connect Status Event
 
 When the user initiates a connection from the counterparty, the system will send an account association status event based on the current connection status, which includes the following states:
 
 Type | Description
 --------- | -----------
-INITIALIZED | The user is successfully registered and has not yet submitted KYC in Cabital
-PENDING | Cabital processing user identification documents
-TEMPORARY_REJECTED | The user is requested by Cabital to provide more materials
-FINAL_REJECTED | The user was finally rejected by Cabital
-CREATED | The user passed Cabital's KYC, and the Cabital account is opened, waiting for the partner to submit the same name verification.
-MATCHING | The partner has been submitted, the same name verification is under manual review
-MATCHED | Same name verification is passed, the same account transfer is fully availalbe
-MISMATCHED | Same name verification rejection, multiple reasons
+INITIALIZED | The user has successfully registered and has not yet submitted KYC in Cabital
+PENDING | The user has submitted KYC in Cabital & Cabital is processing the user identification documents
+TEMPORARY_REJECTED | The user has submitted KYC in Cabital & Cabital has requested the user to provide more materials 
+FINAL_REJECTED | The user has submitted KYC in Cabital & Cabital has rejected the user
+CREATED | The user has passed Cabital's KYC. The Cabital account has been opened & is waiting for the partner to submit the same name verification.
+MATCHING | The user has passed Cabital's KYC and the partner has been submitted the same name verfication, which is under manual review.
+MATCHED | The user has passed Cabital's KYC and same name verification has passed successfully. The same account transfer is now fully available.
+MISMATCHED | The user has passed Cabital's KYC but the same name verification was rejected. This could happen for multiple reasons.
 UNLINKED | The user / Cabital actively closes the connection with an account of the partner
 
 <!-- READYFORMATCHING | 我方KYC通过，等待合作方提交同名验证 (以后）-->

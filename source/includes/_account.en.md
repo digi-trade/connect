@@ -222,6 +222,8 @@ method | false | The deposit method currency is not required. If missing, the de
 
 Through the method of conversion between Cabital's account balances, exchange different currencies. By converting currencies, you can trade currencies that Cabital does not support transfer by converting first and then transferring (C+T)
 
+You can exchange different currencies. By converting currencies, you can also trade currencies that Cabital does not support by converting them first to a supporting currency and then transferring (convert and then transfer).
+
 ```shell
 curl -X POST "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/conversions"
 -d '{
@@ -272,23 +274,23 @@ account_id | true | Cabital Connect Account Id
 Field | Type | Description
 --------- | ------- | -----------
 quote_id | string | The unique identifier of the quote
-quote | string(number) | quote
-pair | string | The currency pair quoted, the left side is buying, the right side is selling
-buy_amount | string(number) | buy amount
-sell_amount | string(number) | sell amount
+quote | string(number) | Qsuote
+pair | string | The currency pair that is to be quoted. The left side repesents what is being bought. The right side represents what is being sold. 
+buy_amount | string(number) | Buy amount
+sell_amount | string(number) | Sell amount
 major_ccy | string | Major currency, used to determine the conversion quota
 
 <aside class="warning">
 <b>Attention：</b>
 <ul>
-  <li>Be sure to pay attention to the direction of the pair, the left side is the buying currency, and the right side is the selling currency. </li>
-  <li>Because the quotation supports Ask & Bid, no matter buying or selling, it is the same quotation pair. </li>
+  <li>Be sure to pay attention to the direction of the pair. The left side repesents what is being bought. The right side represents what is being sold. </li>
+  <li>Because the quotation supports Ask & Bid, no matter if you are buying or selling, it will be the same quotation pair. </li>
 </ul>
 </aside>
 
 ## Account Transfer History
 
-Query transfer history records, support filter query and pagination.
+Query transfer history records. Filter query and pagination are supported.
 
 ```shell
 curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
@@ -333,11 +335,11 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
 Parameter | Required | Default | Description
 --------- | ------- | ----------- | -----------
 account_id | true | -- | Cabital Connect Account Id
-direction | false | 2 Ways | filter by direction `CREDIT` / `DEBIT`
-symbol | false | all currencies | filter for currencies
-cursor | false | 0 | result set cursor
-page_size | false | 10 | page size（1-30）
-has_conversion | false | both | bool type, filter whether there are related conversion orders
+direction | false | 2 Ways | Filter by direction `CREDIT` / `DEBIT`
+symbol | false | all currencies | Filter for currencies
+cursor | false | 0 | Result set cursor
+page_size | false | 10 | Page size（1-30）
+has_conversion | false | both | Bool type (filter whether there are related conversion orders)
 created_from | false | 0 | Create order start time (Unix Time Epoch in seconds)
 created_to | false | NOW | Create order end time (Unix Time Epoch in seconds)
 
@@ -346,17 +348,17 @@ created_to | false | NOW | Create order end time (Unix Time Epoch in seconds)
 Field | Type | Description
 --------- | ------- | -----------
 transfer_id | string(uuid) | Transfer order id
-amount | string(number) | amount
-symbol | string | currency symbol
-direction | string(enum) |The direction of the transfer, with Cabital as the center, `CREDIT` for top up, and `DEBIT` for withdraw.
+amount | string(number) | Amount
+symbol | string | Currency symbol
+direction | string(enum) | The direction of the transfer to Cabital. `CREDIT` for top up into the Cabital Account. `DEBIT` for withdraw out of the Cabital Account.
 conversion_id | string(uuid) | The conversion order ID in C+T related transactions, optional
 external_id | string(50) | The third-party ID of the partner
-status | string(enum) | The result of the transfer, SUCCESS / FAILED
+status | string(enum) | The result of the transfer (SUCCESS / FAILED)
 
 
 ## Account Transfer Details
 
-Transfer detail
+Transfer Details
 
 ```shell
 curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/4c416854-8970-4838-99ad-febc437ac81d"
@@ -393,10 +395,10 @@ trasfer_id | true | Transfer order id
 Field | Type | Description
 --------- | ------- | -----------
 transfer_id | string(uuid) | Transfer order id
-amount | string(number) | amount
-symbol | string | currency symbol
-direction | string(enum) |The direction of the transfer, with Cabital as the center, `CREDIT` for top up, and `DEBIT` for withdraw.
-conversion_id | string(uuid) | The conversion order ID in C+T related transactions, optional
+amount | string(number) | Amount
+symbol | string | Currency symbol
+direction | string(enum) | The direction of the transfer to Cabital. CREDIT for top up into the Cabital Account. DEBIT for withdraw out of the Cabital Account.
+conversion_id | string(uuid) | The conversion order ID in Convert+Transfer related transactions (optional)
 external_id | string(50) | The third-party ID of the partner, not required
 status | string(enum) | The result of the transfer, SUCCESS / FAILED
 
@@ -451,10 +453,10 @@ account_id | true | Cabital Connect Account Id
 
 Field | Type | Description
 --------- | ------- | -----------
-amount | string(number) | amount
-symbol | string | currency symbol
+amount | string(number) | Amount
+symbol | string | Currency symbol
 otp | string | OTP Number (6 digits from Google Authenticator)
-direction | string(enum) |The direction of the transfer, with Cabital as the center, `CREDIT` for top up, and `DEBIT` for withdraw.
+direction | string(enum) | The direction of the transfer to Cabital. `CREDIT` for top up into the Cabital Account. `DEBIT` for withdraw out of the Cabital Account.
 conversion_id | string(uuid) | The conversion order ID in C+T related transactions, optional
 external_id | string(50) | The third-party ID of the partner, must be unique for one partner
 
@@ -464,6 +466,6 @@ external_id | string(50) | The third-party ID of the partner, must be unique for
 
 Field | Type | Description
 --------- | ------- | -----------
-transfer_id | string(uuid) | transfer id
+transfer_id | string(uuid) | Transfer id
 external_id | string(50) |  The third-party ID of the partner, must be unique for one partner
-status | string(enum) |  The result of the transfer, SUCCESS / FAILED
+status | string(enum) | The result of the transfer (SUCCESS / FAILED)

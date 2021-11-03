@@ -73,6 +73,7 @@ account_id | true | Connect的Cabital账户id
 name | string | 客户本人的全名，按照身份证件上的常用顺序，如First Name +（Middle Name） + Last Name
 id | string | 身份文件上的ID
 id_document | string(ENUM) | 身份文件类型 `ID,PASSPORT,DRIVER_LICENSE`
+issued_by | string | 身份文件颁发国家
 dob | string | 身份文件上的生日（Date of birth）格式为YYYYMMDD
 
 <!-- issued_by | string | 身份文件颁发国家 -->

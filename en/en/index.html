@@ -369,10 +369,10 @@
               </ul>
           </li>
           <li>
-            <a href="#callback-event" class="toc-h1 toc-link" data-title="Callback event">Callback event</a>
+            <a href="#callback-event" class="toc-h1 toc-link" data-title="Callback Event">Callback Event</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#account-connect-status-event" class="toc-h2 toc-link" data-title="Account Connect status event">Account Connect status event</a>
+                    <a href="#account-connect-status-event" class="toc-h2 toc-link" data-title="Account Connect Status Event">Account Connect Status Event</a>
                   </li>
                   <li>
                     <a href="#event-signature" class="toc-h2 toc-link" data-title="Event signature">Event signature</a>
@@ -610,7 +610,7 @@ The limit is for the entire partner, limit of a single transaction
 <tr>
 <td>quote_id</td>
 <td>string</td>
-<td>The unique ID of the quotation, the format is [timestamp:quotation pair: quotation purpose]</td>
+<td>The unique ID of the quotation, the format is [timestamp:quotation currency pair: quotation purpose]</td>
 </tr>
 <tr>
 <td>valid_interval</td>
@@ -676,7 +676,7 @@ The symbol of FIAT is based on <a href="https://en.wikipedia.org/wiki/ISO_4217">
 <td>Whether the customer has completed the OTP binding in Cabital, it needs to be attached when withdrawing.</td>
 </tr>
 <tr>
-<td>email_address?</td>
+<td>email_address</td>
 <td>string</td>
 <td>The user’s Email for the partner to match</td>
 </tr>
@@ -1033,6 +1033,8 @@ account_id | true | Cabital Connect Account Id -->
 </tbody></table>
 <h2 id='currency-conversion'>Currency Conversion</h2>
 <p>Through the method of conversion between Cabital&#39;s account balances, exchange different currencies. By converting currencies, you can trade currencies that Cabital does not support transfer by converting first and then transferring (C+T)</p>
+
+<p>You can exchange different currencies. By converting currencies, you can also trade currencies that Cabital does not support by converting them first to a supporting currency and then transferring (convert and then transfer).</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/conversions"</span>
 <span class="nt">-d</span> <span class="s1">'{
     "quote_id": "20210416225049:BTC-USDT:Customer",
@@ -1094,22 +1096,22 @@ account_id | true | Cabital Connect Account Id -->
 <tr>
 <td>quote</td>
 <td>string(number)</td>
-<td>quote</td>
+<td>Qsuote</td>
 </tr>
 <tr>
 <td>pair</td>
 <td>string</td>
-<td>The currency pair quoted, the left side is buying, the right side is selling</td>
+<td>The currency pair that is to be quoted. The left side repesents what is being bought. The right side represents what is being sold.</td>
 </tr>
 <tr>
 <td>buy_amount</td>
 <td>string(number)</td>
-<td>buy amount</td>
+<td>Buy amount</td>
 </tr>
 <tr>
 <td>sell_amount</td>
 <td>string(number)</td>
-<td>sell amount</td>
+<td>Sell amount</td>
 </tr>
 <tr>
 <td>major_ccy</td>
@@ -1121,12 +1123,12 @@ account_id | true | Cabital Connect Account Id -->
 <aside class="warning">
 <b>Attention：</b>
 <ul>
-  <li>Be sure to pay attention to the direction of the pair, the left side is the buying currency, and the right side is the selling currency. </li>
-  <li>Because the quotation supports Ask & Bid, no matter buying or selling, it is the same quotation pair. </li>
+  <li>Be sure to pay attention to the direction of the pair. The left side repesents what is being bought. The right side represents what is being sold. </li>
+  <li>Because the quotation supports Ask & Bid, no matter if you are buying or selling, it will be the same quotation pair. </li>
 </ul>
 </aside>
 <h2 id='account-transfer-history'>Account Transfer History</h2>
-<p>Query transfer history records, support filter query and pagination.</p>
+<p>Query transfer history records. Filter query and pagination are supported.</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"</span>
 </code></pre></div>
 <blockquote>
@@ -1178,31 +1180,31 @@ account_id | true | Cabital Connect Account Id -->
 <td>direction</td>
 <td>false</td>
 <td>2 Ways</td>
-<td>filter by direction <code>CREDIT</code> / <code>DEBIT</code></td>
+<td>Filter by direction <code>CREDIT</code> / <code>DEBIT</code></td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>false</td>
 <td>all currencies</td>
-<td>filter for currencies</td>
+<td>Filter for currencies</td>
 </tr>
 <tr>
 <td>cursor</td>
 <td>false</td>
 <td>0</td>
-<td>result set cursor</td>
+<td>Result set cursor</td>
 </tr>
 <tr>
 <td>page_size</td>
 <td>false</td>
 <td>10</td>
-<td>page size（1-30）</td>
+<td>Page size（1-30）</td>
 </tr>
 <tr>
 <td>has_conversion</td>
 <td>false</td>
 <td>both</td>
-<td>bool type, filter whether there are related conversion orders</td>
+<td>Bool type (filter whether there are related conversion orders)</td>
 </tr>
 <tr>
 <td>created_from</td>
@@ -1233,17 +1235,17 @@ account_id | true | Cabital Connect Account Id -->
 <tr>
 <td>amount</td>
 <td>string(number)</td>
-<td>amount</td>
+<td>Amount</td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>string</td>
-<td>currency symbol</td>
+<td>Currency symbol</td>
 </tr>
 <tr>
 <td>direction</td>
 <td>string(enum)</td>
-<td>The direction of the transfer, with Cabital as the center, <code>CREDIT</code> for top up, and <code>DEBIT</code> for withdraw.</td>
+<td>The direction of the transfer to Cabital. <code>CREDIT</code> for top up into the Cabital Account. <code>DEBIT</code> for withdraw out of the Cabital Account.</td>
 </tr>
 <tr>
 <td>conversion_id</td>
@@ -1258,11 +1260,11 @@ account_id | true | Cabital Connect Account Id -->
 <tr>
 <td>status</td>
 <td>string(enum)</td>
-<td>The result of the transfer, SUCCESS / FAILED</td>
+<td>The result of the transfer (SUCCESS / FAILED)</td>
 </tr>
 </tbody></table>
 <h2 id='account-transfer-details'>Account Transfer Details</h2>
-<p>Transfer detail</p>
+<p>Transfer Details</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/4c416854-8970-4838-99ad-febc437ac81d"</span>
 </code></pre></div>
 <blockquote>
@@ -1315,22 +1317,22 @@ account_id | true | Cabital Connect Account Id -->
 <tr>
 <td>amount</td>
 <td>string(number)</td>
-<td>amount</td>
+<td>Amount</td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>string</td>
-<td>currency symbol</td>
+<td>Currency symbol</td>
 </tr>
 <tr>
 <td>direction</td>
 <td>string(enum)</td>
-<td>The direction of the transfer, with Cabital as the center, <code>CREDIT</code> for top up, and <code>DEBIT</code> for withdraw.</td>
+<td>The direction of the transfer to Cabital. CREDIT for top up into the Cabital Account. DEBIT for withdraw out of the Cabital Account.</td>
 </tr>
 <tr>
 <td>conversion_id</td>
 <td>string(uuid)</td>
-<td>The conversion order ID in C+T related transactions, optional</td>
+<td>The conversion order ID in Convert+Transfer related transactions (optional)</td>
 </tr>
 <tr>
 <td>external_id</td>
@@ -1399,12 +1401,12 @@ account_id | true | Cabital Connect Account Id -->
 <tr>
 <td>amount</td>
 <td>string(number)</td>
-<td>amount</td>
+<td>Amount</td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>string</td>
-<td>currency symbol</td>
+<td>Currency symbol</td>
 </tr>
 <tr>
 <td>otp</td>
@@ -1414,7 +1416,7 @@ account_id | true | Cabital Connect Account Id -->
 <tr>
 <td>direction</td>
 <td>string(enum)</td>
-<td>The direction of the transfer, with Cabital as the center, <code>CREDIT</code> for top up, and <code>DEBIT</code> for withdraw.</td>
+<td>The direction of the transfer to Cabital. <code>CREDIT</code> for top up into the Cabital Account. <code>DEBIT</code> for withdraw out of the Cabital Account.</td>
 </tr>
 <tr>
 <td>conversion_id</td>
@@ -1438,7 +1440,7 @@ account_id | true | Cabital Connect Account Id -->
 <tr>
 <td>transfer_id</td>
 <td>string(uuid)</td>
-<td>transfer id</td>
+<td>Transfer id</td>
 </tr>
 <tr>
 <td>external_id</td>
@@ -1448,14 +1450,14 @@ account_id | true | Cabital Connect Account Id -->
 <tr>
 <td>status</td>
 <td>string(enum)</td>
-<td>The result of the transfer, SUCCESS / FAILED</td>
+<td>The result of the transfer (SUCCESS / FAILED)</td>
 </tr>
 </tbody></table>
-<h1 id='callback-event'>Callback event</h1>
-<p>Callback events are expected to arrive in 1-5 minutes on average, but in theory it may take up to 24 hours. If you miss the Callback event for some reason, don’t worry, we will resend the failed Callback event at any time. If the Callback event request fails, we will try to resend it four times: after 5 minutes, 1 hour, 5 hours, and 18 hours, until the request succeeds and obtains a 2XX return code.</p>
+<h1 id='callback-event'>Callback Event</h1>
+<p>Callback events are expected to arrive within 1-5 minutes on average, but in theory it may take up to 24 hours. If you miss the Callback event for some reason, don’t worry. We will resend the failed Callback event. If the Callback event request fails, we will try to resend it four times: after 5 minutes, 1 hour, 5 hours, and 18 hours, until the request succeeds and obtains a 2XX return code.</p>
 
 <p>We recommend that you wait no more than a day for the Callback event, and then send a request to our server to obtain status information about the resource.</p>
-<h2 id='account-connect-status-event'>Account Connect status event</h2>
+<h2 id='account-connect-status-event'>Account Connect Status Event</h2>
 <p>When the user initiates a connection from the counterparty, the system will send an account association status event based on the current connection status, which includes the following states:</p>
 
 <table><thead>
@@ -1466,35 +1468,35 @@ account_id | true | Cabital Connect Account Id -->
 </thead><tbody>
 <tr>
 <td>INITIALIZED</td>
-<td>The user is successfully registered and has not yet submitted KYC in Cabital</td>
+<td>The user has successfully registered and has not yet submitted KYC in Cabital</td>
 </tr>
 <tr>
 <td>PENDING</td>
-<td>Cabital processing user identification documents</td>
+<td>The user has submitted KYC in Cabital &amp; Cabital is processing the user identification documents</td>
 </tr>
 <tr>
 <td>TEMPORARY_REJECTED</td>
-<td>The user is requested by Cabital to provide more materials</td>
+<td>The user has submitted KYC in Cabital &amp; Cabital has requested the user to provide more materials</td>
 </tr>
 <tr>
 <td>FINAL_REJECTED</td>
-<td>The user was finally rejected by Cabital</td>
+<td>The user has submitted KYC in Cabital &amp; Cabital has rejected the user</td>
 </tr>
 <tr>
 <td>CREATED</td>
-<td>The user passed Cabital&#39;s KYC, and the Cabital account is opened, waiting for the partner to submit the same name verification.</td>
+<td>The user has passed Cabital&#39;s KYC. The Cabital account has been opened &amp; is waiting for the partner to submit the same name verification.</td>
 </tr>
 <tr>
 <td>MATCHING</td>
-<td>The partner has been submitted, the same name verification is under manual review</td>
+<td>The user has passed Cabital&#39;s KYC and the partner has been submitted the same name verfication, which is under manual review.</td>
 </tr>
 <tr>
 <td>MATCHED</td>
-<td>Same name verification is passed, the same account transfer is fully availalbe</td>
+<td>The user has passed Cabital&#39;s KYC and same name verification has passed successfully. The same account transfer is now fully available.</td>
 </tr>
 <tr>
 <td>MISMATCHED</td>
-<td>Same name verification rejection, multiple reasons</td>
+<td>The user has passed Cabital&#39;s KYC but the same name verification was rejected. This could happen for multiple reasons.</td>
 </tr>
 <tr>
 <td>UNLINKED</td>
@@ -1617,7 +1619,7 @@ status | string(enum) | 划转的结果，SUCCESS / FAILED -->
 </tr>
 <tr>
 <td>401</td>
-<td>UUnauthorized - API Secret error or Request signature error.</td>
+<td>Unauthorized - API Secret error or Request signature error</td>
 </tr>
 <tr>
 <td>403</td>
@@ -1633,7 +1635,7 @@ status | string(enum) | 划转的结果，SUCCESS / FAILED -->
 </tr>
 <tr>
 <td>406</td>
-<td>Not Acceptable - The mandatory format is JSON, no other formats are accepted.</td>
+<td>Not Acceptable - The format you sent incorrect. The mandatory format is JSON; no other formats are accepted.</td>
 </tr>
 <tr>
 <td>409</td>

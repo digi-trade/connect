@@ -47,7 +47,7 @@ user_email | string | true | 账户的主用户email
 user_ext_ref | string | true | 合作方填入的外部Id
 staus | string(enum) | true | 账户关联的状态
 staus | datestamp | true | 事件产生的时间，格式为[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-data | object | false | 账户关联的一些额外数据，比如Shared Token
+data | object | false | 账户关联的一些额外数据，比如Shared Token, Mis-matched fields. 
 
 
 <!-- ## Transfer事件

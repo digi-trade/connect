@@ -6,7 +6,7 @@ Cabital Connect 应监管要求，接入合作方必须提供与本方一致的�
 
 
 ```shell
-curl "http://partner.cabital.com/partners/partner_id/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/detail"
+curl "http://partner.cabital.com/api/v1/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/detail"
 ```
 
 ### HTTP 请求

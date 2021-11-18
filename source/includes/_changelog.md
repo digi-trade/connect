@@ -1,5 +1,10 @@
 # 版本变化
 
+## 0.2.1
+
+- 修改了获取合作方的配置接口的conversions交易配置信息
+- 修改了URL和API不一致问题
+
 ## 0.2.0
 
 - 规范了产品名称，从 `partner` 转换为 `cabital connect`

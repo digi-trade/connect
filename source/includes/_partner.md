@@ -6,7 +6,7 @@
 
 
 ```shell
-curl "http://partner.cabital.com/partners/partner_id/config"
+curl "http://partner.cabital.com/api/v1/config"
 ```
 
 ### HTTP 请求
@@ -19,56 +19,96 @@ curl "http://partner.cabital.com/partners/partner_id/config"
 
 ```json
 {
-    "currencies" : [
+    "currencies":[
         {
-            "symobl": "ETH",
-            "type": 2,
-            "deposit_methods": [
-                "ERC20", "SOL"
+            "symobl":"ETH",
+            "type":2,
+            "deposit_methods":[
+                "ERC20",
+                "SOL"
             ],
-            "withdrew_methods": [
-                "ERC20", "SOL"
+            "withdrew_methods":[
+                "ERC20",
+                "SOL"
             ],
-            "config": {
-                "debit": {
-                    "min": "0.01",
-                    "max": "5"
+            "config":{
+                "debit":{
+                    "min":"0.01",
+                    "max":"5"
                 },
-                "credit": {
-                    "allow": true,
-                    "min": "0.01",
-                    "max": "5"
-                },
-                "conversion": {
-                    "allow": true,
-                    "min": "0.01",
-                    "max": "5"
+                "credit":{
+                    "allow":true,
+                    "min":"0.01",
+                    "max":"5"
                 }
             }
         },
         {
-            "symbol": "EUR",
-            "type": 1, 
-            "deposit_methods": [
+            "symbol":"EUR",
+            "type":1,
+            "deposit_methods":[
                 "SEPA"
             ],
-            "withdrew_methods": [
+            "withdrew_methods":[
                 "SEPA"
             ],
-            ,
-            "config": {
-                "debit": {
-                    "allow": false,
+            "config":{
+                "debit":{
+                    "allow":false
                 },
-                "credit": {
-                    "allow": false,
+                "credit":{
+                    "allow":false
                 },
-                "conversion": {
-                    "allow": true,
-                    "min": "0.01",
-                    "max": "5"
+                "conversion":{
+                    "allow":true,
+                    "min":"0.01",
+                    "max":"5"
                 }
             }
+        }
+    ],
+    "conversions":[
+        {
+            "pair":"BTC-EUR",
+            "sell_min":"0.0002",
+            "sell_max":"5",
+            "buy_min":"10",
+            "buy_max":"200000"
+        },
+        {
+            "pair":"ETH-EUR",
+            "sell_min":"0.002",
+            "sell_max":"100",
+            "buy_min":"10",
+            "buy_max":"200000"
+        },
+        {
+            "pair":"EUR-USDT",
+            "sell_min":"10",
+            "sell_max":"200000",
+            "buy_min":"10",
+            "buy_max":"200000"
+        },
+        {
+            "pair":"BTC-BGP",
+            "sell_min":"0.0002",
+            "sell_max":"5",
+            "buy_min":"10",
+            "buy_max":"200000"
+        },
+        {
+            "pair":"ETH-BGP",
+            "sell_min":"0.002",
+            "sell_max":"100",
+            "buy_min":"10",
+            "buy_max":"200000"
+        },
+        {
+            "pair":"GBP-USDT",
+            "sell_min":"10",
+            "sell_max":"200000",
+            "buy_min":"10",
+            "buy_max":"200000"
         }
     ]
 }
@@ -82,14 +122,40 @@ type | int(ENUM) | 货币类型，详见下面解释
 deposit_methods | list | 当前入金方式
 withdraw_methods | list | 当前出金方式
 config | list(object) | 该币种的限制和配置
+conversions | list(object) | 换币的限制和配置 
 
 Config 对象定义
 
+* debit 对象定义
+
 字段 | 类型 | 描述
---------- | ------- | ---------------
+:-------- | ------- | ---------------
 allow | bool | 允许（该允许使用）
 min | string(number) | 交易最小每笔
 max | string(number) | 交易最大每笔
+
+* credit 对象定义
+
+| 字段  | 类型           | 描述               |
+| :---- | -------------- | ------------------ |
+| allow | bool           | 允许（该允许使用） |
+| min   | string(number) | 交易最小每笔       |
+| max   | string(number) | 交易最大每笔       |
+
+
+Conversions Array内对象定义
+
+* Conversion 对象定义
+
+| 字段     | 类型           | 描述                                       |
+| :------- | -------------- | ------------------------------------------ |
+| pair     | string         | 币种对，左卖右买如 'EUR-USDT'，卖EUR买USDT |
+| sell_min | string(number) | 卖币交易最小每笔限额                       |
+| sell_max | string(number) | 卖币交易最大每笔限额                       |
+| buy_min  | string(number) | 买币交易最小每笔限额                       |
+| buy_max  | string(number) | 买币交易最大每笔限额                       |
+
+
 
 ### Enum解释
 
@@ -107,7 +173,7 @@ Bit位 | 描述
 ## 获取最新的报价 (GET)
 
 ```shell
-curl "http://partner.cabital.com/partners/partner_id/quotes/USDT-EUR"
+curl "http://partner.cabital.com/api/v1/quotes/USDT-EUR"
 ```
 ### HTTP 请求
 

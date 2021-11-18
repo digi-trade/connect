@@ -6,7 +6,7 @@ The partner system API is provided to the partner to perceive the status of coop
 
 
 ```shell
-curl "http://partner.cabital.com/partners/partner_id/config"
+curl "http://partner.cabital.com/api/v1/config"
 ```
 
 ### HTTP Request
@@ -19,67 +19,111 @@ curl "http://partner.cabital.com/partners/partner_id/config"
 
 ```json
 {
-    "currencies" : [
+    "currencies":[
         {
-            "symobl": "ETH",
-            "type": 2,
-            "deposit_methods": [
-                "ERC20", "SOL"
+            "symobl":"ETH",
+            "type":2,
+            "deposit_methods":[
+                "ERC20",
+                "SOL"
             ],
-            "withdrew_methods": [
-                "ERC20", "SOL"
+            "withdrew_methods":[
+                "ERC20",
+                "SOL"
             ],
-            "config": {
-                "debit": {
-                    "min": "0.01",
-                    "max": "5"
+            "config":{
+                "debit":{
+                    "min":"0.01",
+                    "max":"5"
                 },
-                "credit": {
-                    "allow": true,
-                    "min": "0.01",
-                    "max": "5"
-                },
-                "conversion": {
-                    "allow": true,
-                    "min": "0.01",
-                    "max": "5"
+                "credit":{
+                    "allow":true,
+                    "min":"0.01",
+                    "max":"5"
                 }
             }
         },
         {
-            "symobl": "EUR",
-            "type": 1, 
-            "deposit_methods": [
+            "symbol":"EUR",
+            "type":1,
+            "deposit_methods":[
                 "SEPA"
             ],
-            "withdrew_methods": [
+            "withdrew_methods":[
                 "SEPA"
             ],
-            ,
-            "config": {
-                "debit": {
-                    "allow": false,
+            "config":{
+                "debit":{
+                    "allow":false
                 },
-                "credit": {
-                    "allow": false,
+                "credit":{
+                    "allow":false
                 },
-                "conversion": {
-                    "allow": true,
-                    "min": "0.01",
-                    "max": "5"
+                "conversion":{
+                    "allow":true,
+                    "min":"0.01",
+                    "max":"5"
                 }
             }
+        }
+    ],
+    "conversions":[
+        {
+            "pair":"BTC-EUR",
+            "sell_min":"0.0002",
+            "sell_max":"5",
+            "buy_min":"10",
+            "buy_max":"200000"
+        },
+        {
+            "pair":"ETH-EUR",
+            "sell_min":"0.002",
+            "sell_max":"100",
+            "buy_min":"10",
+            "buy_max":"200000"
+        },
+        {
+            "pair":"EUR-USDT",
+            "sell_min":"10",
+            "sell_max":"200000",
+            "buy_min":"10",
+            "buy_max":"200000"
+        },
+        {
+            "pair":"BTC-BGP",
+            "sell_min":"0.0002",
+            "sell_max":"5",
+            "buy_min":"10",
+            "buy_max":"200000"
+        },
+        {
+            "pair":"ETH-BGP",
+            "sell_min":"0.002",
+            "sell_max":"100",
+            "buy_min":"10",
+            "buy_max":"200000"
+        },
+        {
+            "pair":"GBP-USDT",
+            "sell_min":"10",
+            "sell_max":"200000",
+            "buy_min":"10",
+            "buy_max":"200000"
         }
     ]
 }
 ```
 ### Request Object
 
+Field | Type | Description
+--------- | ------- | ---------------
 symobl | string(ENUM) | currency symbol
 type | int(ENUM) | currency type, see the explanation below for details
 deposit_methods | list | Current deposit methods
 withdraw_methods | list | Current withdrawal method
 config | list(object) | restrictions and configuration of the currency
+conversions | list(object) | restrictions and configuration of currency pair
+
 
 
 Config object definition
@@ -106,7 +150,7 @@ The limit is for the entire partner, limit of a single transaction
 ## Get the Latest Quotation (GET)
 
 ```shell
-curl "http://partner.cabital.com/partners/partner_id/quotes/USDT-EUR"
+curl "http://partner.cabital.com/api/v1/quotes/USDT-EUR"
 ```
 ### HTTP Request
 

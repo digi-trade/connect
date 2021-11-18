@@ -47,7 +47,7 @@ user_email | string | true | The user email of the account
 user_ext_ref | string | true | External Id entered by the partner
 staus | string(enum) | true | status of account association
 staus | datestamp | true | The time when the event occurred, in the format [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-data | object | false | Some additional data associated with the account, such as Shared Token
+data | object | false | Some additional data associated with the account, such as Shared Token, Mis-matched fields. 
 
 <!-- ## Transfer事件
 

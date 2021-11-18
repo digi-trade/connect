@@ -403,6 +403,9 @@
             <a href="#5988541320" class="toc-h1 toc-link" data-title="版本变化">版本变化</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#0-2-1" class="toc-h2 toc-link" data-title="0.2.1">0.2.1</a>
+                  </li>
+                  <li>
                     <a href="#0-2-0" class="toc-h2 toc-link" data-title="0.2.0">0.2.0</a>
                   </li>
                   <li>
@@ -523,14 +526,6 @@
 <td style="text-align: left">state</td>
 <td style="text-align: left">OPTIONAL. Opaque value used to maintain state between the request and the callback. Returned as a URL parameter on the authentication response.</td>
 </tr>
-<tr>
-<td style="text-align: left">nonce</td>
-<td style="text-align: left">OPTIONAL. String value used to associate a Client session with an ID Token, and to mitigate replay attacks. Returned as a parameter in the <code>id_token</code></td>
-</tr>
-<tr>
-<td style="text-align: left"></td>
-<td style="text-align: left"></td>
-</tr>
 </tbody></table>
 
 <p><strong>主要支持scopes：</strong></p>
@@ -542,12 +537,8 @@
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: left">openid</td>
+<td style="text-align: left">basic</td>
 <td style="text-align: left">REQUIRED. Makes the Openid Connect authentication flow possible and includes the <code>id_token</code> in the response</td>
-</tr>
-<tr>
-<td style="text-align: left">profile</td>
-<td style="text-align: left">OPTIONAL. To access the users ‘Userinfo’</td>
 </tr>
 <tr>
 <td style="text-align: left">email</td>
@@ -573,38 +564,32 @@
 </thead><tbody>
 <tr>
 <td>400</td>
-<td style="text-align: left">The tenantId, if present in the request URL, must be known to Cabital.</td>
-<td>001201</td>
-<td style="text-align: left">invalid_request</td>
-</tr>
-<tr>
-<td>400</td>
-<td style="text-align: left">The response_type parameter must be “code”.</td>
-<td>001201</td>
-<td style="text-align: left">unsupported_response_type</td>
-</tr>
-<tr>
-<td>400</td>
-<td style="text-align: left">The <code>client_id</code> must refer to a Service in Cabital for which OpenID has been configured.</td>
-<td>001201</td>
-<td style="text-align: left">invalid_client</td>
-</tr>
-<tr>
-<td>400</td>
 <td style="text-align: left">The <code>redirect_uri</code> must be known to Cabital for the Service.</td>
 <td>001201</td>
 <td style="text-align: left">invalid_request</td>
 </tr>
 <tr>
 <td>400</td>
+<td style="text-align: left">The response_type parameter must be “code”.</td>
+<td>001202</td>
+<td style="text-align: left">unsupported_response_type</td>
+</tr>
+<tr>
+<td>400</td>
+<td style="text-align: left">The <code>client_id</code> must refer to a Service in Cabital for which OpenID has been configured.</td>
+<td>001203</td>
+<td style="text-align: left">invalid_client_id</td>
+</tr>
+<tr>
+<td>400</td>
 <td style="text-align: left">The scope must contain “openid”</td>
-<td>001201</td>
+<td>001204</td>
 <td style="text-align: left">invalid_scope</td>
 </tr>
 </tbody></table>
 
 <p><strong>例子：</strong></p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>https://<span class="o">{</span>Partner Base URL<span class="o">}</span>/oidc/auth?client_id<span class="o">=</span>demo-client&amp;redirect_uri<span class="o">=</span>http%3A%2F%2Flocalhost%3A3000%2Fcallback&amp;response_type<span class="o">=</span>code&amp;scope<span class="o">=</span>openid+email&amp;state<span class="o">=</span>pnIj1g3GMsX0Rj6FDbVoe3rYbLJzdfejT0EfusiEbis%3D
+<div class="highlight"><pre class="highlight shell tab-shell"><code>https://<span class="o">{</span>Partner Base URL<span class="o">}</span>/oidc/auth?client_id<span class="o">=</span>demo-client&amp;redirect_uri<span class="o">=</span>http%3A%2F%2Flocalhost%3A3000%2Fcallback&amp;response_type<span class="o">=</span>code&amp;scope<span class="o">=</span>basic+email&amp;state<span class="o">=</span>pnIj1g3GMsX0Rj6FDbVoe3rYbLJzdfejT0EfusiEbis%3D
 </code></pre></div>
 <p><strong>Callback重定向将带有下列参数：</strong></p>
 
@@ -741,58 +726,25 @@
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: left">iss</td>
-<td style="text-align: left">Issuer of the token.</td>
-</tr>
-<tr>
-<td style="text-align: left">sub</td>
+<td style="text-align: left">account_id</td>
 <td style="text-align: left">The user identifier within Cabital,  user ID.</td>
 </tr>
 <tr>
-<td style="text-align: left">aud</td>
-<td style="text-align: left">Array of the <code>client_id</code> for which the token was generated and the tenantId of the user.</td>
-</tr>
-<tr>
-<td style="text-align: left">azp</td>
-<td style="text-align: left">The <code>client_id</code> for which the token was generated.</td>
-</tr>
-<tr>
-<td style="text-align: left">auth_time</td>
-<td style="text-align: left">Unix timestamp (rfc3339) of the time at which the user has been successfully authenticated</td>
-</tr>
-<tr>
-<td style="text-align: left">exp</td>
-<td style="text-align: left">Time until the JWT is valid as a Unix timestamp (rfc3339)</td>
-</tr>
-<tr>
-<td style="text-align: left">iat</td>
-<td style="text-align: left">Unix timestamp (rfc3339) at which the JWT was generated</td>
-</tr>
-<tr>
-<td style="text-align: left">nonce</td>
-<td style="text-align: left">The exact same value as the nonce in the authentication request</td>
-</tr>
-<tr>
-<td style="text-align: left">email</td>
+<td style="text-align: left">mail</td>
 <td style="text-align: left">Email address of the user.</td>
+</tr>
+<tr>
+<td style="text-align: left">kyc_token</td>
+<td style="text-align: left">KYC token.</td>
 </tr>
 </tbody></table>
 
 <p>payload内容如下所示：</p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>        <span class="s2">"exp"</span>: 1632897475,
-        <span class="s2">"iat"</span>: 1632897175,
-        <span class="s2">"auth_time"</span>: 1632895778,
-        <span class="s2">"jti"</span>: <span class="s2">"cd43fd67-fe99-4aa0-81f5-9c4e4bf099a1"</span>,
-        <span class="s2">"iss"</span>: <span class="s2">"https://authserver.latibac.com/auth/realms/tibyb"</span>,
-        <span class="s2">"aud"</span>: <span class="s2">"demo-client"</span>,
-        <span class="s2">"sub"</span>: <span class="s2">"2cdcae60-a52c-40cd-9489-0c7b4771cc1a"</span>,
-        <span class="s2">"typ"</span>: <span class="s2">"ID"</span>,
-        <span class="s2">"azp"</span>: <span class="s2">"demo-client"</span>,
-        <span class="s2">"session_state"</span>: <span class="s2">"57a30714-91e5-4fd7-a917-a4c5c8563e24"</span>,
-        <span class="s2">"at_hash"</span>: <span class="s2">"Iskqxf47ShhOLWZB-WaXNw"</span>,
-        <span class="s2">"acr"</span>: <span class="s2">"0"</span>,
-        <span class="s2">"name"</span>: <span class="s2">"Karay Hua"</span>,
-        <span class="s2">"email"</span>: <span class="s2">"karay.hua@cabital.com"</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="o">{</span>
+    <span class="s2">"account_id"</span>:<span class="s2">"2cdcae60-a52c-40cd-9489-0c7b4771cc1a"</span>,
+    <span class="s2">"kyc_token"</span>:<span class="s2">"xxxxxxx"</span>,
+    <span class="s2">"email"</span>:<span class="s2">"karay.hua@cabital.com"</span>
+<span class="o">}</span>
 </code></pre></div><h3 id='2-3-userinfo'>2.3 UserInfo</h3>
 <p>合作方Partner可以使用返回字段<code>sub</code>识别唯一账号，如果没有需要的账户信息，需要调用UserInfo请求。</p>
 
@@ -840,7 +792,7 @@
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: left">sub</td>
+<td style="text-align: left">account_id</td>
 <td style="text-align: left">The user identifier within Cabital,  user ID.</td>
 </tr>
 <tr>
@@ -852,7 +804,7 @@
 <td style="text-align: left">KYC token.</td>
 </tr>
 </tbody></table>
-<h4 id='2-4-refresh-token'>2.4 Refresh token</h4>
+<h3 id='2-4-refresh-token'>2.4 Refresh token</h3>
 <p>刷新token接口</p>
 
 <p><strong>使用HTTP 方法</strong></p>
@@ -881,10 +833,6 @@
 <tr>
 <td style="text-align: left">refresh_token</td>
 <td style="text-align: left">The refresh token as received from Cabital.</td>
-</tr>
-<tr>
-<td style="text-align: left">scope</td>
-<td style="text-align: left">OPTIONAL. The scope items requested in the response. If not used in the request, Cabital will use the scope from the authentication request.</td>
 </tr>
 </tbody></table>
 
@@ -941,7 +889,7 @@
 <aside class="warning">请不要分享你的Secrets，否则会造成信息泄漏以及不必要的交易费损失。如Secret出现异常，请立刻与你的服务顾问联系并立刻更新。</aside>
 <h1 id='171d707637'>合作方配置</h1>
 <p>合作方系统API是提供给合作方用来感知合作开户状态，系统基础设定，和非用户级别的设定。</p>
-<h2 id='79fee25901'>获取合作方的配置</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/config"</span>
+<h2 id='79fee25901'>获取合作方的配置</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/api/v1/config"</span>
 </code></pre></div><h3 id='http'>HTTP 请求</h3>
 <p><code>GET /api/v1/config</code></p>
 
@@ -949,56 +897,96 @@
 <p>获得以下JSON结构体:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"currencies"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nl">"currencies"</span><span class="p">:[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"symobl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"deposit_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SOL"</span><span class="w">
+            </span><span class="nl">"symobl"</span><span class="p">:</span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"type"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"deposit_methods"</span><span class="p">:[</span><span class="w">
+                </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"SOL"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"withdrew_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SOL"</span><span class="w">
+            </span><span class="nl">"withdrew_methods"</span><span class="p">:[</span><span class="w">
+                </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"SOL"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"debit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+            </span><span class="nl">"config"</span><span class="p">:{</span><span class="w">
+                </span><span class="nl">"debit"</span><span class="p">:{</span><span class="w">
+                    </span><span class="nl">"min"</span><span class="p">:</span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"max"</span><span class="p">:</span><span class="s2">"5"</span><span class="w">
                 </span><span class="p">},</span><span class="w">
-                </span><span class="nl">"credit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="nl">"conversion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+                </span><span class="nl">"credit"</span><span class="p">:{</span><span class="w">
+                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"min"</span><span class="p">:</span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"max"</span><span class="p">:</span><span class="s2">"5"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> 
-            </span><span class="nl">"deposit_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"type"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"deposit_methods"</span><span class="p">:[</span><span class="w">
                 </span><span class="s2">"SEPA"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"withdrew_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="nl">"withdrew_methods"</span><span class="p">:[</span><span class="w">
                 </span><span class="s2">"SEPA"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="p">,</span><span class="w">
-            </span><span class="nl">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"debit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"config"</span><span class="p">:{</span><span class="w">
+                </span><span class="nl">"debit"</span><span class="p">:{</span><span class="w">
+                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="kc">false</span><span class="w">
                 </span><span class="p">},</span><span class="w">
-                </span><span class="nl">"credit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"credit"</span><span class="p">:{</span><span class="w">
+                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="kc">false</span><span class="w">
                 </span><span class="p">},</span><span class="w">
-                </span><span class="nl">"conversion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+                </span><span class="nl">"conversion"</span><span class="p">:{</span><span class="w">
+                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"min"</span><span class="p">:</span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"max"</span><span class="p">:</span><span class="s2">"5"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"conversions"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"pair"</span><span class="p">:</span><span class="s2">"BTC-EUR"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_min"</span><span class="p">:</span><span class="s2">"0.0002"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_max"</span><span class="p">:</span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"pair"</span><span class="p">:</span><span class="s2">"ETH-EUR"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_min"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_max"</span><span class="p">:</span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"pair"</span><span class="p">:</span><span class="s2">"EUR-USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"pair"</span><span class="p">:</span><span class="s2">"BTC-BGP"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_min"</span><span class="p">:</span><span class="s2">"0.0002"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_max"</span><span class="p">:</span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"pair"</span><span class="p">:</span><span class="s2">"ETH-BGP"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_min"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_max"</span><span class="p">:</span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"pair"</span><span class="p">:</span><span class="s2">"GBP-USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1035,31 +1023,108 @@
 <td>list(object)</td>
 <td>该币种的限制和配置</td>
 </tr>
+<tr>
+<td>conversions</td>
+<td>list(object)</td>
+<td>换币的限制和配置</td>
+</tr>
 </tbody></table>
 
 <p>Config 对象定义</p>
 
+<ul>
+<li>debit 对象定义</li>
+</ul>
+
 <table><thead>
 <tr>
-<th>字段</th>
+<th style="text-align: left">字段</th>
 <th>类型</th>
 <th>描述</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>allow</td>
+<td style="text-align: left">allow</td>
 <td>bool</td>
 <td>允许（该允许使用）</td>
 </tr>
 <tr>
-<td>min</td>
+<td style="text-align: left">min</td>
 <td>string(number)</td>
 <td>交易最小每笔</td>
 </tr>
 <tr>
-<td>max</td>
+<td style="text-align: left">max</td>
 <td>string(number)</td>
 <td>交易最大每笔</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>credit 对象定义</li>
+</ul>
+
+<table><thead>
+<tr>
+<th style="text-align: left">字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">allow</td>
+<td>bool</td>
+<td>允许（该允许使用）</td>
+</tr>
+<tr>
+<td style="text-align: left">min</td>
+<td>string(number)</td>
+<td>交易最小每笔</td>
+</tr>
+<tr>
+<td style="text-align: left">max</td>
+<td>string(number)</td>
+<td>交易最大每笔</td>
+</tr>
+</tbody></table>
+
+<p>Conversions Array内对象定义</p>
+
+<ul>
+<li>Conversion 对象定义</li>
+</ul>
+
+<table><thead>
+<tr>
+<th style="text-align: left">字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">pair</td>
+<td>string</td>
+<td>币种对，左卖右买如 &#39;EUR-USDT&#39;，卖EUR买USDT</td>
+</tr>
+<tr>
+<td style="text-align: left">sell_min</td>
+<td>string(number)</td>
+<td>卖币交易最小每笔限额</td>
+</tr>
+<tr>
+<td style="text-align: left">sell_max</td>
+<td>string(number)</td>
+<td>卖币交易最大每笔限额</td>
+</tr>
+<tr>
+<td style="text-align: left">buy_min</td>
+<td>string(number)</td>
+<td>买币交易最小每笔限额</td>
+</tr>
+<tr>
+<td style="text-align: left">buy_max</td>
+<td>string(number)</td>
+<td>买币交易最大每笔限额</td>
 </tr>
 </tbody></table>
 <h3 id='enum'>Enum解释</h3>
@@ -1086,7 +1151,7 @@
 <aside class="success">
 限额为整个合作方，单笔的限制
 </aside>
-<h2 id='get'>获取最新的报价 (GET)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/quotes/USDT-EUR"</span>
+<h2 id='get'>获取最新的报价 (GET)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/api/v1/quotes/USDT-EUR"</span>
 </code></pre></div><h3 id='http-2'>HTTP 请求</h3>
 <p><code>GET /api/v1/quotes/&lt;code_pair&gt;</code></p>
 <h3 id='url'>URL参数</h3>
@@ -1161,7 +1226,7 @@
 <p>TBD</p>
 <h1 id='a1f7e38a27'>账户关联相关</h1>
 <p>Cabital Connect 应监管要求，接入合作方必须提供与本方一致的身份信息（每一个字段），字段阐述请参考关联同名账户API。</p>
-<h2 id='35926dc96b'>获取用户关联状况</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/detail"</span>
+<h2 id='35926dc96b'>获取用户关联状况</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/api/v1/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/detail"</span>
 </code></pre></div><h3 id='http'>HTTP 请求</h3>
 <p><code>GET /api/v1/accounts/&lt;account_id&gt;/detail</code></p>
 <h3 id='url'>URL参数</h3>
@@ -2090,7 +2155,7 @@ account_id | true | Cabital提供的账户id -->
 <td>data</td>
 <td>object</td>
 <td>false</td>
-<td>账户关联的一些额外数据，比如Shared Token</td>
+<td>账户关联的一些额外数据，比如Shared Token, Mis-matched fields.</td>
 </tr>
 </tbody></table>
 
@@ -2182,7 +2247,12 @@ status | string(enum) | 划转的结果，SUCCESS / FAILED -->
 <td>Service Unavailable -- 本方服务不可用，请稍后重试.</td>
 </tr>
 </tbody></table>
-<h1 id='5988541320'>版本变化</h1><h2 id='0-2-0'>0.2.0</h2>
+<h1 id='5988541320'>版本变化</h1><h2 id='0-2-1'>0.2.1</h2>
+<ul>
+<li>修改了获取合作方的配置接口的conversions交易配置信息</li>
+<li>修改了URL和API不一致问题</li>
+</ul>
+<h2 id='0-2-0'>0.2.0</h2>
 <ul>
 <li>规范了产品名称，从 <code>partner</code> 转换为 <code>cabital connect</code></li>
 <li>增加了合作方准备文档，为合作方接入本方系统做准备</li>

@@ -386,6 +386,9 @@
             <a href="#version-changes" class="toc-h1 toc-link" data-title="Version changes">Version changes</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#0-2-1" class="toc-h2 toc-link" data-title="0.2.1">0.2.1</a>
+                  </li>
+                  <li>
                     <a href="#0-2-0" class="toc-h2 toc-link" data-title="0.2.0">0.2.0</a>
                   </li>
                   <li>
@@ -444,7 +447,7 @@ Please do not share your Secret. Otherwise, it may cause information leakage and
 </aside>
 <h1 id='partner-level-setting'>Partner Level Setting</h1>
 <p>The partner system API is provided to the partner to perceive the status of cooperative account opening, system basic settings, and non-user level settings.</p>
-<h2 id='partner-configuration'>Partner Configuration</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/config"</span>
+<h2 id='partner-configuration'>Partner Configuration</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/api/v1/config"</span>
 </code></pre></div><h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /api/v1/config</code></p>
 
@@ -452,65 +455,138 @@ Please do not share your Secret. Otherwise, it may cause information leakage and
 <p>Response Sample:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"currencies"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nl">"currencies"</span><span class="p">:[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"symobl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"deposit_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SOL"</span><span class="w">
+            </span><span class="nl">"symobl"</span><span class="p">:</span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"type"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"deposit_methods"</span><span class="p">:[</span><span class="w">
+                </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"SOL"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"withdrew_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SOL"</span><span class="w">
+            </span><span class="nl">"withdrew_methods"</span><span class="p">:[</span><span class="w">
+                </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"SOL"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"debit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+            </span><span class="nl">"config"</span><span class="p">:{</span><span class="w">
+                </span><span class="nl">"debit"</span><span class="p">:{</span><span class="w">
+                    </span><span class="nl">"min"</span><span class="p">:</span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"max"</span><span class="p">:</span><span class="s2">"5"</span><span class="w">
                 </span><span class="p">},</span><span class="w">
-                </span><span class="nl">"credit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="nl">"conversion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+                </span><span class="nl">"credit"</span><span class="p">:{</span><span class="w">
+                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"min"</span><span class="p">:</span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"max"</span><span class="p">:</span><span class="s2">"5"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"symobl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> 
-            </span><span class="nl">"deposit_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"type"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"deposit_methods"</span><span class="p">:[</span><span class="w">
                 </span><span class="s2">"SEPA"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"withdrew_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="nl">"withdrew_methods"</span><span class="p">:[</span><span class="w">
                 </span><span class="s2">"SEPA"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="p">,</span><span class="w">
-            </span><span class="nl">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"debit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"config"</span><span class="p">:{</span><span class="w">
+                </span><span class="nl">"debit"</span><span class="p">:{</span><span class="w">
+                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="kc">false</span><span class="w">
                 </span><span class="p">},</span><span class="w">
-                </span><span class="nl">"credit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"credit"</span><span class="p">:{</span><span class="w">
+                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="kc">false</span><span class="w">
                 </span><span class="p">},</span><span class="w">
-                </span><span class="nl">"conversion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+                </span><span class="nl">"conversion"</span><span class="p">:{</span><span class="w">
+                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"min"</span><span class="p">:</span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"max"</span><span class="p">:</span><span class="s2">"5"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"conversions"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"pair"</span><span class="p">:</span><span class="s2">"BTC-EUR"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_min"</span><span class="p">:</span><span class="s2">"0.0002"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_max"</span><span class="p">:</span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"pair"</span><span class="p">:</span><span class="s2">"ETH-EUR"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_min"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_max"</span><span class="p">:</span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"pair"</span><span class="p">:</span><span class="s2">"EUR-USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"pair"</span><span class="p">:</span><span class="s2">"BTC-BGP"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_min"</span><span class="p">:</span><span class="s2">"0.0002"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_max"</span><span class="p">:</span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"pair"</span><span class="p">:</span><span class="s2">"ETH-BGP"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_min"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_max"</span><span class="p">:</span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"pair"</span><span class="p">:</span><span class="s2">"GBP-USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sell_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"buy_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='request-object'>Request Object</h3>
-<p>symobl | string(ENUM) | currency symbol
-type | int(ENUM) | currency type, see the explanation below for details
-deposit_methods | list | Current deposit methods
-withdraw_methods | list | Current withdrawal method
-config | list(object) | restrictions and configuration of the currency</p>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symobl</td>
+<td>string(ENUM)</td>
+<td>currency symbol</td>
+</tr>
+<tr>
+<td>type</td>
+<td>int(ENUM)</td>
+<td>currency type, see the explanation below for details</td>
+</tr>
+<tr>
+<td>deposit_methods</td>
+<td>list</td>
+<td>Current deposit methods</td>
+</tr>
+<tr>
+<td>withdraw_methods</td>
+<td>list</td>
+<td>Current withdrawal method</td>
+</tr>
+<tr>
+<td>config</td>
+<td>list(object)</td>
+<td>restrictions and configuration of the currency</td>
+</tr>
+<tr>
+<td>conversions</td>
+<td>list(object)</td>
+<td>restrictions and configuration of currency pair</td>
+</tr>
+</tbody></table>
 
 <p>Config object definition</p>
 
@@ -561,7 +637,7 @@ config | list(object) | restrictions and configuration of the currency</p>
 <aside class="success">
 The limit is for the entire partner, limit of a single transaction
 </aside>
-<h2 id='get-the-latest-quotation-get'>Get the Latest Quotation (GET)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/quotes/USDT-EUR"</span>
+<h2 id='get-the-latest-quotation-get'>Get the Latest Quotation (GET)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/api/v1/quotes/USDT-EUR"</span>
 </code></pre></div><h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /api/v1/quotes/&lt;code_pair&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
@@ -629,7 +705,7 @@ The symbol of FIAT is based on <a href="https://en.wikipedia.org/wiki/ISO_4217">
 </aside>
 <h1 id='account-connect-related'>Account Connect related</h1>
 <p>Cabital Connect is subject to regulatory requirements. The access partner must provide the identity information (each field) consistent with this party. For field descriptions, please refer to the API for linking accounts with the same name.</p>
-<h2 id='get-user-connection-status'>Get User Connection Status</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/partners/partner_id/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/detail"</span>
+<h2 id='get-user-connection-status'>Get User Connection Status</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/api/v1/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/detail"</span>
 </code></pre></div><h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /api/v1/accounts/&lt;account_id&gt;/detail</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
@@ -1562,7 +1638,7 @@ account_id | true | Cabital Connect Account Id -->
 <td>data</td>
 <td>object</td>
 <td>false</td>
-<td>Some additional data associated with the account, such as Shared Token</td>
+<td>Some additional data associated with the account, such as Shared Token, Mis-matched fields.</td>
 </tr>
 </tbody></table>
 
@@ -1654,7 +1730,12 @@ status | string(enum) | 划转的结果，SUCCESS / FAILED -->
 <td>Service Unavailable - Our service is unavailable, please try again later.</td>
 </tr>
 </tbody></table>
-<h1 id='version-changes'>Version changes</h1><h2 id='0-2-0'>0.2.0</h2>
+<h1 id='version-changes'>Version changes</h1><h2 id='0-2-1'>0.2.1</h2>
+<ul>
+<li>Modified the conversions transaction configuration information of the Partner-Configuration interface</li>
+<li>Fixed URL and API inconsistencies problem</li>
+</ul>
+<h2 id='0-2-0'>0.2.0</h2>
 <ul>
 <li>Standardized the product name, changed from <code>partner</code> to <code>cabital connect</code></li>
 <li>Added partner preparation documents to prepare for the partner&#39;s access to its own system</li>

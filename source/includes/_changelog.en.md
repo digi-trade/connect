@@ -1,5 +1,10 @@
 # Version changes
 
+## 0.2.1
+
+- Modified the conversions transaction configuration information of the Partner-Configuration interface
+- Fixed URL and API inconsistencies problem
+
 ## 0.2.0
 
 - Standardized the product name, changed from `partner` to `cabital connect`

@@ -28,11 +28,10 @@ When the status of the account connection changes, we will send you a POST reque
 ### JSON Payload
 
 > JSON Payload
- 
+
 ```json
 {
     "account_uuid": "6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c",
-    "user_email": "jone.doe@email.com",
     "user_ext_ref": "fce4fd45-7dd7-4d4c-b06c-e17ff12f3e30",
     "staus": "INITIALIZED",
     "event_time": "2020-07-01T09:00:00.000Z",
@@ -43,10 +42,9 @@ When the status of the account connection changes, we will send you a POST reque
 Field | Type | Required | Description
 --------- | ------- | ------------|-----------
 account_uuid | string | true | This party's account Id
-user_email | string | true | The user email of the account
 user_ext_ref | string | true | External Id entered by the partner
 staus | string(enum) | true | status of account association
-staus | datestamp | true | The time when the event occurred, in the format [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+event_time | datestamp | true | The time when the event occurred, in the format [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
 data | object | false | Some additional data associated with the account, such as Shared Token, Mis-matched fields. 
 
 <!-- ## Transfer事件
@@ -62,7 +60,7 @@ data | object | false | Some additional data associated with the account, such a
 ### 事件内容 JSON Payload
 
 > JSON Payload
- 
+
 ```json
 {
     "transfer_id": "4c416854-8970-4838-99ad-febc437ac81d",

@@ -28,11 +28,10 @@ UNLINKED | 用户/ Cabital 主动关闭与合作方的某账户关联
 ### 事件内容 JSON Payload
 
 > JSON Payload
- 
+
 ```json
 {
     "account_uuid": "6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c",
-    "user_email": "jone.doe@email.com",
     "user_ext_ref": "fce4fd45-7dd7-4d4c-b06c-e17ff12f3e30",
     "staus": "INITIALIZED",
     "event_time": "2020-07-01T09:00:00.000Z",
@@ -43,11 +42,10 @@ UNLINKED | 用户/ Cabital 主动关闭与合作方的某账户关联
 字段 | 类型 | 必须 | 描述
 --------- | ------- | ------------|-----------
 account_uuid | string | true | 本方的账户Id
-user_email | string | true | 账户的主用户email
 user_ext_ref | string | true | 合作方填入的外部Id
 staus | string(enum) | true | 账户关联的状态
-staus | datestamp | true | 事件产生的时间，格式为[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-data | object | false | 账户关联的一些额外数据，比如Shared Token, Mis-matched fields. 
+event_time | datestamp | true | 事件产生的时间，格式为[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+data | object | false | 账户关联的一些额外数据，比如Mis-matched fields. 
 
 
 <!-- ## Transfer事件
@@ -63,7 +61,7 @@ data | object | false | 账户关联的一些额外数据，比如Shared Token, 
 ### 事件内容 JSON Payload
 
 > JSON Payload
- 
+
 ```json
 {
     "transfer_id": "4c416854-8970-4838-99ad-febc437ac81d",

@@ -403,6 +403,9 @@
             <a href="#5988541320" class="toc-h1 toc-link" data-title="版本变化">版本变化</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#0-2-2" class="toc-h2 toc-link" data-title="0.2.2">0.2.2</a>
+                  </li>
+                  <li>
                     <a href="#0-2-1" class="toc-h2 toc-link" data-title="0.2.1">0.2.1</a>
                   </li>
                   <li>
@@ -897,99 +900,293 @@
 <p>获得以下JSON结构体:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"currencies"</span><span class="p">:[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"symobl"</span><span class="p">:</span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"deposit_methods"</span><span class="p">:[</span><span class="w">
-                </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"SOL"</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"withdrew_methods"</span><span class="p">:[</span><span class="w">
-                </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"SOL"</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"config"</span><span class="p">:{</span><span class="w">
-                </span><span class="nl">"debit"</span><span class="p">:{</span><span class="w">
-                    </span><span class="nl">"min"</span><span class="p">:</span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"max"</span><span class="p">:</span><span class="s2">"5"</span><span class="w">
+            </span><span class="nl">"currencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"deposit_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"ERC20"</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"withdraw_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"ERC20"</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"limits"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"deposit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"withdraw"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.02"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"transfer_deposit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"transfer_withdraw"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.02"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"conversion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.002"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="nl">"fees"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"deposit_fee_charges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"condition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"fee_charge"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fixed"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00025"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"original_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="nl">"transfer_deposit_fee_charges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"condition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"fee_charge"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fixed"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00025"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"original_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">]</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
                 </span><span class="p">},</span><span class="w">
-                </span><span class="nl">"credit"</span><span class="p">:{</span><span class="w">
-                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"min"</span><span class="p">:</span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"max"</span><span class="p">:</span><span class="s2">"5"</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"deposit_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"ERC20"</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"withdraw_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"ERC20"</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"limits"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"deposit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"withdraw"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"transfer_deposit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"transfer_withdraw"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"conversion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0002"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="nl">"fees"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"deposit_fee_charges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"condition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"fee_charge"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fixed"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00002"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"original_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="nl">"transfer_deposit_fee_charges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"condition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"fee_charge"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fixed"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00002"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"original_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">]</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"deposit_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"ERC20"</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"withdraw_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"ERC20"</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"limits"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"deposit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"withdraw"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"transfer_deposit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"transfer_withdraw"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"conversion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200000"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="nl">"fees"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"deposit_fee_charges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"condition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"fee_charge"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fixed"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.99"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"original_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="nl">"transfer_deposit_fee_charges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"condition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"fee_charge"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fixed"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.99"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"original_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">]</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"deposit_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"SEPA"</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"withdraw_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"SEPA"</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"limits"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"deposit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"withdraw"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50000"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"transfer_deposit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"transfer_withdraw"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50000"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"conversion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200000"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="nl">"fees"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BGP"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"deposit_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"FPS"</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"withdraw_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"FPS"</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"limits"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"deposit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"withdraw"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40000"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"transfer_deposit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"transfer_withdraw"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40000"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"conversion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200000"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"is_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="nl">"fees"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
                 </span><span class="p">}</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"deposit_methods"</span><span class="p">:[</span><span class="w">
-                </span><span class="s2">"SEPA"</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"withdrew_methods"</span><span class="p">:[</span><span class="w">
-                </span><span class="s2">"SEPA"</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"config"</span><span class="p">:{</span><span class="w">
-                </span><span class="nl">"debit"</span><span class="p">:{</span><span class="w">
-                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="nl">"credit"</span><span class="p">:{</span><span class="w">
-                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="nl">"conversion"</span><span class="p">:{</span><span class="w">
-                    </span><span class="nl">"allow"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"min"</span><span class="p">:</span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"max"</span><span class="p">:</span><span class="s2">"5"</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"conversions"</span><span class="p">:[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"pair"</span><span class="p">:</span><span class="s2">"BTC-EUR"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"sell_min"</span><span class="p">:</span><span class="s2">"0.0002"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"sell_max"</span><span class="p">:</span><span class="s2">"5"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"buy_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"buy_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"pair"</span><span class="p">:</span><span class="s2">"ETH-EUR"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"sell_min"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"sell_max"</span><span class="p">:</span><span class="s2">"100"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"buy_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"buy_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"pair"</span><span class="p">:</span><span class="s2">"EUR-USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"sell_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"sell_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"buy_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"buy_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"pair"</span><span class="p">:</span><span class="s2">"BTC-BGP"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"sell_min"</span><span class="p">:</span><span class="s2">"0.0002"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"sell_max"</span><span class="p">:</span><span class="s2">"5"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"buy_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"buy_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"pair"</span><span class="p">:</span><span class="s2">"ETH-BGP"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"sell_min"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"sell_max"</span><span class="p">:</span><span class="s2">"100"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"buy_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"buy_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"pair"</span><span class="p">:</span><span class="s2">"GBP-USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"sell_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"sell_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"buy_min"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"buy_max"</span><span class="p">:</span><span class="s2">"200000"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='3a66ff84d2'>字段定义</h3>
 <table><thead>
 <tr>
@@ -1024,9 +1221,9 @@
 <td>该币种的限制和配置</td>
 </tr>
 <tr>
-<td>conversions</td>
+<td>Fees</td>
 <td>list(object)</td>
-<td>换币的限制和配置</td>
+<td>费用配置</td>
 </tr>
 </tbody></table>
 
@@ -1088,10 +1285,8 @@
 </tr>
 </tbody></table>
 
-<p>Conversions Array内对象定义</p>
-
 <ul>
-<li>Conversion 对象定义</li>
+<li>conversion对象定义</li>
 </ul>
 
 <table><thead>
@@ -1102,29 +1297,120 @@
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: left">pair</td>
+<td style="text-align: left">allow</td>
+<td>bool</td>
+<td>允许（该允许使用）</td>
+</tr>
+<tr>
+<td style="text-align: left">min</td>
+<td>string(number)</td>
+<td>交易最小每笔</td>
+</tr>
+<tr>
+<td style="text-align: left">max</td>
+<td>string(number)</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>Fees Array内对象定义</p>
+
+<ul>
+<li>Deposit_fee_charges Array内对象定义</li>
+</ul>
+
+<table><thead>
+<tr>
+<th style="text-align: left">字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">condition</td>
 <td>string</td>
-<td>币种对，左卖右买如 &#39;EUR-USDT&#39;，卖EUR买USDT</td>
+<td>匹配条件，* 表示全匹配</td>
 </tr>
 <tr>
-<td style="text-align: left">sell_min</td>
-<td>string(number)</td>
-<td>卖币交易最小每笔限额</td>
+<td style="text-align: left">fee_charge</td>
+<td>object</td>
+<td>具体收费配置</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li> Transfer_deposit_fee_charges Array内对象定义</li>
+</ul>
+
+<table><thead>
+<tr>
+<th style="text-align: left">字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">condition</td>
+<td>string</td>
+<td>匹配条件，* 表示全匹配</td>
 </tr>
 <tr>
-<td style="text-align: left">sell_max</td>
-<td>string(number)</td>
-<td>卖币交易最大每笔限额</td>
+<td style="text-align: left">fee_charge</td>
+<td>object</td>
+<td>具体收费配置</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>fee_charge 对象定义</li>
+</ul>
+
+<table><thead>
+<tr>
+<th style="text-align: left">字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">is_percent</td>
+<td>bool</td>
+<td>是否百分比</td>
 </tr>
 <tr>
-<td style="text-align: left">buy_min</td>
-<td>string(number)</td>
-<td>买币交易最小每笔限额</td>
+<td style="text-align: left">object</td>
+<td>sting</td>
+<td>收费对象，Customer or Partner</td>
 </tr>
 <tr>
-<td style="text-align: left">buy_max</td>
-<td>string(number)</td>
-<td>买币交易最大每笔限额</td>
+<td style="text-align: left">type</td>
+<td>string</td>
+<td>收费类型Single or Tier</td>
+</tr>
+<tr>
+<td style="text-align: left">method</td>
+<td>string</td>
+<td>收费方式：Fixed or Percent</td>
+</tr>
+<tr>
+<td style="text-align: left">value</td>
+<td>string</td>
+<td>收费金额，百分比写具体比率数值</td>
+</tr>
+<tr>
+<td style="text-align: left">original_value</td>
+<td>string</td>
+<td>展示金额，百分比写具体比率数值</td>
+</tr>
+<tr>
+<td style="text-align: left">min</td>
+<td>string</td>
+<td>最小收费限额</td>
+</tr>
+<tr>
+<td style="text-align: left">max</td>
+<td>string</td>
+<td>最大收费限额</td>
 </tr>
 </tbody></table>
 <h3 id='enum'>Enum解释</h3>
@@ -2106,7 +2392,6 @@ account_id | true | Cabital提供的账户id -->
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"account_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"user_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jone.doe@email.com"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"user_ext_ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fce4fd45-7dd7-4d4c-b06c-e17ff12f3e30"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"staus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INITIALIZED"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"event_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-01T09:00:00.000Z"</span><span class="p">,</span><span class="w">
@@ -2128,12 +2413,6 @@ account_id | true | Cabital提供的账户id -->
 <td>本方的账户Id</td>
 </tr>
 <tr>
-<td>user_email</td>
-<td>string</td>
-<td>true</td>
-<td>账户的主用户email</td>
-</tr>
-<tr>
 <td>user_ext_ref</td>
 <td>string</td>
 <td>true</td>
@@ -2146,7 +2425,7 @@ account_id | true | Cabital提供的账户id -->
 <td>账户关联的状态</td>
 </tr>
 <tr>
-<td>staus</td>
+<td>event_time</td>
 <td>datestamp</td>
 <td>true</td>
 <td>事件产生的时间，格式为<a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a></td>
@@ -2155,7 +2434,7 @@ account_id | true | Cabital提供的账户id -->
 <td>data</td>
 <td>object</td>
 <td>false</td>
-<td>账户关联的一些额外数据，比如Shared Token, Mis-matched fields.</td>
+<td>账户关联的一些额外数据，比如Mis-matched fields.</td>
 </tr>
 </tbody></table>
 
@@ -2172,7 +2451,7 @@ account_id | true | Cabital提供的账户id -->
 ### 事件内容 JSON Payload
 
 > JSON Payload
- 
+
 ```json
 {
     "transfer_id": "4c416854-8970-4838-99ad-febc437ac81d",
@@ -2247,7 +2526,12 @@ status | string(enum) | 划转的结果，SUCCESS / FAILED -->
 <td>Service Unavailable -- 本方服务不可用，请稍后重试.</td>
 </tr>
 </tbody></table>
-<h1 id='5988541320'>版本变化</h1><h2 id='0-2-1'>0.2.1</h2>
+<h1 id='5988541320'>版本变化</h1><h2 id='0-2-2'>0.2.2</h2>
+<ul>
+<li>修改了获取合作方的配置接口的conversions交易配置信息</li>
+<li>增加了获取合作方的配置接口的交易费用配置信息</li>
+</ul>
+<h2 id='0-2-1'>0.2.1</h2>
 <ul>
 <li>修改了获取合作方的配置接口的conversions交易配置信息</li>
 <li>修改了URL和API不一致问题</li>

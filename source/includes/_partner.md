@@ -19,99 +19,293 @@ curl "http://partner.cabital.com/api/v1/config"
 
 ```json
 {
-    "currencies":[
-        {
-            "symobl":"ETH",
-            "type":2,
-            "deposit_methods":[
-                "ERC20",
-                "SOL"
-            ],
-            "withdrew_methods":[
-                "ERC20",
-                "SOL"
-            ],
-            "config":{
-                "debit":{
-                    "min":"0.01",
-                    "max":"5"
+            "currencies": [
+                {
+                    "symbol": "ETH",
+                    "type": 2,
+                    "is_enable": true,
+                    "deposit_methods": [
+                        "ERC20"
+                    ],
+                    "withdraw_methods": [
+                        "ERC20"
+                    ],
+                    "limits": {
+                        "deposit": {
+                            
+                            "min": "0",
+                            "max": "0",
+                            "is_enable": true
+                        },
+                        "withdraw": {
+                            "min": "0.02",
+                            "max": "0",
+                            "is_enable": true
+                        },
+                        "transfer_deposit": {
+                            
+                            "min": "0",
+                            "max": "0",
+                            "is_enable": true
+                        },
+                        "transfer_withdraw": {
+                            "min": "0.02",
+                            "max": "0",
+                            "is_enable": true
+                        },
+                        "conversion": {
+                            
+                            "min": "0.002",
+                            "max": "100",
+                            "is_enable": true
+                        }
+                    },
+                    "fees": {
+                        "deposit_fee_charges": [
+                            {
+                                "condition": "*",
+                                "fee_charge": {
+                                    "object": "customer",
+                                    "type": "single",
+                                    "method": "fixed",
+                                    "value": "0.00025",
+                                    "original_value": "0.001"
+                                }
+                            }
+                        ],
+                        "transfer_deposit_fee_charges": [
+                            {
+                                "condition": "*",
+                                "fee_charge": {
+                                    "object": "customer",
+                                    "type": "single",
+                                    "method": "fixed",
+                                    "value": "0.00025",
+                                    "original_value": "0.001"
+                                }
+                            }
+                        ]
+                    }
                 },
-                "credit":{
-                    "allow":true,
-                    "min":"0.01",
-                    "max":"5"
+                {
+                    "symbol": "BTC",
+                    "type": 2,
+                    "is_enable": true,
+                    "deposit_methods": [
+                        "ERC20"
+                    ],
+                    "withdraw_methods": [
+                        "ERC20"
+                    ],
+                    "limits": {
+                        "deposit": {
+                            
+                            "min": "0",
+                            "max": "0",
+                            "is_enable": true
+                        },
+                        "withdraw": {
+                            "min": "0.001",
+                            "max": "0",
+                            "is_enable": true
+                        },
+                        "transfer_deposit": {
+                            
+                            "min": "0",
+                            "max": "0",
+                            "is_enable": true
+                        },
+                        "transfer_withdraw": {
+                            "min": "0.001",
+                            "max": "0",
+                            "is_enable": true
+                        },
+                        "conversion": {
+                            
+                            "min": "0.0002",
+                            "max": "5",
+                            "is_enable": true
+                        }
+                    },
+                    "fees": {
+                        "deposit_fee_charges": [
+                            {
+                                "condition": "*",
+                                "fee_charge": {
+                                    "object": "customer",
+                                    "type": "single",
+                                    "method": "fixed",
+                                    "value": "0.00002",
+                                    "original_value": "0.0001"
+                                }
+                            }
+                        ],
+                        "transfer_deposit_fee_charges": [
+                            {
+                                "condition": "*",
+                                "fee_charge": {
+                                    "object": "customer",
+                                    "type": "single",
+                                    "method": "fixed",
+                                    "value": "0.00002",
+                                    "original_value": "0.0001"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "symbol": "USDT",
+                    "type": 1,
+                    "is_enable": true,
+                    "deposit_methods": [
+                        "ERC20"
+                    ],
+                    "withdraw_methods": [
+                        "ERC20"
+                    ],
+                    "limits": {
+                        "deposit": {
+                            
+                            "min": "0",
+                            "max": "0",
+                            "is_enable": true
+                        },
+                        "withdraw": {
+                            "min": "40",
+                            "max": "0",
+                            "is_enable": true
+                        },
+                        "transfer_deposit": {
+                            
+                            "min": "0",
+                            "max": "0",
+                            "is_enable": true
+                        },
+                        "transfer_withdraw": {
+                            "min": "40",
+                            "max": "0",
+                            "is_enable": true
+                        },
+                        "conversion": {
+                            
+                            "min": "10",
+                            "max": "200000",
+                            "is_enable": true
+                        }
+                    },
+                    "fees": {
+                        "deposit_fee_charges": [
+                            {
+                                "condition": "*",
+                                "fee_charge": {
+                                    "object": "customer",
+                                    "type": "single",
+                                    "method": "fixed",
+                                    "value": "0.99",
+                                    "original_value": "10"
+                                }
+                            }
+                        ],
+                        "transfer_deposit_fee_charges": [
+                            {
+                                "condition": "*",
+                                "fee_charge": {
+                                    "object": "customer",
+                                    "type": "single",
+                                    "method": "fixed",
+                                    "value": "0.99",
+                                    "original_value": "10"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "symbol": "EUR",
+                    "type": 1,
+                    "is_enable": true,
+                    "deposit_methods": [
+                        "SEPA"
+                    ],
+                    "withdraw_methods": [
+                        "SEPA"
+                    ],
+                    "limits": {
+                        "deposit": {
+                            
+                            "min": "0",
+                            "max": "0",
+                            "is_enable": true
+                        },
+                        "withdraw": {
+                            "min": "25",
+                            "max": "50000",
+                            "is_enable": true
+                        },
+                        "transfer_deposit": {
+                            
+                            "min": "0",
+                            "max": "0",
+                            "is_enable": true
+                        },
+                        "transfer_withdraw": {
+                            "min": "25",
+                            "max": "50000",
+                            "is_enable": true
+                        },
+                        "conversion": {
+                            
+                            "min": "10",
+                            "max": "200000",
+                            "is_enable": true
+                        }
+                    },
+                    "fees": {}
+                },
+                {
+                    "symbol": "BGP",
+                    "type": 1,
+                    "is_enable": true,
+                    "deposit_methods": [
+                        "FPS"
+                    ],
+                    "withdraw_methods": [
+                        "FPS"
+                    ],
+                    "limits": {
+                        "deposit": {
+                            
+                            "min": "0",
+                            "max": "0",
+                            "is_enable": true
+                        },
+                        "withdraw": {
+                            "min": "20",
+                            "max": "40000",
+                            "is_enable": true
+                        },
+                        "transfer_deposit": {
+                            
+                            "min": "0",
+                            "max": "0",
+                            "is_enable": true
+                        },
+                        "transfer_withdraw": {
+                            "min": "20",
+                            "max": "40000",
+                            "is_enable": true
+                        },
+                        "conversion": {
+                            "min": "10",
+                            "max": "200000",
+                            "is_enable": true
+                        }
+                    },
+                    "fees": {}
                 }
-            }
-        },
-        {
-            "symbol":"EUR",
-            "type":1,
-            "deposit_methods":[
-                "SEPA"
-            ],
-            "withdrew_methods":[
-                "SEPA"
-            ],
-            "config":{
-                "debit":{
-                    "allow":false
-                },
-                "credit":{
-                    "allow":false
-                },
-                "conversion":{
-                    "allow":true,
-                    "min":"0.01",
-                    "max":"5"
-                }
-            }
+            ]
         }
-    ],
-    "conversions":[
-        {
-            "pair":"BTC-EUR",
-            "sell_min":"0.0002",
-            "sell_max":"5",
-            "buy_min":"10",
-            "buy_max":"200000"
-        },
-        {
-            "pair":"ETH-EUR",
-            "sell_min":"0.002",
-            "sell_max":"100",
-            "buy_min":"10",
-            "buy_max":"200000"
-        },
-        {
-            "pair":"EUR-USDT",
-            "sell_min":"10",
-            "sell_max":"200000",
-            "buy_min":"10",
-            "buy_max":"200000"
-        },
-        {
-            "pair":"BTC-BGP",
-            "sell_min":"0.0002",
-            "sell_max":"5",
-            "buy_min":"10",
-            "buy_max":"200000"
-        },
-        {
-            "pair":"ETH-BGP",
-            "sell_min":"0.002",
-            "sell_max":"100",
-            "buy_min":"10",
-            "buy_max":"200000"
-        },
-        {
-            "pair":"GBP-USDT",
-            "sell_min":"10",
-            "sell_max":"200000",
-            "buy_min":"10",
-            "buy_max":"200000"
-        }
-    ]
-}
 ```
 ### 字段定义
 
@@ -122,7 +316,7 @@ type | int(ENUM) | 货币类型，详见下面解释
 deposit_methods | list | 当前入金方式
 withdraw_methods | list | 当前出金方式
 config | list(object) | 该币种的限制和配置
-conversions | list(object) | 换币的限制和配置 
+Fees | list(object) | 费用配置 
 
 Config 对象定义
 
@@ -142,18 +336,44 @@ max | string(number) | 交易最大每笔
 | min   | string(number) | 交易最小每笔       |
 | max   | string(number) | 交易最大每笔       |
 
+* conversion对象定义
 
-Conversions Array内对象定义
+| 字段  | 类型           | 描述               |
+| :---- | -------------- | ------------------ |
+| allow | bool           | 允许（该允许使用） |
+| min   | string(number) | 交易最小每笔       |
+| max   | string(number) |                    |
 
-* Conversion 对象定义
 
-| 字段     | 类型           | 描述                                       |
-| :------- | -------------- | ------------------------------------------ |
-| pair     | string         | 币种对，左卖右买如 'EUR-USDT'，卖EUR买USDT |
-| sell_min | string(number) | 卖币交易最小每笔限额                       |
-| sell_max | string(number) | 卖币交易最大每笔限额                       |
-| buy_min  | string(number) | 买币交易最小每笔限额                       |
-| buy_max  | string(number) | 买币交易最大每笔限额                       |
+
+Fees Array内对象定义
+
+* Deposit_fee_charges Array内对象定义
+
+| 字段       | 类型   | 描述                   |
+| :--------- | ------ | ---------------------- |
+| condition  | string | 匹配条件，* 表示全匹配 |
+| fee_charge | object | 具体收费配置           |
+
+*  Transfer_deposit_fee_charges Array内对象定义
+
+| 字段       | 类型   | 描述                   |
+| :--------- | ------ | ---------------------- |
+| condition  | string | 匹配条件，* 表示全匹配 |
+| fee_charge | object | 具体收费配置           |
+
+* fee_charge 对象定义
+
+| 字段           | 类型   | 描述                           |
+| :------------- | ------ | ------------------------------ |
+| is_percent     | bool   | 是否百分比                     |
+| object         | sting  | 收费对象，Customer or Partner  |
+| type           | string | 收费类型Single or Tier         |
+| method         | string | 收费方式：Fixed or Percent     |
+| value          | string | 收费金额，百分比写具体比率数值 |
+| original_value | string | 展示金额，百分比写具体比率数值 |
+| min            | string | 最小收费限额                   |
+| max            | string | 最大收费限额                   |
 
 
 

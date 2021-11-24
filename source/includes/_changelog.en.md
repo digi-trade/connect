@@ -1,5 +1,10 @@
 # Version changes
 
+## 0.2.2
+
+- Modified the conversions transaction configuration information for the configuration interface of the get partner
+- Added the transaction cost configuration information of the interface that obtains the configuration of the partner
+
 ## 0.2.1
 
 - Modified the conversions transaction configuration information of the Partner-Configuration interface

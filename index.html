@@ -2013,12 +2013,14 @@ account_id | true | Cabital提供的账户id -->
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"pagination_response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"cursor"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="nl">"cursor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"transfers"</span><span class="p">:[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"transfer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4c416854-8970-4838-99ad-febc437ac81d"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000.365"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"instructed_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1002.865"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"customer_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.5"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"actual_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000.365"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEBIT"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"conversion_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d81adf6d-0322-41d7-8c32-669203e35f11"</span><span class="p">,</span><span class="w">
@@ -2027,13 +2029,15 @@ account_id | true | Cabital提供的账户id -->
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"transfer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4c416854-8971-4838-99ad-febc437ac81d"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.365"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"instructed_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.865"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"customer_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.5"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"actual_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.365"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"conversion_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d81adf6d-0322-41d7-8c32-669203e35f11"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adb8f31d-7a71-4003-85d7-3ac58158461f"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1633445160</span><span class="w">
-    </span><span class="p">},</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-5'>HTTP请求</h3>
@@ -2068,7 +2072,7 @@ account_id | true | Cabital提供的账户id -->
 <tr>
 <td>cursor</td>
 <td>false</td>
-<td>0</td>
+<td>&quot;-1&quot;</td>
 <td>查询结果集的游标位置</td>
 </tr>
 <tr>
@@ -2107,12 +2111,22 @@ account_id | true | Cabital提供的账户id -->
 <tr>
 <td>transfer_id</td>
 <td>string(uuid)</td>
-<td>划转订单ID</td>
+<td>划转交易ID</td>
 </tr>
 <tr>
-<td>amount</td>
+<td>instructed_amount</td>
 <td>string(number)</td>
-<td>数量</td>
+<td>请求金额</td>
+</tr>
+<tr>
+<td>customer_fee</td>
+<td>string(number)</td>
+<td>收取客户的费用金额</td>
+</tr>
+<tr>
+<td>actual_amount</td>
+<td>string(number)</td>
+<td>客户实际收到的金额</td>
 </tr>
 <tr>
 <td>symbol</td>
@@ -2132,12 +2146,17 @@ account_id | true | Cabital提供的账户id -->
 <tr>
 <td>external_id</td>
 <td>string(50)</td>
-<td>合作方的第三方ID，非必需</td>
+<td>合作方的第三方ID，非必须</td>
 </tr>
 <tr>
 <td>status</td>
 <td>string(enum)</td>
 <td>划转的结果，SUCCESS / FAILED</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>timestamp(number)</td>
+<td>划转交易创建时间</td>
 </tr>
 </tbody></table>
 <h2 id='0c165f19f8'>账户划转详情</h2>
@@ -2149,7 +2168,9 @@ account_id | true | Cabital提供的账户id -->
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"transfer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4c416854-8970-4838-99ad-febc437ac81d"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000.365"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"instructed_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1002.865"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"customer_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.5"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"actual_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000.365"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEBIT"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"conversion_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d81adf6d-0322-41d7-8c32-669203e35f11"</span><span class="p">,</span><span class="w">
@@ -2158,7 +2179,7 @@ account_id | true | Cabital提供的账户id -->
   </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-6'>HTTP请求</h3>
-<p><code>GET /api/v1/accounts/&lt;account_id&gt;/transfers/&lt;trasfer_id&gt;</code></p>
+<p><code>GET /api/v1/accounts/&lt;account_id&gt;/transfers/&lt;transfer_id&gt;</code></p>
 <h3 id='url-6'>URL参数</h3>
 <table><thead>
 <tr>
@@ -2173,9 +2194,9 @@ account_id | true | Cabital提供的账户id -->
 <td>Cabital提供的账户id</td>
 </tr>
 <tr>
-<td>trasfer_id</td>
+<td>transfer_id</td>
 <td>true</td>
-<td>划转订单id</td>
+<td>划转交易id</td>
 </tr>
 </tbody></table>
 <h3 id='transfers-2'>返回transfers对象描述</h3>
@@ -2189,12 +2210,22 @@ account_id | true | Cabital提供的账户id -->
 <tr>
 <td>transfer_id</td>
 <td>string(uuid)</td>
-<td>划转订单ID</td>
+<td>划转交易ID</td>
 </tr>
 <tr>
-<td>amount</td>
+<td>instructed_amount</td>
 <td>string(number)</td>
-<td>数量</td>
+<td>请求金额</td>
+</tr>
+<tr>
+<td>customer_fee</td>
+<td>string(number)</td>
+<td>收取客户的费用金额</td>
+</tr>
+<tr>
+<td>actual_amount</td>
+<td>string(number)</td>
+<td>客户实际收到的金额</td>
 </tr>
 <tr>
 <td>symbol</td>
@@ -2214,19 +2245,24 @@ account_id | true | Cabital提供的账户id -->
 <tr>
 <td>external_id</td>
 <td>string(50)</td>
-<td>合作方的第三方ID，非必需</td>
+<td>合作方的第三方ID，非必须</td>
 </tr>
 <tr>
 <td>status</td>
 <td>string(enum)</td>
 <td>划转的结果，SUCCESS / FAILED</td>
 </tr>
+<tr>
+<td>created_at</td>
+<td>timestamp(number)</td>
+<td>划转交易创建时间</td>
+</tr>
 </tbody></table>
 <h2 id='4e24c408a0'>账户双向划转</h2>
 <p>在 Cabital 与合作方的同名账户之间进行划转。</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"</span>
 <span class="nt">-d</span> <span class="s1">'{
-    "amount": "1000.365",
+    "amount": "1002.865",
     "symbol": "USDT",
     "direction": "debit",
     "conversion_id": "d81adf6d-0322-41d7-8c32-669203e35f11",
@@ -2237,7 +2273,7 @@ account_id | true | Cabital提供的账户id -->
 <p>提交JSON结构体:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000.365"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1002.865"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"debit"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"conversion_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d81adf6d-0322-41d7-8c32-669203e35f11"</span><span class="p">,</span><span class="w">
@@ -2249,7 +2285,12 @@ account_id | true | Cabital提供的账户id -->
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"transfer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4c416854-8970-4838-99ad-febc437ac81d"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"instructed_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.010001"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"customer_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"actual_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000001"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bbda2651-0ae3-447f-acaf-c23b5449bfb5"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"instruction_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3a344f80-f057-4841-b186-7a1daa0b8390"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-7'>HTTP请求</h3>
 <p><code>POST /api/v1/accounts/&lt;account_id&gt;/transfers</code></p>
@@ -2278,7 +2319,7 @@ account_id | true | Cabital提供的账户id -->
 <tr>
 <td>amount</td>
 <td>string(number)</td>
-<td>数量</td>
+<td>请求金额</td>
 </tr>
 <tr>
 <td>symbol</td>
@@ -2317,17 +2358,37 @@ account_id | true | Cabital提供的账户id -->
 <tr>
 <td>transfer_id</td>
 <td>string(uuid)</td>
-<td>划转订单ID</td>
+<td>划转交易ID</td>
+</tr>
+<tr>
+<td>instructed_amount</td>
+<td>string(number)</td>
+<td>请求金额</td>
+</tr>
+<tr>
+<td>customer_fee</td>
+<td>string(number)</td>
+<td>收取客户的费用金额</td>
+</tr>
+<tr>
+<td>actual_amount</td>
+<td>string(number)</td>
+<td>实际金额</td>
 </tr>
 <tr>
 <td>external_id</td>
 <td>string(50)</td>
-<td></td>
+<td>合作方的第三方ID，非必需</td>
 </tr>
 <tr>
 <td>status</td>
 <td>string(enum)</td>
-<td>划转的结果</td>
+<td>划转的结果，SUCCESS / FAILED</td>
+</tr>
+<tr>
+<td>instruction_id</td>
+<td>string(uuid)</td>
+<td>交易请求ID，对账用</td>
 </tr>
 </tbody></table>
 

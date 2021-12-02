@@ -15,6 +15,29 @@ PA008 | 2FA（OTP）不正确
 PA009 | 该客户的KYC状态尚未匹配
 PA010 | 2FA (OTP) 特指 Google Authenticator未设置
 PA011 | Convert的Quote用法不正确（Invalid Calculation）
+PA012 | 该客户没有通过KYC 
+PA013 | 该用户unlinked状态 
+PA014 | 支付方法不合法 
+PA015 | Symbol不合法 
+PA016 | IdDocument不合法 
+PA017 | CountryCode不合法 
+PA018 | 不支持Pair 
+PA019 | 不支持Quote 
+PA020 | 超出账户限额 
+PA021 | 配置信息错误 
+
+币种金额显示规范列表
+
+| 币种 | 是否虚拟货币 | 小数位数 | 说明                              |
+| ---- | ------------ | -------- | --------------------------------- |
+| BTC  | 是           | 8        | 如：`1.00000000`，超过长度会截断  |
+| ETH  | 是           | 8        | 如：`1.00000000`，超过长度会截断  |
+| USDT | 是           | 6        | 如：`1010.000000`，超过长度会截断 |
+| EUR  | 否           | 2        | 法币，如`1000.00`精确到分         |
+| GBP  | 否           | 2        | 法币，如`1000.00`精确到分         |
+|      |              |          |                                   |
+
+
 
 <!-- ## 获取用户提现限额
 
@@ -118,28 +141,30 @@ curl "/api/v1/accounts/{account_id}/balances"
 > 获得以下JSON结构体:
 
 ```json
-[
-  {
-    "code": "BTC",
-    "balances": "0.12345678"
-  },
-  {
-    "code": "ETH",
-    "balances": "1.000000000"
-  },
-  {
-    "code": "USDT",
-    "balances": "1200.000000"
-  },
-  {
-    "code": "EUR",
-    "balances": "0.00"
-  },
-  {
-    "code": "GBP",
-    "balances": "0.00"
-  }
-]
+{
+    "balances": [
+        {
+            "code": "BTC",
+            "balances": "1.00000000"
+        },
+        {
+            "code": "ETH",
+            "balances": "1.00000000"
+        },
+        {
+            "code": "EUR",
+            "balances": "1000.00"
+        },
+        {
+            "code": "GBP",
+            "balances": "1000.00"
+        },
+        {
+            "code": "USDT",
+            "balances": "1010.000000"
+        }
+    ]
+}
 ```
 
 ### HTTP请求
@@ -186,7 +211,13 @@ symbol | true | 货币的Symbol
 获取用户的单一账户入账信息
 
 ```shell
-curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/EUR/deposit/SEPA"
+curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/EUR/deposit/SEPA" 
+```
+
+或者使用
+
+```shell
+curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/GBP/deposit/FPS"
 ```
 
 > 获得以下JSON结构体:
@@ -215,8 +246,8 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/EUR/deposit
 Parameter | Default | Description
 --------- | ------- | -----------
 account_id | true | Cabital提供的账户id
-symbol | true | 货币的Symbol
-method | false | 入币方式，非必须，如缺失将使用默认方法，具体方法请参考[配置API](/?shell#79fee25901)
+symbol | true | 货币的Symbol，目前仅支持EUR、GBP 
+method | false | 入币方式，非必须，如缺失将使用默认方法，具体方法请参考[配置API](/?shell#79fee25901)的deposit_methods配置项 
 
 ## 账户转换货币
 

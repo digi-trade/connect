@@ -16,7 +16,7 @@ PENDING | Cabital处理用户材料中
 TEMPORARY_REJECTED | 用户被 Cabital 要求提供正确材料
 FINAL_REJECTED | 用户被 Cabital 最终拒绝开户
 CREATED | 用户成功 KYC，Cabital 账户开通，等待合作方提交同名验证。
-MATCHING | 合作方已提交，同名验证人工审核中
+MATCHING | 合作方已提交，同名验证人工审核中（已取消该事件） 
 MATCHED | 同名验证通过，完全开通同账户转账
 MISMATCHED | 同名验证拒绝，多种因素
 UNLINKED | 用户/ Cabital 主动关闭与合作方的某账户关联

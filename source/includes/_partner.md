@@ -304,23 +304,22 @@ code_pair | true | 报价的CODE Pair，以`-`作为分割符，Cabital 系统�
 
 ```json
 {
-    "ask": "0.864962",
-    "valid_until": 1633426832,
-    "quote_id": "20211005094027:USDT-EUR:Customer",
-    "valid_interval": 5,
-    "bid": "1.16424"
+    "quote": "3847.322377",
+    "valid_until": 1638934081,
+    "quote_id": "20211208032751:ETH-EUR:Customer",
+    "valid_interval": 10,
+    "reversed_quote": "0.00026253"
 }
 ```
 ### 字段定义
 
 字段 | 类型 | 描述
 --------- | ------- | ---------------
-ask | string(number) | 卖 CODE1 换取 CODE2 的报价
 valid_until | number(timestamp) | 以秒为单位从Unix Epoch到当前的数字，用来表示该报价的有效时间
 quote_id | string | 报价的唯一ID，格式为 事件戳:报价货币对:报价目的
-quote | string | 报价的Pair，左侧为Base，右侧为Quote，报价以Cabital为中心
+quote | string | 对Code-Pair为`CODE1-CODE2,`卖 CODE1 换取 CODE2 的报价 
 valid_interval | number | 报价有效时间宽度，以秒记
-bid | string(number) | 卖 CODE2 换取 CODE1 的报价
+reversed_quote | string(number) | 对Code-Pair为`CODE1-CODE2,`卖 CODE2 换取 CODE1 的报价 
 
 
 <aside class="success">
@@ -331,3 +330,4 @@ bid | string(number) | 卖 CODE2 换取 CODE1 的报价
 ## 获取最新的报价 (WS)
 
 TBD
+

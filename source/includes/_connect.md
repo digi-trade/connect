@@ -35,9 +35,9 @@ account_id | true | Connect的Cabital账户id
 字段 | 类型 | 描述
 --------- | ------- | ---------------
 account_status | string(ENUM) | 账户关联状态，详见事件定义
-otp_ready | bool | 客户是否已经在 Cabital 绑定完成OTP，其在提现的时候需要附上。
-email_address? | string | 用户在本方的 Email， 供合作方匹配
-ext_id?|string|第三方id信息
+otp_ready | bool | 客户是否已经在 Cabital 绑定完成OTP，其在提现的时候需要附上 
+email_address | string | 用户在本方的 Email， 供合作方匹配
+ext_id|string|（可选）第三方id信息
 kyc_token | string | （可选）用户在本方的 KYC Token 供合作方使用 
 limits | object | 当前提款限额 （待定）
 

@@ -8,6 +8,7 @@
 - 增加账户单币入账信息支持GBP
 - 修改了transfers相关接口
 - 修改了quote接口字段
+- Webhook event去除了MATCHING状态事件
 
 ## 0.2.2
 

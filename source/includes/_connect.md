@@ -35,10 +35,10 @@ account_id | true | Connect的Cabital账户id
 字段 | 类型 | 描述
 --------- | ------- | ---------------
 account_status | string(ENUM) | 账户关联状态，详见事件定义
-otp_ready | bool | 客户是否已经在 Cabital 绑定完成OTP，其在提现的时候需要附上。
-email_address? | string | 用户在本方的 Email， 供合作方匹配
-ext_id?
-kyc_token | string | 用户在本方的 KYC Token 供合作方使用
+otp_ready | bool | 客户是否已经在 Cabital 绑定完成OTP，其在提现的时候需要附上 
+email_address | string | 用户在本方的 Email， 供合作方匹配
+ext_id|string|（可选）第三方id信息
+kyc_token | string | （可选）用户在本方的 KYC Token 供合作方使用 
 limits | object | 当前提款限额 （待定）
 
 
@@ -51,7 +51,7 @@ limits | object | 当前提款限额 （待定）
 ```shell
 curl "/api/v1/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/match" \
   -X "PUT" \
-  -d '{ "name": "John Doe", "id": "J12345678D", "id_document": "PASSPORT", "dob": "19700101" }' 
+  -d '{ "name": "John Doe", "id": "J12345678D", "id_document": "PASSPORT", "dob": "19700101", "issued_by": "HKG" }' 
 ```
 
 
@@ -73,8 +73,8 @@ account_id | true | Connect的Cabital账户id
 name | string | 客户本人的全名，按照身份证件上的常用顺序，如First Name +（Middle Name） + Last Name
 id | string | 身份文件上的ID
 id_document | string(ENUM) | 身份文件类型 `ID,PASSPORT,DRIVER_LICENSE`
-issued_by | string | 身份文件颁发国家
-dob | string | 身份文件上的生日（Date of birth）格式为YYYYMMDD
+issued_by | string | 身份文件颁发国家， 三位大写字母，[详见ISO_3166-1_alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3#Officially_assigned_code_elements) 
+dob | string | 身份文件上的生日（Date of birth）格式为YYYYMMDD，如19901202 
 
 <!-- issued_by | string | 身份文件颁发国家 -->
 

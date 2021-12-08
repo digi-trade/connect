@@ -16,7 +16,6 @@ PENDING | Cabital处理用户材料中
 TEMPORARY_REJECTED | 用户被 Cabital 要求提供正确材料
 FINAL_REJECTED | 用户被 Cabital 最终拒绝开户
 CREATED | 用户成功 KYC，Cabital 账户开通，等待合作方提交同名验证。
-MATCHING | 合作方已提交，同名验证人工审核中
 MATCHED | 同名验证通过，完全开通同账户转账
 MISMATCHED | 同名验证拒绝，多种因素
 UNLINKED | 用户/ Cabital 主动关闭与合作方的某账户关联
@@ -46,7 +45,6 @@ user_ext_ref | string | true | 合作方填入的外部Id
 staus | string(enum) | true | 账户关联的状态
 event_time | datestamp | true | 事件产生的时间，格式为[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
 data | object | false | 账户关联的一些额外数据，比如Mis-matched fields. 
-
 
 <!-- ## Transfer事件
 

@@ -25,6 +25,15 @@ PA018 | 不支持Pair
 PA019 | 不支持Quote 
 PA020 | 超出账户限额 
 PA021 | 配置信息错误 
+PA022 | IBAN不合法 
+PA023 | 用户名字不合法（kyc match） 
+PA024 | 用户ID号码不合法（kyc match） 
+PA025 | 用户生日不合法（kyc match） 
+PA026 | 重复提交KYC信息（kyc matching和kyc matched不允许重复提交） 
+PA027 | 双向划转方向不合法（目前只有两种：`CREDIT`，`DEBIT`） 
+PA028 | 双向划转金额不合法 
+PA029 | 双向划转重复请求（externalid和conversionid都不能重复） 
+PA999 | 内部服务错误                                               
 
 币种金额显示规范列表
 

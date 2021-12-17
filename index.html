@@ -403,6 +403,9 @@
             <a href="#5988541320" class="toc-h1 toc-link" data-title="版本变化">版本变化</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#0-2-4" class="toc-h2 toc-link" data-title="0.2.4">0.2.4</a>
+                  </li>
+                  <li>
                     <a href="#0-2-3" class="toc-h2 toc-link" data-title="0.2.3">0.2.3</a>
                   </li>
                   <li>
@@ -1612,6 +1615,42 @@
 <td>PA021</td>
 <td>配置信息错误</td>
 </tr>
+<tr>
+<td>PA022</td>
+<td>IBAN不合法</td>
+</tr>
+<tr>
+<td>PA023</td>
+<td>用户名字不合法（kyc match）</td>
+</tr>
+<tr>
+<td>PA024</td>
+<td>用户ID号码不合法（kyc match）</td>
+</tr>
+<tr>
+<td>PA025</td>
+<td>用户生日不合法（kyc match）</td>
+</tr>
+<tr>
+<td>PA026</td>
+<td>重复提交KYC信息（kyc matching和kyc matched不允许重复提交）</td>
+</tr>
+<tr>
+<td>PA027</td>
+<td>双向划转方向不合法（目前只有两种：<code>CREDIT</code>，<code>DEBIT</code>）</td>
+</tr>
+<tr>
+<td>PA028</td>
+<td>双向划转金额不合法</td>
+</tr>
+<tr>
+<td>PA029</td>
+<td>双向划转重复请求（externalid和conversionid都不能重复）</td>
+</tr>
+<tr>
+<td>PA999</td>
+<td>内部服务错误</td>
+</tr>
 </tbody></table>
 
 <p>币种金额显示规范列表</p>
@@ -2551,7 +2590,11 @@ status | string(enum) | 划转的结果，SUCCESS / FAILED -->
 <td>Service Unavailable -- 本方服务不可用，请稍后重试.</td>
 </tr>
 </tbody></table>
-<h1 id='5988541320'>版本变化</h1><h2 id='0-2-3'>0.2.3</h2>
+<h1 id='5988541320'>版本变化</h1><h2 id='0-2-4'>0.2.4</h2>
+<ul>
+<li>更新了错误码和错误信息</li>
+</ul>
+<h2 id='0-2-3'>0.2.3</h2>
 <ul>
 <li>修改了获取合作方的配置接口的交易费用配置信息</li>
 <li>增加了接口文档中金额格式规范</li>

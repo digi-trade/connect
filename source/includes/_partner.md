@@ -336,7 +336,7 @@ TBD
 为便于对账，合作方可通过第三方ID查询划转交易。
 
 ```shell
-curl "/api/v1/recon/adb8f31d-7a71-4003-85d7-3ac58158461f"
+curl "/api/v1/recon/transfers/adb8f31d-7a71-4003-85d7-3ac58158461f"
 ```
 
 > 返回JSON结构体:
@@ -360,7 +360,7 @@ curl "/api/v1/recon/adb8f31d-7a71-4003-85d7-3ac58158461f"
 
 ### HTTP请求
 
-`GET /api/v1/recon/<external_id>`
+`GET /api/v1/recon/transfers/<external_id>`
 
 ### URL参数
 

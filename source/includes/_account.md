@@ -393,11 +393,11 @@ transfer_id | string(uuid) | 划转交易ID
 instructed_amount | string(number) | 请求金额
 customer_fee | string(number) | 收取客户的费用金额
 actual_amount | string(number) | 客户实际收到的金额
-symbol | string | 划转的货币
-direction | string(enum) | 划转的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
+symbol | string | 划转交易的货币
+direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必须
-status | string(enum) | 划转的结果，`SUCCESS` / `FAILED` / `PROCESSING`
+status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING`
 created_at | timestamp(number) | 划转交易创建时间
 
 <aside class="warning">
@@ -452,11 +452,11 @@ transfer_id | string(uuid) | 划转交易ID
 instructed_amount | string(number) | 请求金额
 customer_fee | string(number) | 收取客户的费用金额
 actual_amount | string(number) | 客户实际收到的金额
-symbol | string | 划转的货币
-direction | string(enum) | 划转的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
+symbol | string | 划转交易的货币
+direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必须
-status | string(enum) | 划转的结果，`SUCCESS` / `FAILED` / `PROCESSING`
+status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING`
 created_at | timestamp(number) | 划转交易创建时间
 ## 账户双向划转
 
@@ -515,9 +515,9 @@ account_id | true | Cabital提供的账户ID
 字段 | 类型 | 描述
 --------- | ------- | -----------
 amount | string(number) | 请求金额
-symbol | string | 划转的货币
+symbol | string | 划转交易的货币
 otp | string | OTP的数值，特质Google Authenticator
-direction | string(enum) | 划转的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
+direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的唯一订单号，如重复订单将拒绝
 

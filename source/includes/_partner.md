@@ -336,7 +336,7 @@ TBD
 为便于对账，合作方可通过第三方ID查询划转交易。
 
 ```shell
-curl "/api/v1/recon/4c416854-8970-4838-99ad-febc437ac81d"
+curl "/api/v1/recon/adb8f31d-7a71-4003-85d7-3ac58158461f"
 ```
 
 > 返回JSON结构体:
@@ -378,9 +378,9 @@ transfer_id | string(uuid) | 划转交易ID
 instructed_amount | string(number) | 请求金额
 customer_fee | string(number) | 收取客户的费用金额
 actual_amount | string(number) | 客户实际收到的金额
-symbol | string | 划转的货币
-direction | string(enum) | 划转的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
+symbol | string | 划转交易的货币
+direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID
 external_id | string(50) | 合作方的第三方ID
-status | string(enum) | 划转的结果，`SUCCESS` / `FAILED` / `PROCESSING`
+status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING`
 created_at | timestamp(number) | 划转交易创建时间

@@ -397,8 +397,17 @@ symbol | string | 划转的货币
 direction | string(enum) | 划转的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必须
-status | string(enum) | 划转的结果，SUCCESS / FAILED / PROCESSING，PROCESSING为交易中间状态。
+status | string(enum) | 划转的结果，`SUCCESS` / `FAILED` / `PROCESSING`
 created_at | timestamp(number) | 划转交易创建时间
+
+<aside class="warning">
+<b>注意事项：</b>
+<ul>
+  <li><i>SUCCESS</i> & <i>FAILED</i> 为划转交易终态，<i>PROCESSING</i> 为划转交易中间状态。</li>
+  <li>划转交易不会在 <i>PROCESSING</i> 状态停留很久，如果一笔划转交易长时间处于 <i>PROCESSING</i> 状态，则需要人工介入调查。</li>
+</ul>
+</aside>
+
 ## 账户划转详情
 
 通过划转交易ID获取划转交易详情。
@@ -447,8 +456,9 @@ symbol | string | 划转的货币
 direction | string(enum) | 划转的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必须
-status | string(enum) | 划转的结果，SUCCESS / FAILED / PROCESSING，PROCESSING为交易中间状态。
+status | string(enum) | 划转的结果，`SUCCESS` / `FAILED` / `PROCESSING`
 created_at | timestamp(number) | 划转交易创建时间
+instruction_id | string(uuid) | 交易请求ID，对账用
 ## 通过合作方的第三方ID获取账户划转详情
 
 合作方可以通过第三方ID获取划转交易的详情，适用于划转交易最新状态确认，对账等场景。
@@ -470,7 +480,8 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/reference/4c416854-8
   "conversion_id": "d81adf6d-0322-41d7-8c32-669203e35f11",
   "external_id": "adb8f31d-7a71-4003-85d7-3ac58158461f",
   "created_at": 1633445162,
-  "status": "SUCCESS"
+  "status": "SUCCESS",
+  "instruction_id": "3a344f80-f057-4841-b186-7a1daa0b8390"
 }
 ```
 
@@ -497,7 +508,7 @@ symbol | string | 划转的货币
 direction | string(enum) | 划转的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必须
-status | string(enum) | 划转的结果，SUCCESS / FAILED / PROCESSING，PROCESSING为交易中间状态。
+status | string(enum) | 划转的结果，`SUCCESS` / `FAILED` / `PROCESSING`
 created_at | timestamp(number) | 划转交易创建时间
 ## 账户双向划转
 
@@ -571,7 +582,7 @@ instructed_amount | string(number) | 请求金额
 customer_fee | string(number) | 收取客户的费用金额
 actual_amount | string(number) | 实际金额
 external_id | string(50) | 合作方的第三方ID，非必需
-status | string(enum) | 划转的结果，SUCCESS / FAILED / PROCESSING，PROCESSING为交易中间状态。
+status | string(enum) | 划转的结果，`SUCCESS` / `FAILED` / `PROCESSING`
 instruction_id | string(uuid) | 交易请求ID，对账用
 
 <!-- ### OTP的使用！！！ -->

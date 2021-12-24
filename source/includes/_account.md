@@ -376,7 +376,7 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
 
 Parameter | 必须 | 默认值 | Description
 --------- | ------- | ----------- | -----------
-account_id | true | -- | Cabital提供的账户id
+account_id | true | -- | Cabital提供的账户ID
 direction | false | 全部 | 方向过滤
 symbol | false | 全部 | 币种过滤
 cursor | false | "-1" | 查询结果集的游标位置
@@ -393,15 +393,24 @@ transfer_id | string(uuid) | 划转交易ID
 instructed_amount | string(number) | 请求金额
 customer_fee | string(number) | 收取客户的费用金额
 actual_amount | string(number) | 客户实际收到的金额
-symbol | string | 划转的货币
-direction | string(enum) | 划转的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
+symbol | string | 划转交易的货币
+direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必须
-status | string(enum) | 划转的结果，SUCCESS / FAILED
+status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING`
 created_at | timestamp(number) | 划转交易创建时间
+
+<aside class="warning">
+<b>注意事项：</b>
+<ul>
+  <li><i>SUCCESS</i> & <i>FAILED</i> 为划转交易终态，<i>PROCESSING</i> 为划转交易中间状态。</li>
+  <li>划转交易不会在 <i>PROCESSING</i> 状态停留很久，如果一笔划转交易长时间处于 <i>PROCESSING</i> 状态，则需要人工介入调查。</li>
+</ul>
+</aside>
+
 ## 账户划转详情
 
-在 Cabital 与合作方的同名账户之间进行划转。
+通过划转交易ID获取划转交易详情。
 
 ```shell
 curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/4c416854-8970-4838-99ad-febc437ac81d"
@@ -432,8 +441,8 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/4c416854-8
 
 Parameter | 必须 |  Description
 --------- | ------- |  -----------
-account_id | true | Cabital提供的账户id
-transfer_id | true | 划转交易id
+account_id | true | Cabital提供的账户ID
+transfer_id | true | 划转交易ID
 
 ### 返回transfers对象描述
 
@@ -443,11 +452,11 @@ transfer_id | string(uuid) | 划转交易ID
 instructed_amount | string(number) | 请求金额
 customer_fee | string(number) | 收取客户的费用金额
 actual_amount | string(number) | 客户实际收到的金额
-symbol | string | 划转的货币
-direction | string(enum) | 划转的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
+symbol | string | 划转交易的货币
+direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必须
-status | string(enum) | 划转的结果，SUCCESS / FAILED
+status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING`
 created_at | timestamp(number) | 划转交易创建时间
 ## 账户双向划转
 
@@ -498,7 +507,7 @@ curl -X POST "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
 
 Parameter | Default | Description
 --------- | ------- | -----------
-account_id | true | Cabital提供的账户id
+account_id | true | Cabital提供的账户ID
 
 
 ### 提交对象描述
@@ -506,9 +515,9 @@ account_id | true | Cabital提供的账户id
 字段 | 类型 | 描述
 --------- | ------- | -----------
 amount | string(number) | 请求金额
-symbol | string | 划转的货币
-otp | string | OTP的数值，特质Google Authenticator
-direction | string(enum) | 划转的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
+symbol | string | 划转交易的货币
+otp | string | OTP的数值，特指Google Authenticator
+direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的唯一订单号，如重复订单将拒绝
 
@@ -521,7 +530,7 @@ instructed_amount | string(number) | 请求金额
 customer_fee | string(number) | 收取客户的费用金额
 actual_amount | string(number) | 实际金额
 external_id | string(50) | 合作方的第三方ID，非必需
-status | string(enum) | 划转的结果，SUCCESS / FAILED
+status | string(enum) | 划转的结果，`SUCCESS` / `FAILED` / `PROCESSING`
 instruction_id | string(uuid) | 交易请求ID，对账用
 
 <!-- ### OTP的使用！！！ -->

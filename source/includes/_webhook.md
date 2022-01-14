@@ -46,6 +46,19 @@ staus | string(enum) | true | 账户关联的状态
 event_time | datestamp | true | 事件产生的时间，格式为[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
 data | object | false | 账户关联的一些额外数据，比如Mis-matched fields. 
 
+**用户unlink后再reconnect状态变化表**
+
+| 用户状态           | reconnect过程事件流                          | 备注 |
+| ------------------ | ---------------------------------------------- | ---- |
+| INITIALIZED        | UNLINKED ==》INITIALIZED                       |      |
+| PENDING            | UNLINKED ==》INITIALIZED==》PENDING            |      |
+| TEMPORARY_REJECTED | UNLINKED ==》INITIALIZED==》TEMPORARY_REJECTED |      |
+| FINAL_REJECTED     | UNLINKED ==》INITIALIZED==》FINAL_REJECTED     |      |
+| CREATED            | UNLINKED ==》INITIALIZED==》CREATED            |      |
+| MATCHED            | UNLINKED ==》INITIALIZED==》CREATED            |  需要重新match    |
+| MISMATCHED         | UNLINKED ==》INITIALIZED==》CREATED            |  需要重新match    |
+
+
 <!-- ## Transfer事件
 
 当对手方发起划转后，系统会根据现在的划转状态发送 Transfer事件 事件，其包含以下几个状态：

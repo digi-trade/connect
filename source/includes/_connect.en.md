@@ -77,6 +77,7 @@ dob | string | Date of birth format in `YYYYMMDD`
 
 
 > Sample Response:
+result field type is string(ENUM)，value is one of `MISMATCH`,`PASS`,`PENDING`
 
 ```json
 {

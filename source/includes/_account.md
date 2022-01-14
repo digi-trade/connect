@@ -233,18 +233,37 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/GBP/deposit
 
 ```json
 {
-  "method": "SEPA",
-  "meta": {
-    "account_name": "Cabital Fintech (LT) UAB",
-    "iban": "LT493780000074448705",
-    "ref_code": "N6FH7B",
-    "bic": "TRYULT21XXX",
-    "bank_name": "Transactive Systems UAB",
-    "bank_address": "Verkių g. 25C-1, Vilnius",
-    "bank_country": "Lithuania"
-  }
+    "symbol": "EUR",
+    "method": "SEPA",
+    "meta": {
+        "account_name": "Cabital Fintech (LT) UAB",
+        "iban": "CH1808799927511379814",
+        "ref_code": "8TCTP5",
+        "bic": "INCOCHZZXXX",
+        "bank_name": "InCore Bank AG",
+        "bank_address": "Wiesenstrasse 17",
+        "bank_country": "Switzerland"
+    }
 }
 ```
+或者
+
+```json
+{
+    "symbol": "GBP",
+    "method": "FPS",
+    "meta": {
+        "account_name": "Cabital Fintech (LT) UAB",
+        "ref_code": "8TCTP5",
+        "account_number": "00003157",
+        "sort_code": "040541",
+        "bank_name": "BCB Payments Ltd",
+        "bank_address": "5 Merchant Square London",
+        "bank_country": "United Kingdom"
+    }
+}
+```
+
 
 ### HTTP请求
 

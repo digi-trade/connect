@@ -32,7 +32,10 @@ PA025 | 用户生日不合法（kyc match）
 PA026 | 重复提交KYC信息（kyc matching和kyc matched不允许重复提交） 
 PA027 | 双向划转方向不合法（目前只有两种：`CREDIT`，`DEBIT`） 
 PA028 | 双向划转金额不合法 
-PA029 | 双向划转重复请求（externalid和conversionid都不能重复） 
+PA029 | 双向划转重复请求（external_id和conversion_id都不能重复） 
+PA030 | 对账查询接口中，要查询的划转交易不存在
+PA031 | C + T 交易中，conversion_id标识的换汇交易不存在或者状态异常
+PA032 | C + T 交易中，划转金额大于换汇金额
 PA999 | 内部服务错误                                               
 
 币种金额显示规范列表

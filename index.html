@@ -406,6 +406,9 @@
             <a href="#5988541320" class="toc-h1 toc-link" data-title="版本变化">版本变化</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#0-2-5" class="toc-h2 toc-link" data-title="0.2.5">0.2.5</a>
+                  </li>
+                  <li>
                     <a href="#0-2-4" class="toc-h2 toc-link" data-title="0.2.4">0.2.4</a>
                   </li>
                   <li>
@@ -1616,7 +1619,8 @@
 <!-- issued_by | string | 身份文件颁发国家 -->
 
 <blockquote>
-<p>得以下JSON结构体:</p>
+<p>得以下JSON结构体:
+result 字段类型为string(ENUM)，允许的值 <code>MISMATCH</code>,<code>PASS</code>,<code>PENDING</code></p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MISMATCH"</span><span class="p">,</span><span class="w">
@@ -2001,16 +2005,32 @@ account_id | true | Cabital提供的账户id -->
 <p>获得以下JSON结构体:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SEPA"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"account_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cabital Fintech (LT) UAB"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LT493780000074448705"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"ref_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N6FH7B"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"bic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRYULT21XXX"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"bank_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Transactive Systems UAB"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"bank_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Verkių g. 25C-1, Vilnius"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"bank_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lithuania"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SEPA"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"account_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cabital Fintech (LT) UAB"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CH1808799927511379814"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ref_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8TCTP5"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"bic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INCOCHZZXXX"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"bank_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"InCore Bank AG"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"bank_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wiesenstrasse 17"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"bank_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Switzerland"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>或者</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FPS"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"account_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cabital Fintech (LT) UAB"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ref_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8TCTP5"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"account_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00003157"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"sort_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"040541"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"bank_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCB Payments Ltd"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"bank_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 Merchant Square London"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"bank_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Kingdom"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-3'>HTTP请求</h3>
 <p><code>GET /api/v1/accounts/&lt;account_id&gt;/balances/&lt;symbol&gt;/deposit/&lt;method&gt;</code></p>
@@ -2631,6 +2651,52 @@ account_id | true | Cabital提供的账户id -->
 </tr>
 </tbody></table>
 
+<p><strong>用户unlink后再reconnect状态变化表</strong></p>
+
+<table><thead>
+<tr>
+<th>用户状态</th>
+<th>reconnect过程事件流</th>
+<th>备注</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>INITIALIZED</td>
+<td>UNLINKED ==》INITIALIZED</td>
+<td></td>
+</tr>
+<tr>
+<td>PENDING</td>
+<td>UNLINKED ==》INITIALIZED==》PENDING</td>
+<td></td>
+</tr>
+<tr>
+<td>TEMPORARY_REJECTED</td>
+<td>UNLINKED ==》INITIALIZED==》TEMPORARY_REJECTED</td>
+<td></td>
+</tr>
+<tr>
+<td>FINAL_REJECTED</td>
+<td>UNLINKED ==》INITIALIZED==》FINAL_REJECTED</td>
+<td></td>
+</tr>
+<tr>
+<td>CREATED</td>
+<td>UNLINKED ==》INITIALIZED==》CREATED</td>
+<td></td>
+</tr>
+<tr>
+<td>MATCHED</td>
+<td>UNLINKED ==》INITIALIZED==》CREATED</td>
+<td>需要重新match</td>
+</tr>
+<tr>
+<td>MISMATCHED</td>
+<td>UNLINKED ==》INITIALIZED==》CREATED</td>
+<td>需要重新match</td>
+</tr>
+</tbody></table>
+
 <!-- ## Transfer事件
 
 当对手方发起划转后，系统会根据现在的划转状态发送 Transfer事件 事件，其包含以下几个状态：
@@ -2719,7 +2785,11 @@ status | string(enum) | 划转的结果，SUCCESS / FAILED -->
 <td>Service Unavailable -- 本方服务不可用，请稍后重试.</td>
 </tr>
 </tbody></table>
-<h1 id='5988541320'>版本变化</h1><h2 id='0-2-4'>0.2.4</h2>
+<h1 id='5988541320'>版本变化</h1><h2 id='0-2-5'>0.2.5</h2>
+<ul>
+<li>更新了获取单币入账信息接口gbp币种时响应field去除iban</li>
+</ul>
+<h2 id='0-2-4'>0.2.4</h2>
 <ul>
 <li>更新了错误码和错误信息</li>
 </ul>

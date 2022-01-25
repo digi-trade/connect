@@ -1023,7 +1023,8 @@ Single account limit
 </tbody></table>
 
 <blockquote>
-<p>Sample Response:</p>
+<p>Sample Response:
+result field type is string(ENUM)，value is one of <code>MISMATCH</code>,<code>PASS</code>,<code>PENDING</code></p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MISMATCH"</span><span class="p">,</span><span class="w">
@@ -1261,22 +1262,42 @@ account_id | true | Cabital Connect Account Id -->
 </tbody></table>
 <h2 id='account-currency-deposite-information'>Account Currency Deposite Information</h2>
 <p>Get account currency deposite information</p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/EUR/deposit/SEPA"</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/EUR/deposit/SEPA"</span> 
+</code></pre></div>
+<p>Or</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/balances/GBP/deposit/FPS"</span>
 </code></pre></div>
 <blockquote>
-<p>Response Sample:</p>
+<p>Response Sample:
+<code>json
+{
+    &quot;symbol&quot;: &quot;EUR&quot;,
+    &quot;method&quot;: &quot;SEPA&quot;,
+    &quot;meta&quot;: {
+        &quot;account_name&quot;: &quot;Cabital Fintech (LT) UAB&quot;,
+        &quot;iban&quot;: &quot;CH1808799927511379814&quot;,
+        &quot;ref_code&quot;: &quot;8TCTP5&quot;,
+        &quot;bic&quot;: &quot;INCOCHZZXXX&quot;,
+        &quot;bank_name&quot;: &quot;InCore Bank AG&quot;,
+        &quot;bank_address&quot;: &quot;Wiesenstrasse 17&quot;,
+        &quot;bank_country&quot;: &quot;Switzerland&quot;
+    }
+}
+</code>
+Or</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SEPA"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"account_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cabital Fintech (LT) UAB"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LT493780000074448705"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"ref_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N6FH7B"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"bic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRYULT21XXX"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"bank_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Transactive Systems UAB"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"bank_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Verkių g. 25C-1, Vilnius"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"bank_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lithuania"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FPS"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"account_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cabital Fintech (LT) UAB"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ref_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8TCTP5"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"account_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00003157"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"sort_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"040541"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"bank_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCB Payments Ltd"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"bank_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 Merchant Square London"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"bank_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Kingdom"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET /api/v1/accounts/&lt;account_id&gt;/balances/&lt;symbol&gt;/deposit/&lt;method&gt;</code></p>
@@ -1829,6 +1850,52 @@ account_id | true | Cabital Connect Account Id -->
 <td>object</td>
 <td>false</td>
 <td>Some additional data associated with the account, such as Shared Token, Mis-matched fields.</td>
+</tr>
+</tbody></table>
+
+<p><strong>User unlink and reconnect status change</strong></p>
+
+<table><thead>
+<tr>
+<th>status</th>
+<th>event</th>
+<th>remark</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>INITIALIZED</td>
+<td>UNLINKED ==》INITIALIZED</td>
+<td></td>
+</tr>
+<tr>
+<td>PENDING</td>
+<td>UNLINKED ==》INITIALIZED==》PENDING</td>
+<td></td>
+</tr>
+<tr>
+<td>TEMPORARY_REJECTED</td>
+<td>UNLINKED ==》INITIALIZED==》TEMPORARY_REJECTED</td>
+<td></td>
+</tr>
+<tr>
+<td>FINAL_REJECTED</td>
+<td>UNLINKED ==》INITIALIZED==》FINAL_REJECTED</td>
+<td></td>
+</tr>
+<tr>
+<td>CREATED</td>
+<td>UNLINKED ==》INITIALIZED==》CREATED</td>
+<td></td>
+</tr>
+<tr>
+<td>MATCHED</td>
+<td>UNLINKED ==》INITIALIZED==》CREATED</td>
+<td>need to match</td>
+</tr>
+<tr>
+<td>MISMATCHED</td>
+<td>UNLINKED ==》INITIALIZED==》CREATED</td>
+<td>need to match</td>
 </tr>
 </tbody></table>
 

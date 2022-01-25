@@ -79,6 +79,7 @@ dob | string | 身份文件上的生日（Date of birth）格式为YYYYMMDD，�
 <!-- issued_by | string | 身份文件颁发国家 -->
 
 > 得以下JSON结构体:
+result 字段类型为string(ENUM)，允许的值 `MISMATCH`,`PASS`,`PENDING`
 
 ```json
 {

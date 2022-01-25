@@ -47,6 +47,19 @@ staus | string(enum) | true | status of account association
 event_time | datestamp | true | The time when the event occurred, in the format [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
 data | object | false | Some additional data associated with the account, such as Shared Token, Mis-matched fields. 
 
+**User unlink and reconnect status change**
+
+| status           | event                        | remark |
+| ------------------ | ---------------------------------------------- | ---- |
+| INITIALIZED        | UNLINKED ==》INITIALIZED                       |      |
+| PENDING            | UNLINKED ==》INITIALIZED==》PENDING            |      |
+| TEMPORARY_REJECTED | UNLINKED ==》INITIALIZED==》TEMPORARY_REJECTED |      |
+| FINAL_REJECTED     | UNLINKED ==》INITIALIZED==》FINAL_REJECTED     |      |
+| CREATED            | UNLINKED ==》INITIALIZED==》CREATED            |      |
+| MATCHED            | UNLINKED ==》INITIALIZED==》CREATED            |  need to match    |
+| MISMATCHED         | UNLINKED ==》INITIALIZED==》CREATED            |  need to match    |
+
+
 <!-- ## Transfer事件
 
 当对手方发起划转后，系统会根据现在的划转状态发送 Transfer事件 事件，其包含以下几个状态：

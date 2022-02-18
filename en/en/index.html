@@ -338,7 +338,7 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
-            <a href="#partner-level-setting" class="toc-h1 toc-link" data-title="Partner Level Setting">Partner Level Setting</a>
+            <a href="#partner-level-api" class="toc-h1 toc-link" data-title="Partner Level API">Partner Level API</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#partner-configuration" class="toc-h2 toc-link" data-title="Partner Configuration">Partner Configuration</a>
@@ -352,7 +352,7 @@
               </ul>
           </li>
           <li>
-            <a href="#account-connect-related" class="toc-h1 toc-link" data-title="Account Connect related">Account Connect related</a>
+            <a href="#account-connect" class="toc-h1 toc-link" data-title="Account Connect">Account Connect</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#get-user-connection-status" class="toc-h2 toc-link" data-title="Get User Connection Status">Get User Connection Status</a>
@@ -440,7 +440,7 @@
       </ul>
         <ul class="toc-footer">
             <li><a href='mailto:developer@cabital.com'>Sign Up for Partner Key</a></li>
-            <li><a href='https://cabital.com/'>Copyright by Cabital 2021</a></li>
+            <li><a href='https://www.cabital.com/'>Copyright by Cabital 2021</a></li>
             <li><a href='/connect/'>中文</a></li>
         </ul>
     </div>
@@ -930,7 +930,7 @@
 <aside class="warning">
 Please do not share your Secret. Otherwise, it may cause information leakage and an unnecessary loss of transaction fees. If your Secret is leaked, please contact your service consultant immediately.
 </aside>
-<h1 id='partner-level-setting'>Partner Level Setting</h1>
+<h1 id='partner-level-api'>Partner Level API</h1>
 <p>The partner system API is provided to the partner to perceive the status of cooperative account opening, system basic settings, and non-user level settings.</p>
 <h2 id='partner-configuration'>Partner Configuration</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://partner.cabital.com/api/v1/config"</span>
 </code></pre></div><h3 id='http-request'>HTTP Request</h3>
@@ -1487,7 +1487,7 @@ The symbol of FIAT is based on <a href="https://en.wikipedia.org/wiki/ISO_4217">
 <td>Created timestamp</td>
 </tr>
 </tbody></table>
-<h1 id='account-connect-related'>Account Connect related</h1>
+<h1 id='account-connect'>Account Connect</h1>
 <p>Cabital Connect is subject to regulatory requirements. The access partner must provide the identity information (each field) consistent with this party. For field descriptions, please refer to the API for linking accounts with the same name.</p>
 <h2 id='get-user-connection-status'>Get User Connection Status</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/api/v1/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/detail"</span>
 </code></pre></div><h3 id='http-request'>HTTP Request</h3>

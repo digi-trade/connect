@@ -1,4 +1,4 @@
-# Account Connect related
+# Account Connect
 
 Cabital Connect is subject to regulatory requirements. The access partner must provide the identity information (each field) consistent with this party. For field descriptions, please refer to the API for linking accounts with the same name.
 

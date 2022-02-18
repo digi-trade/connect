@@ -7,7 +7,7 @@ language_tabs:
 
 toc_footers:
   - <a href='mailto:developer@cabital.com'>开始集成</a>
-  - <a href='https://cabital.com/'>版权所有 Cabital 2021</a>
+  - <a href='https://www.cabital.com/'>版权所有 Cabital 2021</a>
   - <a href='/connect/en/'>English</a>
 
 includes:

@@ -1,4 +1,4 @@
-# Partner Level Setting
+# Partner Level API
 
 The partner system API is provided to the partner to perceive the status of cooperative account opening, system basic settings, and non-user level settings.
 

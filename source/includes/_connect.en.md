@@ -38,7 +38,8 @@ Field | Type | Description
 account_status | string(ENUM) | Status, see the definition in Events
 otp_ready | bool | Whether the customer has completed the OTP binding in Cabital, it needs to be attached when withdrawing.
 email_address | string | The user’s Email for the partner to match
-kyc_token | string | The user's KYC Token for the partner to apply
+ext_id | string | Optional, 3rd Party uuid 
+kyc_token | string | Optional, The user's KYC Token for the partner to apply 
 limits | object | Current payment limit
 
 <aside class="success">
@@ -50,7 +51,7 @@ Single account limit
 ```shell
 curl "/api/v1/accounts/cdaa9983-9b8f-4478-ba60-896ac239879d/match" \
   -X "PUT" \
-  -d '{ "name": "John Doe", "id": "J12345678D", "id_document": "PASSPORT", "dob": "19700101" }' 
+  -d '{ "name": "John Doe", "id": "J12345678D", "id_document": "PASSPORT", "dob": "19700101", "issued_by": "HKG" }' 
 ```
 
 
@@ -72,7 +73,7 @@ Field | Type | Description
 name | string | The full name of the customer, in accordance with the usual order on the document, such as First Name + (Middle Name) + Last Name
 id | string |ID on the identity document
 id_document | string(ENUM) | Identity document type (`ID,PASSPORT,DRIVER_LICENSE`)
-issued_by | string | The country where the identity document was issued
+issued_by | string | The country where the identity document was issued, country code should follow [ISO_3166-1_alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3#Officially_assigned_code_elements) 
 dob | string | Date of birth format in `YYYYMMDD`
 
 

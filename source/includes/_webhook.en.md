@@ -16,7 +16,6 @@ PENDING | The user has submitted KYC in Cabital & Cabital is processing the user
 TEMPORARY_REJECTED | The user has submitted KYC in Cabital & Cabital has requested the user to provide more materials 
 FINAL_REJECTED | The user has submitted KYC in Cabital & Cabital has rejected the user
 CREATED | The user has passed Cabital's KYC. The Cabital account has been opened & is waiting for the partner to submit the same name verification.
-MATCHING | The user has passed Cabital's KYC and the partner has been submitted the same name verfication, which is under manual review.
 MATCHED | The user has passed Cabital's KYC and same name verification has passed successfully. The same account transfer is now fully available.
 MISMATCHED | The user has passed Cabital's KYC but the same name verification was rejected. This could happen for multiple reasons.
 UNLINKED | The user / Cabital actively closes the connection with an account of the partner
@@ -49,15 +48,15 @@ data | object | false | Some additional data associated with the account, such a
 
 **User unlink and reconnect status change**
 
-| status           | event                        | remark |
+| Status          | Event Flow                  | Remark |
 | ------------------ | ---------------------------------------------- | ---- |
-| INITIALIZED        | UNLINKED ==》INITIALIZED                       |      |
-| PENDING            | UNLINKED ==》INITIALIZED==》PENDING            |      |
-| TEMPORARY_REJECTED | UNLINKED ==》INITIALIZED==》TEMPORARY_REJECTED |      |
-| FINAL_REJECTED     | UNLINKED ==》INITIALIZED==》FINAL_REJECTED     |      |
-| CREATED            | UNLINKED ==》INITIALIZED==》CREATED            |      |
-| MATCHED            | UNLINKED ==》INITIALIZED==》CREATED            |  need to match    |
-| MISMATCHED         | UNLINKED ==》INITIALIZED==》CREATED            |  need to match    |
+| INITIALIZED        | UNLINKED =>INITIALIZED                     |      |
+| PENDING            | UNLINKED =>INITIALIZED=> PENDING      |      |
+| TEMPORARY_REJECTED | UNLINKED =>INITIALIZED=> TEMPORARY_REJECTED |      |
+| FINAL_REJECTED     | UNLINKED =>INITIALIZED=> FINAL_REJECTED |      |
+| CREATED            | UNLINKED =>INITIALIZED=> CREATED       |      |
+| MATCHED            | UNLINKED =>INITIALIZED=> CREATED       |  need to match    |
+| MISMATCHED         | UNLINKED =>INITIALIZED=> CREATED       |  need to match    |
 
 
 <!-- ## Transfer事件

@@ -13,6 +13,7 @@ toc_footers:
 includes:
 
   - introduction.en
+  - partrner_oidc.en
   - authentication.en
   - partner.en
   - connect.en

@@ -904,7 +904,7 @@
 <aside class="warning">请不要分享你的Secrets，否则会造成信息泄漏以及不必要的交易费损失。如Secret出现异常，请立刻与你的服务顾问联系并立刻更新。</aside>
 <h1 id='171d707637'>合作方配置</h1>
 <p>合作方系统API是提供给合作方用来感知合作开户状态，系统基础设定，和非用户级别的设定。</p>
-<h2 id='79fee25901'>获取合作方的配置</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://partner.cabital.com/api/v1/config"</span>
+<h2 id='79fee25901'>获取合作方的配置</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://partner.cabital.com/api/v1/config"</span>
 </code></pre></div><h3 id='http'>HTTP 请求</h3>
 <p><code>GET /api/v1/config</code></p>
 
@@ -1106,7 +1106,16 @@
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='3a66ff84d2'>字段定义</h3>
+</span></code></pre></div><h3 id='e3053e284f'>组成部分</h3>
+<ul>
+<li>currencies : 所有Connect使用到的货币配置</li>
+<li>paris: Convert使用的货币对，可用于报价的获取</li>
+</ul>
+<h3 id='d6e4f58565'>货币配置定义</h3>
+<ul>
+<li>每个货币的基础配置</li>
+</ul>
+
 <table><thead>
 <tr>
 <th>字段</th>
@@ -1343,7 +1352,7 @@
     </span><span class="nl">"valid_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="nl">"reversed_quote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00026253"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='3a66ff84d2-2'>字段定义</h3>
+</span></code></pre></div><h3 id='3a66ff84d2'>字段定义</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -2662,38 +2671,38 @@ account_id | true | Cabital提供的账户id -->
 </thead><tbody>
 <tr>
 <td>INITIALIZED</td>
-<td>UNLINKED ==》INITIALIZED</td>
+<td>UNLINKED =&gt; INITIALIZED</td>
 <td></td>
 </tr>
 <tr>
 <td>PENDING</td>
-<td>UNLINKED ==》INITIALIZED==》PENDING</td>
+<td>UNLINKED =&gt; INITIALIZED=&gt; PENDING</td>
 <td></td>
 </tr>
 <tr>
 <td>TEMPORARY_REJECTED</td>
-<td>UNLINKED ==》INITIALIZED==》TEMPORARY_REJECTED</td>
+<td>UNLINKED =&gt; INITIALIZED=&gt; TEMPORARY_REJECTED</td>
 <td></td>
 </tr>
 <tr>
 <td>FINAL_REJECTED</td>
-<td>UNLINKED ==》INITIALIZED==》FINAL_REJECTED</td>
+<td>UNLINKED =&gt; INITIALIZED=&gt; FINAL_REJECTED</td>
 <td></td>
 </tr>
 <tr>
 <td>CREATED</td>
-<td>UNLINKED ==》INITIALIZED==》CREATED</td>
+<td>UNLINKED =&gt; INITIALIZED=&gt; CREATED</td>
 <td></td>
 </tr>
 <tr>
 <td>MATCHED</td>
-<td>UNLINKED ==》INITIALIZED==》CREATED</td>
-<td>需要重新match</td>
+<td>UNLINKED =&gt; INITIALIZED=&gt; CREATED</td>
+<td>需要重新matc</td>
 </tr>
 <tr>
 <td>MISMATCHED</td>
-<td>UNLINKED ==》INITIALIZED==》CREATED</td>
-<td>需要重新match</td>
+<td>UNLINKED =&gt; INITIALIZED=&gt; CREATED</td>
+<td>需要重新matc</td>
 </tr>
 </tbody></table>
 

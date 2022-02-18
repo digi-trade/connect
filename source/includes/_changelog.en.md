@@ -1,5 +1,23 @@
 # Version changes
 
+## 0.2.5
+
+- Remove IBAN from `GBP` deposit information
+
+## 0.2.4
+
+- Update error code and error information
+
+## 0.2.3
+
+- Modified partner configuration to pass the transaction fee.
+- Append currency table and decimal precision standard.
+- Add country code in `matching`
+- Add `GBP` deposit information
+- Modified `transfers`
+- Modified `quote`
+- Webhook event: Removed `MATCHING` status
+
 ## 0.2.2
 
 - Modified the conversions transaction configuration information for the configuration interface of the get partner

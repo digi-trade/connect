@@ -50,13 +50,13 @@ data | object | false | 账户关联的一些额外数据，比如Mis-matched fi
 
 | 用户状态           | reconnect过程事件流                          | 备注 |
 | ------------------ | ---------------------------------------------- | ---- |
-| INITIALIZED        | UNLINKED ==》INITIALIZED                       |      |
-| PENDING            | UNLINKED ==》INITIALIZED==》PENDING            |      |
-| TEMPORARY_REJECTED | UNLINKED ==》INITIALIZED==》TEMPORARY_REJECTED |      |
-| FINAL_REJECTED     | UNLINKED ==》INITIALIZED==》FINAL_REJECTED     |      |
-| CREATED            | UNLINKED ==》INITIALIZED==》CREATED            |      |
-| MATCHED            | UNLINKED ==》INITIALIZED==》CREATED            |  需要重新match    |
-| MISMATCHED         | UNLINKED ==》INITIALIZED==》CREATED            |  需要重新match    |
+| INITIALIZED        | UNLINKED => INITIALIZED                     |      |
+| PENDING            | UNLINKED => INITIALIZED=> PENDING      |      |
+| TEMPORARY_REJECTED | UNLINKED => INITIALIZED=> TEMPORARY_REJECTED |      |
+| FINAL_REJECTED     | UNLINKED => INITIALIZED=> FINAL_REJECTED |      |
+| CREATED            | UNLINKED => INITIALIZED=> CREATED       |      |
+| MATCHED            | UNLINKED => INITIALIZED=> CREATED       |  需要重新matc    |
+| MISMATCHED         | UNLINKED => INITIALIZED=> CREATED       |  需要重新matc    |
 
 
 <!-- ## Transfer事件

@@ -6,7 +6,7 @@
 
 
 ```shell
-curl "http://partner.cabital.com/api/v1/config"
+curl "https://partner.cabital.com/api/v1/config"
 ```
 
 ### HTTP 请求
@@ -214,7 +214,15 @@ curl "http://partner.cabital.com/api/v1/config"
     ]
 }
 ```
-### 字段定义
+
+### 组成部分
+
+- currencies : 所有Connect使用到的货币配置
+- paris: Convert使用的货币对，可用于报价的获取
+
+### 货币配置定义
+
+* 每个货币的基础配置
 
 字段 | 类型 | 描述
 --------- | ------- | ---------------
@@ -384,3 +392,4 @@ conversion_id | string(uuid) | C+T关联交易中的转换订单ID
 external_id | string(50) | 合作方的第三方ID
 status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING`
 created_at | timestamp(number) | 划转交易创建时间
+

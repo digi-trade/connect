@@ -1,6 +1,6 @@
 # Account Operations
 
-List of Account Operation Business Errors
+## List of Account Operation Business Errors
 
 Error | Description
 ---------- | -------
@@ -15,12 +15,49 @@ PA008 | Incorrect 2FA (OTP)
 PA009 | The customer’s KYC status has not yet been matched
 PA010 | 2FA (OTP) is not set properly
 PA011 | Convert's Quote usage is incorrect (Invalid Calculation)
+ PA012 | The customer doesn't pass Cabital's KYC  
+ PA013 | The customer is in `UNLINKED` status      
+ PA014 | Illegal payment method.            
+ PA015 | Invalid Symbol                                        
+ PA016 | Invalid id document                                 
+ PA017 | Invalid country code                               
+ PA018 | Unsupported pair                                
+ PA019 | Unsupported quote                                     
+ PA020 | Exceed account limits.                         
+ PA021 | Wrong configuration                            
+ PA022 | Invalid IBAN                                          
+ PA023 | Invalid Names（kyc match）            
+ PA024 | Invalid ID Number（kyc match）               
+ PA025 | Invalid Day of Birth（kyc match）              
+ PA026 | Redundent KYC match Information (System disalow post matching request when the matching status is in `MATCHED`） 
+ PA027 | Invalid transfer direction（Only supports：`CREDIT`，`DEBIT`） 
+ PA028 | Invalid transfer amount                 
+ PA029 | Redundent transfer request (any of external_id, conversion_id must be unique） 
+ PA030 | The transfer order doesn't not exist. (In recon/transfers query interface) 
+ PA031 | In a C + T order, fail to valid the corresponding conversion. 
+ PA032 | In a C + T order, transfer amont is larger than the recieved amount from the corresponding conversion. 
+ PA999 | Internal services error, please retry. 
+
+## Supported Currency Decimal Table
+
+| Code | Crypto Currency | Percision | Comments & Example |
+| ---- | --------------- | --------- | ------------------ |
+| BTC  | Yes             | 8         | `1.00000000`       |
+| ETH  | Yes             | 8         | `1.00000000`       |
+| USDT | Yes             | 6         | `1010.000000`      |
+| EUR  | No              | 2         | `1000.00`          |
+| GBP  | No              | 2         | `1000.00`          |
+|      |                 |           |                    |
+
+
+
+
 
 <!-- ## 获取用户提现限额
 
 
 ```shell
-curl "http://partner.cabital.com/api/v1/limit" \
+curl "https://partner.cabital.com/api/v1/limit" \
   -H "Authorization: Bearer"
 ```
 
@@ -118,28 +155,30 @@ curl "/api/v1/accounts/{account_id}/balances"
 > Response Sample:
 
 ```json
-[
-  {
-    "code": "BTC",
-    "balances": "0.12345678"
-  },
-  {
-    "code": "ETH",
-    "balances": "1.000000000"
-  },
-  {
-    "code": "USDT",
-    "balances": "1200.000000"
-  },
-  {
-    "code": "EUR",
-    "balances": "0.00"
-  },
-  {
-    "code": "GBP",
-    "balances": "0.00"
-  }
-]
+{
+    "balances": [
+        {
+            "code": "BTC",
+            "balances": "1.00000000"
+        },
+        {
+            "code": "ETH",
+            "balances": "1.00000000"
+        },
+        {
+            "code": "EUR",
+            "balances": "1000.00"
+        },
+        {
+            "code": "GBP",
+            "balances": "1000.00"
+        },
+        {
+            "code": "USDT",
+            "balances": "1010.000000"
+        }
+    ]
+}
 ```
 
 ### HTTP Request
@@ -238,7 +277,7 @@ Or
 Parameter | Default | Description
 --------- | ------- | -----------
 account_id | true | Cabital Connect Account Id
-symbol | true | Currency symbol
+symbol | true | Currency symbol, follow the supporting Fiat currency from partner setting 
 method | false | The deposit method currency is not required. If missing, the default method will be used. Please use the method defined in[Configuration API](/?shell#79fee25901)
 
 ## Currency Conversion 
@@ -297,11 +336,11 @@ account_id | true | Cabital Connect Account Id
 Field | Type | Description
 --------- | ------- | -----------
 quote_id | string | The unique identifier of the quote
-quote | string(number) | Qsuote
+quote | string(number) | Quote 
 pair | string | The currency pair that is to be quoted. The left side repesents what is being bought. The right side represents what is being sold. 
 buy_amount | string(number) | Buy amount
 sell_amount | string(number) | Sell amount
-major_ccy | string | Major currency, used to determine the conversion quota
+major_ccy | string | Major currency, used to determine the conversion limits 
 
 <aside class="warning">
 <b>Attention：</b>
@@ -324,7 +363,7 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
 ```json
 {
   "pagination_response": {
-    "cursor": 0
+    "cursor": "-1"
   },
   "transfers":[
     {
@@ -360,7 +399,7 @@ Parameter | Required | Default | Description
 account_id | true | -- | Cabital Connect Account Id
 direction | false | 2 Ways | Filter by direction `CREDIT` / `DEBIT`
 symbol | false | all currencies | Filter for currencies
-cursor | false | 0 | Result set cursor
+cursor | false | "-1" | Result set cursor
 page_size | false | 10 | Page size（1-30）
 has_conversion | false | both | Bool type (filter whether there are related conversion orders)
 created_from | false | 0 | Create order start time (Unix Time Epoch in seconds)
@@ -371,17 +410,28 @@ created_to | false | NOW | Create order end time (Unix Time Epoch in seconds)
 Field | Type | Description
 --------- | ------- | -----------
 transfer_id | string(uuid) | Transfer order id
-amount | string(number) | Amount
+instructed_amount | string(number) | Instructed Amount 
+customer_fee | string(number) | Fee charged to customer 
+actual_amount | string(number) | Customer actually received 
 symbol | string | Currency symbol
 direction | string(enum) | The direction of the transfer to Cabital. `CREDIT` for top up into the Cabital Account. `DEBIT` for withdraw out of the Cabital Account.
 conversion_id | string(uuid) | The conversion order ID in C+T related transactions, optional
-external_id | string(50) | The third-party ID of the partner
-status | string(enum) | The result of the transfer (SUCCESS / FAILED)
+external_id | string(50) | The third-party ID of the partner, optional, but have to be unique to individual transfer. 
+status | string(enum) | The result of the transfer (`SUCCESS` / `FAILED` / `PROCESSING`) 
+created_at | timestamp(number) | Created timestamp 
+
+<aside class="warning">
+<b>Notes：</b>
+<ul>
+  <li><i>SUCCESS</i> & <i>FAILED</i> are final status，<i>PROCESSING</i> is transit status.</li>
+  <li>Transfer won't stale in <i>PROCESSING</i> for quite some time, please reach out to Cabital to investigate the transfer with the transfer id and external id.</li>
+</ul>
+</aside>
 
 
 ## Account Transfer Details
 
-Transfer Details
+Fetch the transfer details by transaction id.
 
 ```shell
 curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/4c416854-8970-4838-99ad-febc437ac81d"
@@ -392,7 +442,9 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/4c416854-8
 ```json
 {
   "transfer_id": "4c416854-8970-4838-99ad-febc437ac81d",
-  "amount": "1000.365",
+  "instructed_amount": "1002.865",
+  "customer_fee": "2.5",
+  "actual_amount": "1000.365",
   "symbol": "USDT",
   "direction": "DEBIT",
   "conversion_id": "d81adf6d-0322-41d7-8c32-669203e35f11",
@@ -418,12 +470,15 @@ trasfer_id | true | Transfer order id
 Field | Type | Description
 --------- | ------- | -----------
 transfer_id | string(uuid) | Transfer order id
-amount | string(number) | Amount
+instructed_amount | string(number) | Instructed Amount 
+customer_fee | string(number) | Fee charged to customer 
+actual_amount | string(number) | Customer actually received 
 symbol | string | Currency symbol
-direction | string(enum) | The direction of the transfer to Cabital. CREDIT for top up into the Cabital Account. DEBIT for withdraw out of the Cabital Account.
-conversion_id | string(uuid) | The conversion order ID in Convert+Transfer related transactions (optional)
-external_id | string(50) | The third-party ID of the partner, not required
-status | string(enum) | The result of the transfer, SUCCESS / FAILED
+direction | string(enum) | The direction of the transfer to Cabital. `CREDIT` for top up into the Cabital Account. `DEBIT` for withdraw out of the Cabital Account.
+conversion_id | string(uuid) | The conversion order ID in C+T related transactions, optional
+external_id | string(50) | The third-party ID of the partner, optional, but have to be unique to individual transfer. 
+status | string(enum) | The result of the transfer (`SUCCESS` / `FAILED` / `PROCESSING`) 
+created_at | timestamp(number) | Created timestamp 
 
 ## Two-way Account Transfer
 
@@ -432,7 +487,7 @@ Transfer between Cabital and the partner’s account under the same name.
 ```shell
 curl -X POST "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
 -d '{
-    "amount": "1000.365",
+    "amount": "1002.865",
     "symbol": "USDT",
     "direction": "debit",
     "conversion_id": "d81adf6d-0322-41d7-8c32-669203e35f11",
@@ -444,7 +499,7 @@ curl -X POST "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
 
 ```json
 {
-    "amount": "1000.365",
+    "amount": "1002.865",
     "symbol": "USDT",
     "direction": "debit",
     "conversion_id": "d81adf6d-0322-41d7-8c32-669203e35f11",
@@ -457,7 +512,12 @@ curl -X POST "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
 ```json
 {
   "transfer_id": "4c416854-8970-4838-99ad-febc437ac81d",
-  "status": "SUCCESS"
+  "status": "SUCCESS",
+  "instructed_amount": "0.010001",
+  "customer_fee": "0.01",
+  "actual_amount": "0.000001",
+  "external_id": "bbda2651-0ae3-447f-acaf-c23b5449bfb5",
+  "instruction_id": "3a344f80-f057-4841-b186-7a1daa0b8390"
 }
 ```
 
@@ -478,7 +538,7 @@ Field | Type | Description
 --------- | ------- | -----------
 amount | string(number) | Amount
 symbol | string | Currency symbol
-otp | string | OTP Number (6 digits from Google Authenticator)
+otp | string | OTP Number (6 digits from Google Authenticator / Authy) 
 direction | string(enum) | The direction of the transfer to Cabital. `CREDIT` for top up into the Cabital Account. `DEBIT` for withdraw out of the Cabital Account.
 conversion_id | string(uuid) | The conversion order ID in C+T related transactions, optional
 external_id | string(50) | The third-party ID of the partner, must be unique for one partner
@@ -489,6 +549,13 @@ external_id | string(50) | The third-party ID of the partner, must be unique for
 
 Field | Type | Description
 --------- | ------- | -----------
-transfer_id | string(uuid) | Transfer id
-external_id | string(50) |  The third-party ID of the partner, must be unique for one partner
-status | string(enum) | The result of the transfer (SUCCESS / FAILED)
+transfer_id | string(uuid) | Transfer order id
+instructed_amount | string(number) | Instructed Amount 
+customer_fee | string(number) | Fee charged to customer 
+actual_amount | string(number) | Customer actually received 
+symbol | string | Currency symbol
+direction | string(enum) | The direction of the transfer to Cabital. `CREDIT` for top up into the Cabital Account. `DEBIT` for withdraw out of the Cabital Account.
+conversion_id | string(uuid) | The conversion order ID in C+T related transactions, optional
+external_id | string(50) | The third-party ID of the partner, optional, but have to be unique to individual transfer. 
+status | string(enum) | The result of the transfer (`SUCCESS` / `FAILED` / `PROCESSING`) 
+created_at | timestamp(number) | Created timestamp 

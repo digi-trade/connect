@@ -8,7 +8,7 @@
 
 
 ```shell
-curl "https://partner.cabital.com/api/v1/light/config"
+curl "https://api.cabital.com/api/v1/light/config"
 ```
 
 ### HTTP 请求
@@ -204,6 +204,68 @@ curl "https://partner.cabital.com/api/v1/light/config"
 - currencies : 所有Connect使用到的货币配置
 - pairs: Convert使用的货币对，可用于报价的获取
 
+### 货币配置定义
+
+* 每个货币的基础配置
+
+| 字段             | 类型         | 描述                   |
+| ---------------- | ------------ | ---------------------- |
+| symbol           | string(ENUM) | 货币标志               |
+| type             | int(ENUM)    | 货币类型，详见下面解释 |
+| deposit_methods  | list         | 当前入金方式           |
+| withdraw_methods | list         | 当前出金方式           |
+| config           | list(object) | 该币种的限制和配置     |
+| Fees             | list(object) | 费用配置               |
+
+Config 对象定义
+
+* Withdrew 对象定义
+
+| 字段 | 类型           | 描述                         |
+| :--- | -------------- | ---------------------------- |
+| min  | string(number) | 交易最小每笔，`-1`表示不限制 |
+| max  | string(number) | 交易最大每笔，`-1`表示不限制 |
+
+* Deposit 对象定义
+
+| 字段 | 类型           | 描述                         |
+| :--- | -------------- | ---------------------------- |
+| min  | string(number) | 交易最小每笔，`-1`表示不限制 |
+| max  | string(number) | 交易最大每笔，`-1`表示不限制 |
+
+* conversion对象定义
+
+| 字段 | 类型           | 描述             |
+| :--- | -------------- | ---------------- |
+| min  | string(number) | 转换货币最小每笔 |
+| max  | string(number) | 转换货币最大每笔 |
+
+
+
+Fees 内对象定义
+
+* debit_fee 对象定义
+
+| 字段      | 类型   | 描述                           |
+| :-------- | ------ | ------------------------------ |
+| object    | sting  | 收费对象，Customer or Partner  |
+| is_single | bool   | 收费类型Single or Tier         |
+| method    | string | 收费方式：Fixed or Percent     |
+| value     | string | 收费金额，百分比写具体比率数值 |
+| min_value | string | 最小收费限额                   |
+| max_value | string | 最大收费限额                   |
+
+
+
+### Enum解释
+
+- 货币类型 type
+
+| Bit位 | 描述     |
+| ----- | -------- |
+| 1     | 法币     |
+| 2     | 数字货币 |
+
 
 
 ## Cabital Connect 标准跳转入口
@@ -222,10 +284,10 @@ curl "https://api.cabital.com/api/v1/partner/redirect"
 
 | 参数         | 是否必须 | 描述                                                         |
 | ------------ | -------- | ------------------------------------------------------------ |
-| partner_id   | true     | Cabital赋予Partner唯一的标识名称，通常为Partner的品牌        |
-| user_ext_ref | true     | Partner在开始集成的的时候唯一的user_ext_ref，在Partner侧具有唯一性，有助于埋点 |
+| partner_id   | false    | Cabital赋予Partner唯一的标识名称，通常为Partner的品牌        |
+| user_ext_ref | false    | Partner在开始集成的的时候唯一的user_ext_ref，在Partner侧具有唯一性，有助于埋点 |
 | feature      | false    | deeplink跳转，非必需，可以直接跳到2FA，KYC，或者转账等页面   |
-| redirect_url | true     | Cabital在Link成功后浏览器redirect，需要encoding              |
+| redirect_url | false    | Cabital在注册成功后浏览器redirect返回路径，需要encoding      |
 
 
 #### 转换：feature=cfx
@@ -254,8 +316,13 @@ curl "https://api.cabital.com/api/v1/partner/redirect"
 | major_amount | true     | 币种数额     |
 | method       | false    | 支付方式，比如SEPA，FPS，ERC20 |
 
+#### KYC: feature=kyc
 
+N/A
 
+#### 2FA: feature=2FA
+
+N/A
 
 > 获得以下Response
 

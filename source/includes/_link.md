@@ -77,13 +77,13 @@ curl "https://api.cabital.com/api/v1/partner/link"
 
 ### HTTP 请求
 
-`GET /api/v1/partner/link?partner_key=<partner_key>&external_id=<external_id>&feature=xxx`
+`GET /api/v1/partner/link?partner_key=<partner_key>&user_ext_ref=<external_id>&feature=xxx`
 
 ### URL参数
 
 | 参数         | 是否必须 | 描述                                                         |
 | ------------ | -------- | ------------------------------------------------------------ |
-| partner_key  | true     | Cabital Issue给Partner唯一的标识Key                          |
+| partner_key  | true     | Cabital Issue给Partner唯一的标识API Key                      |
 | user_ext_ref | true     | Partner在开始Link的时候唯一的user_ext_ref，在Partner侧具有唯一性 |
 | feature      | false    | deeplink跳转，非必需，可以直接跳到2FA，KYC，或者Link确认页面 |
 | redirect_url | true     | Cabital在Link成功后浏览器redirect，需要encoding              |
@@ -102,7 +102,7 @@ Url : 我方提供的页面
 
 
 ```shell
-curl "http://partner.cabital.com/api/v1/links/cdaa9983-9b8f-4478-ba60-896ac239879d"
+curl "http://partner.cabital.com/api/v1/link/links/cdaa9983-9b8f-4478-ba60-896ac239879d"
 ```
 
 ### HTTP 请求
@@ -120,9 +120,10 @@ curl "http://partner.cabital.com/api/v1/links/cdaa9983-9b8f-4478-ba60-896ac23987
 ```json
 {
   "account_uuid": "6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c",
-  "link_status" : "LINKED",
-  "otp_ready" : true,
-  "email_address" : "john.doe@email.com",
+  "link_status": "LINKED",
+  "otp_ready": true,
+  "kyc_status": "KYC_PASS",
+  "email_address": "john.doe@email.com",
   "valid_until": 1648836455
 }
 ```
@@ -176,3 +177,4 @@ curl -X PUT "http://api.partner.com/link"
 ### 重试规则
 
 由于无法保证Partner的API可用性，所以在特殊情况下，Callback会按照标准Webhook的的重试机制总共尝试5次，直到第一次成功（2xx）或者全部失败，其频率参考Webhook的规则。
+

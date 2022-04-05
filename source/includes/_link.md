@@ -83,10 +83,11 @@ curl "https://api.cabital.com/api/v1/partner/link"
 
 | 参数         | 是否必须 | 描述                                                         |
 | ------------ | -------- | ------------------------------------------------------------ |
-| partner_key  | true     | Cabital Issue给Partner唯一的标识API Key                      |
+| partner_key  | true     | Cabital Issue给Partner唯一的标识Partner Key                  |
 | user_ext_ref | true     | Partner在开始Link的时候唯一的user_ext_ref，在Partner侧具有唯一性 |
 | feature      | false    | deeplink跳转，非必需，可以直接跳到2FA，KYC，或者Link确认页面 |
 | redirect_url | true     | Cabital在Link成功后浏览器redirect，需要encoding              |
+| siganture    | true     | 根据API Authentication的计算                                 |
 
 > 获得以下Response
 

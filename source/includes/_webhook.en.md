@@ -17,6 +17,7 @@ TEMPORARY_REJECTED | The user has submitted KYC in Cabital & Cabital has request
 FINAL_REJECTED | The user has submitted KYC in Cabital & Cabital has rejected the user
 CREATED | The user has passed Cabital's KYC. The Cabital account has been opened & is waiting for the partner to submit the same name verification.
 MATCHED | The user has passed Cabital's KYC and same name verification has passed successfully. The same account transfer is now fully available.
+LINKED | For Account Link Only 
 MISMATCHED | The user has passed Cabital's KYC but the same name verification was rejected. This could happen for multiple reasons.
 UNLINKED | The user / Cabital actively closes the connection with an account of the partner
 

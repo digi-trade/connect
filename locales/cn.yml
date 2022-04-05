@@ -1,0 +1,9 @@
+---
+cn:
+  hello: "Hello"
+  title: "测试主题"
+  index_title: 简介
+  cn:
+    title: "测试主题"
+    index_title: 简介
+    index_breif: 欢迎使用Cabital Connect API，Connect API 使合作伙伴与 Cabital 钱包能实现无缝划转的查询，给予用户更多的支付与收款能力。

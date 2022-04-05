@@ -26,7 +26,7 @@ curl "https://api.cabital.com/api/v1/light/config"
             "symbol": "ETH",
             "type": 2,
             "deposit_methods": [
-                "ERC20"
+                "erc20"
             ],
             "withdraw_methods": [
                 "ERC20"

@@ -18,184 +18,189 @@ curl "https://api.cabital.com/api/v1/light/config"
 
 > 获得以下JSON结构体:
 
-
 ```json
 {
-    "currencies": [
-        {
-            "symbol": "ETH",
-            "type": 2,
-            "deposit_methods": [
-                "erc20"
-            ],
-            "withdraw_methods": [
-                "ERC20"
-            ],
-            "config": {
-                "deposit": {
-                    "min": "-1",
-                    "max": "-1"
-                },
-                "withdrew": {
-                    "min": "0.02",
-                    "max": "-1"
-                },
-                "conversion": {
-                    "min": "0.002",
-                    "max": "100"
-                }
-            },
-            "fees": {
-                "withdrew_fee": {
-                    "is_single": true,
-                    "object": "customer",
-                    "method": "fixed",
-                    "value": "0.00025"
-                }
-            }
+  "currencies": [
+    {
+      "symbol": "ETH",
+      "type": 2,
+      "deposit": {
+        "methods": [
+          "ERC20"
+        ]
+      },
+      "withdraw": {
+        "methods": [
+          "ERC20"
+        ],
+        "limit": {
+          "min": "0.02",
+          "max": "-1"
         },
-        {
-            "symbol": "BTC",
-            "type": 2,
-            "deposit_methods": [
-                "BTC"
-            ],
-            "withdraw_methods": [
-                "BTC"
-            ],
-            "config": {
-                "deposit": {
-                    "min": "-1",
-                    "max": "-1"
-                },
-                "withdrew": {
-                    "min": "0.001",
-                    "max": "-1"
-                },
-                "conversion": {
-                    "min": "0.0002",
-                    "max": "5"
-                }
-            },
-            "fees": {
-                "withdrew_fee": {
-                    "is_single": true,
-                    "object": "customer",
-                    "method": "fixed",
-                    "value": "0.00002"
-                }
-            }
-        },
-        {
-            "symbol": "USDT",
-            "type": 2,
-            "deposit_methods": [
-                "ERC20"
-            ],
-            "withdraw_methods": [
-                "ERC20"
-            ],
-            "config": {
-                "deposit": {
-                    "min": "-1",
-                    "max": "-1"
-                },
-                "withdrew": {
-                    "min": "40",
-                    "max": "-1"
-                },
-                "conversion": {
-                    "min": "10",
-                    "max": "200000"
-                }
-            },
-            "fees": {
-                "withdrew_fee": {
-                    "is_single": true,
-                    "object": "customer",
-                    "method": "fixed",
-                    "value": "0.99"
-                }
-            }
-        },
-        {
-            "symbol": "EUR",
-            "type": 1,
-            "deposit_methods": [
-                "SEPA"
-            ],
-            "withdraw_methods": [
-                "SEPA"
-            ],
-            "config": {
-                "deposit": {
-                    "min": "-1",
-                    "max": "-1"
-                },
-                "withdrew": {
-                    "min": "25",
-                    "max": "50000"
-                },
-                "conversion": {
-                    "min": "10",
-                    "max": "200000"
-                }
-            }
-        },
-        {
-            "symbol": "GBP",
-            "type": 1,
-            "deposit_methods": [
-                "FPS"
-            ],
-            "withdraw_methods": [
-                "FPS"
-            ],
-            "config": {
-                "deposit": {
-                    "min": "-1",
-                    "max": "-1"
-                },
-                "debit": {
-                    "min": "20",
-                    "max": "40000"
-                },
-                "conversion": {
-                    "min": "10",
-                    "max": "200000"
-                }
-            }
+        "fee": {
+          "is_single": true,
+          "object": "customer",
+          "method": "fixed",
+          "value": "0.004"
         }
-    ],
-    "pairs": [
-        {
-            "pair": "BTC-EUR"
-        },
-        {
-            "pair": "ETH-EUR"
-        },
-        {
-            "pair": "EUR-USDT"
-        },
-        {
-            "pair": "BTC-GBP"
-        },
-        {
-            "pair": "ETH-GBP"
-        },
-        {
-            "pair": "GBP-USDT"
-        },
-        {
-            "pair": "BTC-ETH"
-        },
-        {
-            "pair": "BTC-USDT"
-        },
-        {
-            "pair": "ETH-USDT"
+      },
+      "conversion": {
+        "limit": {
+          "min": "0.02",
+          "max": "100"
         }
-    ]
+      }
+    },
+    {
+      "symbol": "BTC",
+      "type": 2,
+      "deposit": {
+        "methods": [
+          "BTC"
+        ]
+      },
+      "withdraw": {
+        "methods": [
+          "BTC"
+        ],
+        "limit": {
+          "min": "0.001",
+          "max": "-1"
+        },
+        "fee": {
+          "is_single": true,
+          "object": "Customer",
+          "method": "Fixed",
+          "value": "0.0006"
+        }
+      },
+      "conversion": {
+        "limit": {
+          "min": "0.0002",
+          "max": "5"
+        }
+      }
+    },
+    {
+      "symbol": "USDT",
+      "type": 2,
+      "deposit": {
+        "methods": [
+          "ERC20"
+        ]
+      },
+      "withdraw": {
+        "methods": [
+          "ERC20"
+        ],
+        "limit": {
+          "min": "40",
+          "max": "-1"
+        },
+        "fee": {
+          "is_single": true,
+          "object": "Customer",
+          "method": "Fixed",
+          "value": "12"
+        }
+      },
+      "conversion": {
+        "limit": {
+          "min": "10",
+          "max": "200000"
+        }
+      }
+    },
+    {
+      "symbol": "EUR",
+      "type": 1,
+      "deposit": {
+        "methods": [
+          "SEPA"
+        ]
+      },
+      "withdraw": {
+        "methods": [
+          "SEPA"
+        ],
+        "limit": {
+          "min": "25",
+          "max": "50000"
+        },
+        "fee": {
+          "is_single": true,
+          "object": "Customer",
+          "method": "Fixed",
+          "value": "2.5"
+        }
+      },
+      "conversion": {
+        "limit": {
+          "min": "10",
+          "max": "200000"
+        }
+      }
+    },
+    {
+      "symbol": "GBP",
+      "type": 1,
+      "deposit": {
+        "methods": [
+          "FPS"
+        ]
+      },
+      "withdraw": {
+        "methods": [
+          "FPS"
+        ],
+        "limit": {
+          "min": "20",
+          "max": "40000"
+        },
+        "fee": {
+          "is_single": true,
+          "object": "Customer",
+          "method": "Fixed",
+          "value": "2.5"
+        }
+      },
+      "conversion": {
+        "limit": {
+          "min": "10",
+          "max": "200000"
+        }
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "pair": "BTC-EUR"
+    },
+    {
+      "pair": "ETH-EUR"
+    },
+    {
+      "pair": "EUR-USDT"
+    },
+    {
+      "pair": "BTC-GBP"
+    },
+    {
+      "pair": "ETH-GBP"
+    },
+    {
+      "pair": "GBP-USDT"
+    },
+    {
+      "pair": "BTC-ETH"
+    },
+    {
+      "pair": "BTC-USDT"
+    },
+    {
+      "pair": "ETH-USDT"
+    }
+  ]
 }
 ```
 
@@ -212,39 +217,44 @@ curl "https://api.cabital.com/api/v1/light/config"
 | ---------------- | ------------ | ---------------------- |
 | symbol           | string(ENUM) | 货币标志               |
 | type             | int(ENUM)    | 货币类型，详见下面解释 |
-| deposit_methods  | list         | 当前入金方式           |
-| withdraw_methods | list         | 当前出金方式           |
-| config           | list(object) | 该币种的限制和配置     |
-| Fees             | list(object) | 费用配置               |
+| deposit         | object         | 当前入金配置           |
+| withdraw        | object         | 当前出金配置            |
+| conversion       | object        | 当前换汇配置           |
 
 Config 对象定义
 
-* Withdrew 对象定义
+* withdraw 对象定义
 
 | 字段 | 类型           | 描述                         |
 | :--- | -------------- | ---------------------------- |
-| min  | string(number) | 交易最小每笔，`-1`表示不限制 |
-| max  | string(number) | 交易最大每笔，`-1`表示不限制 |
+| methods  | list(string) | 当前出金方式 |
+| limit  | object(limit) | 交易金额限制 |
+| fee  | object(fee) | 费用金额限制 |
 
-* Deposit 对象定义
+* deposit 对象定义
 
 | 字段 | 类型           | 描述                         |
 | :--- | -------------- | ---------------------------- |
-| min  | string(number) | 交易最小每笔，`-1`表示不限制 |
-| max  | string(number) | 交易最大每笔，`-1`表示不限制 |
+| methods  | list(string) | 当前入金方式 |
+| limit  | object(limit) | 交易金额限制 |
+| fee  | object(fee) | 费用金额限制 |
 
-* conversion对象定义
+* conversion 对象定义
+
+| 字段 | 类型           | 描述                         |
+| :--- | -------------- | ---------------------------- |
+| limit  | object(limit) | 换汇交易限制 |
+
+* limit对象定义
 
 | 字段 | 类型           | 描述             |
 | :--- | -------------- | ---------------- |
-| min  | string(number) | 转换货币最小每笔 |
-| max  | string(number) | 转换货币最大每笔 |
+| min  | string(number) | 最小每笔，`-1`表示不限制 |
+| max  | string(number) | 最大每笔，`-1`表示不限制 |
 
+fee 内对象定义
 
-
-Fees 内对象定义
-
-* debit_fee 对象定义
+* fee 对象定义
 
 | 字段      | 类型   | 描述                           |
 | :-------- | ------ | ------------------------------ |
@@ -252,8 +262,6 @@ Fees 内对象定义
 | is_single | bool   | 收费类型Single or Tier         |
 | method    | string | 收费方式：Fixed or Percent     |
 | value     | string | 收费金额，百分比写具体比率数值 |
-| min_value | string | 最小收费限额                   |
-| max_value | string | 最大收费限额                   |
 
 
 
@@ -297,6 +305,7 @@ curl "https://api.cabital.com/api/v1/partner/redirect"
 | quote        | true     | 使用的报价对 |
 | major_ccy    | true     | 主要币种     |
 | major_amount | true     | 该币种数额   |
+| type         | true     | 交易方向，buy or sell  |
 
 
 #### 转出：feature=payout

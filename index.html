@@ -364,10 +364,13 @@
             <a href="#ad3578479e" class="toc-h1 toc-link" data-title="轻量化集成">轻量化集成</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#79fee25901" class="toc-h2 toc-link" data-title="获取合作方的配置">获取合作方的配置</a>
+                    <a href="#light" class="toc-h2 toc-link" data-title="获取Light配置">获取Light配置</a>
                   </li>
                   <li>
-                    <a href="#cabital-connect" class="toc-h2 toc-link" data-title="Cabital Connect 标准跳转入口">Cabital Connect 标准跳转入口</a>
+                    <a href="#connect-light" class="toc-h2 toc-link" data-title="Connect Light 跳转入口">Connect Light 跳转入口</a>
+                  </li>
+                  <li>
+                    <a href="#get" class="toc-h2 toc-link" data-title="获取最新的报价 (GET)">获取最新的报价 (GET)</a>
                   </li>
               </ul>
           </li>
@@ -1654,8 +1657,12 @@ result 字段类型为string(ENUM)，允许的值 <code>MISMATCH</code>,<code>PA
 <li>400 用户状态必须为 CREATED 或者 MISMATCHED</li>
 </ul>
 <h1 id='ad3578479e'>轻量化集成</h1>
-<p>部分合作方，希望以最快的方法集成Cabital Connect，在一开始可以采用轻量化的方式进行集成。</p>
-<h2 id='79fee25901'>获取合作方的配置</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.cabital.com/api/v1/light/config"</span>
+<p>部分合作方希望以最快的方法集成Cabital Connect，在一开始可以采用轻量化的方式进行集成。</p>
+
+<p>所有的API都归属在<code>api.cabital.com</code>下，并无特殊验证，可自行进行集成。</p>
+<h2 id='light'>获取Light配置</h2>
+<p>由于轻量级集成，所有的交互由Cabital提供，所有的配置和设定均和Cabital系统设置一致。</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.cabital.com/api/v1/light/config"</span>
 </code></pre></div><h3 id='http'>HTTP 请求</h3>
 <p><code>GET /api/v1/light/config</code></p>
 
@@ -2042,9 +2049,11 @@ result 字段类型为string(ENUM)，允许的值 <code>MISMATCH</code>,<code>PA
 <td>数字货币</td>
 </tr>
 </tbody></table>
-<h2 id='cabital-connect'>Cabital Connect 标准跳转入口</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.cabital.com/api/v1/partner/redirect"</span>
+<h2 id='connect-light'>Connect Light 跳转入口</h2>
+<p>合作方可以通过浏览器或者嵌入式浏览器访问跳转接口，并提供特殊参数以获得专属的落地页支持，并通过传入部分可选参数，以得到登陆后的跳转支持</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.cabital.com/api/v1/light/partner/redirect"</span>
 </code></pre></div><h3 id='http-2'>HTTP 请求</h3>
-<p><code>GET /api/v1/partner/redirect?partner_id=&lt;partner_name&gt;&amp;user_ext_ref=&lt;user_ext_ref&gt;&amp;feature=xxx</code></p>
+<p><code>GET /api/v1/light/partner/redirect?partner_id=&lt;partner_name&gt;&amp;user_ext_ref=&lt;user_ext_ref&gt;&amp;feature=xxx</code></p>
 <h3 id='url'>URL参数</h3>
 <table><thead>
 <tr>
@@ -2055,7 +2064,7 @@ result 字段类型为string(ENUM)，允许的值 <code>MISMATCH</code>,<code>PA
 </thead><tbody>
 <tr>
 <td>partner_id</td>
-<td>false</td>
+<td>true</td>
 <td>Cabital赋予Partner唯一的标识名称，通常为Partner的品牌</td>
 </tr>
 <tr>
@@ -2066,12 +2075,7 @@ result 字段类型为string(ENUM)，允许的值 <code>MISMATCH</code>,<code>PA
 <tr>
 <td>feature</td>
 <td>false</td>
-<td>deeplink跳转，非必需，可以直接跳到2FA，KYC，或者转账等页面</td>
-</tr>
-<tr>
-<td>redirect_url</td>
-<td>false</td>
-<td>Cabital在注册成功后浏览器redirect返回路径，需要encoding</td>
+<td>deeplink跳转，非必需，可以直接跳到换汇页面，默认为账户列表页</td>
 </tr>
 </tbody></table>
 <h4 id='feature-cfx'>转换：feature=cfx</h4>
@@ -2084,17 +2088,17 @@ result 字段类型为string(ENUM)，允许的值 <code>MISMATCH</code>,<code>PA
 </thead><tbody>
 <tr>
 <td>quote</td>
-<td>true</td>
+<td>false</td>
 <td>使用的报价对</td>
 </tr>
 <tr>
 <td>major_ccy</td>
-<td>true</td>
+<td>false</td>
 <td>主要币种</td>
 </tr>
 <tr>
 <td>major_amount</td>
-<td>true</td>
+<td>false</td>
 <td>该币种数额</td>
 </tr>
 <tr>
@@ -2103,70 +2107,107 @@ result 字段类型为string(ENUM)，允许的值 <code>MISMATCH</code>,<code>PA
 <td>交易方向，buy or sell</td>
 </tr>
 </tbody></table>
-<h4 id='feature-payout'>转出：feature=payout</h4>
-<table><thead>
-<tr>
-<th>参数</th>
-<th>是否必须</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>major_ccy</td>
-<td>true</td>
-<td>主要转出币种</td>
-</tr>
-<tr>
-<td>major_amount</td>
-<td>true</td>
-<td>币种数额</td>
-</tr>
-<tr>
-<td>method</td>
-<td>false</td>
-<td>支付方式</td>
-</tr>
-<tr>
-<td>wallet</td>
-<td>false</td>
-<td>当数字货币时，尽量提供，格式为    chain:address:memo 其中memo为可选</td>
-</tr>
-</tbody></table>
-<h4 id='feature-payin'>转入：feature=payin</h4>
-<table><thead>
-<tr>
-<th>参数</th>
-<th>是否必须</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>major_ccy</td>
-<td>true</td>
-<td>主要转出币种</td>
-</tr>
-<tr>
-<td>major_amount</td>
-<td>true</td>
-<td>币种数额</td>
-</tr>
-<tr>
-<td>method</td>
-<td>false</td>
-<td>支付方式，比如SEPA，FPS，ERC20</td>
-</tr>
-</tbody></table>
-<h4 id='kyc-feature-kyc'>KYC: feature=kyc</h4>
-<p>N/A</p>
-<h4 id='2fa-feature-2fa'>2FA: feature=2FA</h4>
-<p>N/A</p>
+
+<!--
+#### 转出：feature=payout
+
+| 参数         | 是否必须 | 描述                                                         |
+| ------------ | -------- | ------------------------------------------------------------ |
+| major_ccy    | true     | 主要转出币种                                                 |
+| major_amount | true     | 币种数额                                                     |
+| method       | false    | 支付方式                                                     |
+| wallet       | false    | 当数字货币时，尽量提供，格式为    chain:address:memo 其中memo为可选 |
+
+#### 转入：feature=payin
+
+| 参数         | 是否必须 | 描述         |
+| ------------ | -------- | ------------------------------------------------------------ |
+| major_ccy    | true     | 主要转出币种 |
+| major_amount | true     | 币种数额     |
+| method       | false    | 支付方式，比如SEPA，FPS，ERC20 |
+
+#### KYC: feature=kyc
+
+N/A
+
+#### 2FA: feature=2FA
+
+N/A
+
+-->
 
 <blockquote>
 <p>获得以下Response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="err">Resposne</span><span class="w"> </span><span class="err">Code</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">303</span><span class="w">
 </span><span class="err">Url</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="err">我方提供的页面</span><span class="w">
-</span></code></pre></div><h1 id='527200ee4e'>账户操作相关</h1>
+</span></code></pre></div><h2 id='get'>获取最新的报价 (GET)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://api.cabital.com/api/v1/light/quotes/USDT-EUR"</span>
+</code></pre></div><h3 id='http-3'>HTTP 请求</h3>
+<p><code>GET /api/v1/light/quotes/&lt;code_pair&gt;</code></p>
+<h3 id='url-2'>URL参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code_pair</td>
+<td>true</td>
+<td>报价的CODE Pair，以<code>-</code>作为分割符，Cabital 系统会忽视传入的次序，并以自身规则进行排序，所以一个货币对，不论传入的次序和买卖关系，始终返回一种报价，比如USDT-EUR。</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>获得以下JSON结构体:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"quote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3847.322377"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"valid_until"</span><span class="p">:</span><span class="w"> </span><span class="mi">1638934081</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"quote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20211208032751:ETH-EUR:Customer"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"valid_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"reversed_quote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00026253"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='3a66ff84d2'>字段定义</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>valid_until</td>
+<td>number(timestamp)</td>
+<td>以秒为单位从Unix Epoch到当前的数字，用来表示该报价的有效时间</td>
+</tr>
+<tr>
+<td>quote_id</td>
+<td>string</td>
+<td>报价的唯一ID，格式为 事件戳:报价货币对:报价目的</td>
+</tr>
+<tr>
+<td>quote</td>
+<td>string</td>
+<td>对Code-Pair为<code>CODE1-CODE2,</code>卖 CODE1 换取 CODE2 的报价</td>
+</tr>
+<tr>
+<td>valid_interval</td>
+<td>number</td>
+<td>报价有效时间宽度，以秒记</td>
+</tr>
+<tr>
+<td>reversed_quote</td>
+<td>string(number)</td>
+<td>对Code-Pair为<code>CODE1-CODE2,</code>卖 CODE2 换取 CODE1 的报价</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+法币的符号以 <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO-4217</a> 为标准，数字货币依照 <a href="https://coinmarketcap.com/all/views/all/">CoinMarketCap</a> 列表
+</aside>
+<h1 id='527200ee4e'>账户操作相关</h1>
 <p>账户操作业务错误列表</p>
 
 <table><thead>

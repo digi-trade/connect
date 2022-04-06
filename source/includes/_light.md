@@ -352,7 +352,7 @@ Url : 我方提供的页面
 
 
 
-## 获取最新的报价 (GET)
+## 获取Light的报价 (GET)
 
 ```shell
 curl "http://api.cabital.com/api/v1/light/quotes/USDT-EUR"

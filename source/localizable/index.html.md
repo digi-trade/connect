@@ -17,7 +17,6 @@ includes:
   - authentication
   - partner
   - connect
-  - link
   - light
   - account
   - webhook

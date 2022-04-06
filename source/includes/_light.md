@@ -236,7 +236,7 @@ Config 对象定义
 | 字段 | 类型           | 描述                         |
 | :--- | -------------- | ---------------------------- |
 | methods  | list(string) | 当前入金方式 |
-| limit  | object(limit) | 交易金额限制 |
+| limit  | object(limit) | 交易金额限制, 如果没有则不限制 |
 | fee  | object(fee) | 费用金额限制 |
 
 * conversion 对象定义
@@ -279,13 +279,12 @@ fee 内对象定义
 ## Cabital Connect 标准跳转入口
 
 ```shell
-curl "https://api.cabital.com/api/v1/partner/redirect"
+curl "https://api.cabital.com/api/v1/light/partner/redirect"
 ```
 
 ### HTTP 请求
 
-`GET /api/v1/partner/redirect?partner_id=<partner_name>&user_ext_ref=<user_ext_ref>&feature=xxx`
-
+`GET /api/v1/light/partner/redirect?partner_id=<partner_name>&user_ext_ref=<user_ext_ref>&feature=xxx`
 
 
 ### URL参数
@@ -302,7 +301,7 @@ curl "https://api.cabital.com/api/v1/partner/redirect"
 
 | 参数         | 是否必须 | 描述         |
 | ------------ | -------- | ------------ |
-| quote        | true     | 使用的报价对 |
+| pair         | true     | 使用的报价对 |
 | major_ccy    | true     | 主要币种     |
 | major_amount | true     | 该币种数额   |
 | type         | true     | 交易方向，buy or sell  |

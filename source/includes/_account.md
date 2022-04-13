@@ -577,7 +577,8 @@ instruction_id | string(uuid) | 交易请求ID，对账用
 curl -X PUT "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/30643636-3162-6564-3563-373064383332"
 -d '{
     "status": "SUCCESS",
-    "message": "ok"
+    "message": "ok",
+    "handle_time": 1633445162
 }'
 ```
 
@@ -587,7 +588,7 @@ curl -X PUT "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/306
 {
   "status": "SUCCESS",
   "message": "ok",
-  "data" : {}
+  "handle_time": 1633445162
 }
 ```
 
@@ -597,7 +598,7 @@ curl -X PUT "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/306
 
 ### URL参数
 
-Parameter | 必须 |  Description
+字段 | 必须 |  描述
 --------- | ------- |  -----------
 account_id | true | Cabital提供的账户ID
 transfer_id | true | 划转交易ID
@@ -608,7 +609,7 @@ transfer_id | true | 划转交易ID
 --------- | ------- | ------------  | -----------
 status | string(enum) | true | 划转的结果，`SUCCESS` / `FAILED` / `CANCEL`
 message | string(150) | false | status为 `FAILED` 或者 `CANCEL` 的时候，需要给出提示信息
-data | object | false | 额外数据
+handle_time | timestamp(number) | true | 处理时间
 
 ### 返回描述
 

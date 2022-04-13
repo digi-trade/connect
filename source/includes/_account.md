@@ -373,9 +373,10 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
       "direction": "DEBIT",
       "conversion_id": "d81adf6d-0322-41d7-8c32-669203e35f11",
       "external_id": "adb8f31d-7a71-4003-85d7-3ac58158461f",
-      "account_ref_id": "someone@xxx.com",
+      "external_ref_id": "someone@xxx.com",
       "created_at": 1633445162,
-      "status": "SUCCESS"
+      "status": "SUCCESS",
+      "transfer_by": "PARTNER"
     },
     {
       "transfer_id": "4c416854-8971-4838-99ad-febc437ac81d",
@@ -385,9 +386,10 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
       "symbol": "BTC",
       "direction": "CREDIT",
       "external_id": "adb8f31d-7a71-4003-85d7-3ac58158461f",
-      "account_ref_id": "somebody@xxx.com",
+      "external_ref_id": "somebody@xxx.com",
       "created_at": 1633445160,
-      "status": "SUCCESS"
+      "status": "SUCCESS",
+      "transfer_by": "CUSTOMER"
     }
   ]
 }
@@ -422,9 +424,10 @@ symbol | string | 划转交易的货币
 direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必须
-account_ref_id | string(150) | 合作方账户关联ID，非必须
-status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING`
+external_ref_id | string(150) | 合作方关联ID，非必须，通常为 Cabital 端提供，以Email / Phone Number / Chain Address
+status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING` / `CANCEL`
 created_at | timestamp(number) | 划转交易创建时间
+transfer_by | string(enum) | 发起方，其值为`PARTNER` 或 `CUSTOMER`
 
 <aside class="warning">
 <b>注意事项：</b>
@@ -454,9 +457,10 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/4c416854-8
   "direction": "DEBIT",
   "conversion_id": "d81adf6d-0322-41d7-8c32-669203e35f11",
   "external_id": "adb8f31d-7a71-4003-85d7-3ac58158461f",
-  "account_ref_id": "someone@xxx.com",
+  "external_ref_id": "someone@xxx.com",
   "created_at": 1633445162,
-  "status": "SUCCESS"
+  "status": "SUCCESS",
+  "transfer_by": "PARTNER"
 }
 ```
 
@@ -550,7 +554,6 @@ otp | string | OTP的数值，特指Google Authenticator
 direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的唯一订单号，如重复订单将拒绝
-account_ref_id | string(150) | 合作方账户关联ID，非必须
 
 ### 返回对象描述
 
@@ -561,8 +564,55 @@ instructed_amount | string(number) | 请求金额
 customer_fee | string(number) | 收取客户的费用金额
 actual_amount | string(number) | 实际金额
 external_id | string(50) | 合作方的第三方ID，非必需
-status | string(enum) | 划转的结果，`SUCCESS` / `FAILED` / `PROCESSING`
+status | string(enum) | 划转的结果，`SUCCESS` / `FAILED` / `PROCESSING` / `CANCEL`
 instruction_id | string(uuid) | 交易请求ID，对账用
-account_ref_id | string(150) | 合作方账户关联ID
 
 <!-- ### OTP的使用！！！ -->
+
+## 划转结果通知
+
+客户在 Cabital 的客户端上发起的划转，Cabital 会通过Webhook通知合作方，合作方处理完成之后应该将相应处理的结果再告知 Cabital。
+
+```shell
+curl -X PUT "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/30643636-3162-6564-3563-373064383332"
+-d '{
+    "status": "SUCCESS",
+    "message": "ok",
+    "handle_time": 1633445162
+}'
+```
+
+> 提交JSON结构体:
+
+```json
+{
+  "status": "SUCCESS",
+  "message": "ok",
+  "handle_time": 1633445162
+}
+```
+
+### HTTP请求
+
+`PUT /api/v1/accounts/<account_id>/transfers/<transfer_id>`
+
+### URL参数
+
+字段 | 必须 |  描述
+--------- | ------- |  -----------
+account_id | true | Cabital提供的账户ID
+transfer_id | true | 划转交易ID
+
+### 提交对象描述
+
+字段 | 类型 | 必须  | 描述
+--------- | ------- | ------------  | -----------
+status | string(enum) | true | 划转的结果，`SUCCESS` / `FAILED` / `CANCEL`
+message | string(150) | false | status为 `FAILED` 或者 `CANCEL` 的时候，需要给出提示信息
+handle_time | timestamp(number) | true | 处理时间
+
+### 返回描述
+
+<aside class="notice">
+状态码返回200，即表明通知已被接收，不需要重试。
+</aside>

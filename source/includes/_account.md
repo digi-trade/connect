@@ -373,7 +373,9 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
       "direction": "DEBIT",
       "conversion_id": "d81adf6d-0322-41d7-8c32-669203e35f11",
       "external_id": "adb8f31d-7a71-4003-85d7-3ac58158461f",
-      "created_at": 1633445162
+      "account_ref_id": "someone@xxx.com",
+      "created_at": 1633445162,
+      "status": "SUCCESS"
     },
     {
       "transfer_id": "4c416854-8971-4838-99ad-febc437ac81d",
@@ -382,9 +384,10 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
       "actual_amount": "0.365",
       "symbol": "BTC",
       "direction": "CREDIT",
-      "conversion_id": "d81adf6d-0322-41d7-8c32-669203e35f11",
       "external_id": "adb8f31d-7a71-4003-85d7-3ac58158461f",
-      "created_at": 1633445160
+      "account_ref_id": "somebody@xxx.com",
+      "created_at": 1633445160,
+      "status": "SUCCESS"
     }
   ]
 }
@@ -419,6 +422,7 @@ symbol | string | 划转交易的货币
 direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必须
+account_ref_id | string(150) | 合作方账户关联ID，非必须
 status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING`
 created_at | timestamp(number) | 划转交易创建时间
 
@@ -450,6 +454,7 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/4c416854-8
   "direction": "DEBIT",
   "conversion_id": "d81adf6d-0322-41d7-8c32-669203e35f11",
   "external_id": "adb8f31d-7a71-4003-85d7-3ac58158461f",
+  "account_ref_id": "someone@xxx.com",
   "created_at": 1633445162,
   "status": "SUCCESS"
 }
@@ -478,6 +483,7 @@ symbol | string | 划转交易的货币
 direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必须
+account_ref_id | string(150) | 合作方账户关联ID，非必须
 status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING`
 created_at | timestamp(number) | 划转交易创建时间
 ## 账户双向划转
@@ -491,7 +497,8 @@ curl -X POST "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
     "symbol": "USDT",
     "direction": "debit",
     "conversion_id": "d81adf6d-0322-41d7-8c32-669203e35f11",
-    "external_id": "adb8f31d-7a71-4003-85d7-3ac58158461f"
+    "external_id": "adb8f31d-7a71-4003-85d7-3ac58158461f",
+    "account_ref_id": "someone@xxx.com"
 }'
 ```
 
@@ -517,7 +524,8 @@ curl -X POST "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
   "customer_fee": "0.01",
   "actual_amount": "0.000001",
   "external_id": "bbda2651-0ae3-447f-acaf-c23b5449bfb5",
-  "instruction_id": "3a344f80-f057-4841-b186-7a1daa0b8390"
+  "instruction_id": "3a344f80-f057-4841-b186-7a1daa0b8390",
+  "account_ref_id": "someone@xxx.com"
 }
 ```
 
@@ -542,6 +550,7 @@ otp | string | OTP的数值，特指Google Authenticator
 direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的唯一订单号，如重复订单将拒绝
+account_ref_id | string(150) | 合作方账户关联ID，非必须
 
 ### 返回对象描述
 
@@ -554,5 +563,6 @@ actual_amount | string(number) | 实际金额
 external_id | string(50) | 合作方的第三方ID，非必需
 status | string(enum) | 划转的结果，`SUCCESS` / `FAILED` / `PROCESSING`
 instruction_id | string(uuid) | 交易请求ID，对账用
+account_ref_id | string(150) | 合作方账户关联ID
 
 <!-- ### OTP的使用！！！ -->

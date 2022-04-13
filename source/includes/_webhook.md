@@ -96,6 +96,41 @@ conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必需
 status | string(enum) | 划转的结果，SUCCESS / FAILED -->
 
+## 交易状态事件
+
+> JSON结构体:
+
+```json
+{
+  "transfer_id": "4c416854-8970-4838-99ad-febc437ac81d",
+  "instructed_amount": "1002.865",
+  "customer_fee": "2.5",
+  "actual_amount": "1000.365",
+  "symbol": "USDT",
+  "direction": "DEBIT",
+  "external_id": "adb8f31d-7a71-4003-85d7-3ac58158461f",
+  "account_ref_id": "somebody@xxx.com",
+  "created_at": 1633445162,
+  "status": "SUCCESS"
+}
+```
+
+### transfers对象描述
+
+字段 | 类型 | 描述
+--------- | ------- | -----------
+transfer_id | string(uuid) | 划转交易ID
+instructed_amount | string(number) | 请求金额
+customer_fee | string(number) | 收取客户的费用金额
+actual_amount | string(number) | 客户实际收到的金额
+symbol | string | 划转交易的货币
+direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
+conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
+external_id | string(50) | 合作方的第三方ID，非必须
+account_ref_id | string(150) | 合作方账户关联ID，非必须
+status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING`
+created_at | timestamp(number) | 划转交易创建时间
+
 ## 事件签名
 
 Webhook 签名规则与API认证一致，请参考[API认证](#api)

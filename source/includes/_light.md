@@ -6,6 +6,15 @@
 
 
 
+## 合作方准备
+
+- 请向Cabital [BD](mailto:bd@cabital.com) 申请 NDA，在电子签署及确定后，向 Cabital 索取 CI Media的资源包
+- 向 Cabital BD 提供合作方的Logo，要求包含亮、暗两类，SVG和PNG各一个，PNG要求为512 X 512 Pixel
+- Cabital 提供沙箱环境，请提供测试账号的email地址，Cabital会在系统配置完备之后，给对应email创建账号，并通过模拟KYC以供测试。该账户将获得1000元USDT测试金，该账户禁止使用提款功能
+- 如需联系技术支持，请发给[技术服务](mailto:developer@cabital.com) / [客户服务](support@cabital.com)
+
+
+
 ## 获取Light配置
 
 由于轻量级集成，所有的交互由Cabital提供，所有的配置和设定均和Cabital系统设置一致。
@@ -399,5 +408,3 @@ curl "http://api.cabital.com/api/v1/light/quotes/USDT-EUR"
 </aside>
 
 
-
-## 

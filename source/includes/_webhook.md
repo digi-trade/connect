@@ -71,40 +71,29 @@ data | object | false | 账户关联的一些额外数据，比如Mis-matched fi
 通常不需要监听 Transfer 事件，因为Transfer结果是同期返回给对手方的。
 </aside>
 
-### 交易状态事件
+### 划转交易状态变更事件
 
 > JSON结构体:
 
 ```json
 {
-  "transfer_id": "4c416854-8970-4838-99ad-febc437ac81d",
-  "instructed_amount": "1002.865",
-  "customer_fee": "2.5",
-  "actual_amount": "1000.365",
-  "symbol": "USDT",
-  "direction": "DEBIT",
-  "external_id": "adb8f31d-7a71-4003-85d7-3ac58158461f",
-  "account_ref_id": "somebody@xxx.com",
-  "created_at": 1633445162,
-  "status": "SUCCESS"
+  "transfer_id": "16d4dfe2-de1b-4ceb-b1d8-8b9b79a3200b",
+  "account_id": "1771ffd6-d20b-4858-ad34-d596a9ec51d4",
+  "status": "SUCCESS",
+  "event_time": "2022-04-01T09:00:00.000Z",
+  "data" : {}
 }
 ```
 
-### transfers对象描述
+### 划转交易状态变更事件对象描述
 
-字段 | 类型 | 描述
---------- | ------- | -----------
-transfer_id | string(uuid) | 划转交易ID
-instructed_amount | string(number) | 请求金额
-customer_fee | string(number) | 收取客户的费用金额
-actual_amount | string(number) | 客户实际收到的金额
-symbol | string | 划转交易的货币
-direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
-conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
-external_id | string(50) | 合作方的第三方ID，非必须
-account_ref_id | string(150) | 合作方账户关联ID，非必须
-status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING`
-created_at | timestamp(number) | 划转交易创建时间
+字段 | 类型 | 必须 | 描述
+--------- | ------- | ------------ | -----------
+transfer_id | string | true | 划转交易ID
+account_id | string | true | 本方的账户Id
+status | string(enum) | true | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING` / `CANCEL`
+event_time | datestamp | true | 事件产生的时间，格式为[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+data | object | false | 额外数据
 
 ## 事件签名
 

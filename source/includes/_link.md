@@ -171,7 +171,7 @@ curl -X POST "http://api.partner.com/link"
 | event_time     | timestamp | 事件产生的时间，格式为[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) |
 | data -> valid_until | number(timestamp) | 以秒为单位从Unix Epoch到当前的数字，用来表示该Link的有效时间，非必需 |
 
-### JSON Payload
+> 获得以下JSON结构体:
 
 ```json
 {
@@ -189,3 +189,40 @@ curl -X POST "http://api.partner.com/link"
 
 由于无法保证Partner的API可用性，所以在特殊情况下，Callback会按照标准Webhook的的重试机制总共尝试5次，直到第一次成功（2xx）或者全部失败，其频率参考Webhook的规则。
 
+
+
+## Partner提供接口（Profile）
+
+```shell
+curl -X GET "http://api.partner.com/profiles/<user_ext_ref>"
+```
+
+### HTTP 请求
+
+` GET 合作方提供URL`
+
+### URL参数
+
+| 参数         | 是否必须 | 描述                                                        |
+| ------------ | -------- | ----------------------------------------------------------- |
+| user_ext_ref | true     | Connect的外部账户id，如需要支持email，需要支持传入Email地址 |
+
+> 获得以下JSON结构体:
+
+```json
+{
+    "user_ext_ref": "fce4fd45-7dd7-4d4c-b06c-e17ff12f3e30",
+    "preferred_username": "John Doe",
+    "email": "jo****oe@a***s.com",
+  	"picture": "https://cdn.partner.com/avatars/fce4fd45-7dd7-4d4c-b06c-e17ff12f3e30.png"
+}
+```
+
+### 返回profile对象描述
+
+| 字段               | 类型              | 描述                                                |
+| ------------------ | ----------------- | --------------------------------------------------- |
+| sub                | string(string)    | Connect的外部Partner账户的唯一id，                  |
+| preferred_username | string            | 合作方用户名，默认显示项                            |
+| email              | string            | 合作方账户的email，非必需，可以混淆后传输，仅供显示 |
+| picture            | string(image url) | 作为我方在显示用户在合作方的头像，非必需            |

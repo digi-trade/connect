@@ -62,10 +62,13 @@ data | object | false | 账户关联的一些额外数据，比如Mis-matched fi
 
 ## 账户Transfer状态变化
 
-当对手方发起划转后，系统会根据现在的划转状态发送 Transfer事件 事件，其包含以下几个状态：
+当对手方/用户发起划转后，系统会根据现在的划转状态发送 Transfer事件 事件，其包含以下几个状态：
 
-- SUCCESS
+- EXECUTING
+- SUCCEEDED
 - FAILED
+
+合作方收到此信息后，通过事件里的account_id与transfer_id访问transfer详情
 
 <aside class="notice">
 通常不需要监听 Transfer 事件，因为Transfer结果是同期返回给对手方的。
@@ -79,7 +82,7 @@ data | object | false | 账户关联的一些额外数据，比如Mis-matched fi
 {
   "transfer_id": "16d4dfe2-de1b-4ceb-b1d8-8b9b79a3200b",
   "account_id": "1771ffd6-d20b-4858-ad34-d596a9ec51d4",
-  "status": "SUCCESS",
+  "status": "SUCCEEDED",
   "event_time": "2022-04-01T09:00:00.000Z",
   "data" : {}
 }
@@ -91,7 +94,7 @@ data | object | false | 账户关联的一些额外数据，比如Mis-matched fi
 --------- | ------- | ------------ | -----------
 transfer_id | string | true | 划转交易ID
 account_id | string | true | 本方的账户Id
-status | string(enum) | true | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING` / `CANCEL`
+status | string(enum) | true | 划转交易的状态，`SUCCEEDED` / `FAILED` / `EXECUTING` / `CANCEL`
 event_time | datestamp | true | 事件产生的时间，格式为[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
 data | object | false | 额外数据
 

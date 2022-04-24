@@ -226,3 +226,42 @@ curl -X GET "http://api.partner.com/profiles/<user_ext_ref>"
 | preferred_username | string            | 合作方用户名，默认显示项                            |
 | email              | string            | 合作方账户的email，非必需，可以混淆后传输，仅供显示 |
 | picture            | string(image url) | 作为我方在显示用户在合作方的头像，非必需            |
+
+
+
+
+
+## link状态与API访问权限
+
+
+
+### KYC Match的结果 = 我方 User （X） 的 证件 （A） 与合作方 User （Y ）的证件 （B）的一致性比对结果 （是否？关联 LINK状态）
+
+任何变化 都会 影响到 KYC Match 的结果
+
+
+
+### 客户需要KYC Match的情况下
+
+| Link状态 \ KYC MATCH | 符合         | 不符合   | 过程中                   |
+| -------------------- | ------------ | -------- | ------------------------ |
+| Linked               | Connected    | Rejected | Connecting（需要子状态） |
+| Unlinked             | Disconnected | N/A      | N/A                      |
+
+### 客户无需Match的情况下
+
+| Link状态 \ KYC PASSED | 符合         | 不符合   | 过程中     |
+| --------------------- | ------------ | -------- | ---------- |
+| Linked                | Connected    | Rejected | Connecting |
+| Unlinked              | Disconnected | N/A      | N/A        |
+
+
+
+### 实际状态与API权限
+
+| API \ Status   | Disconnected | Connected | Rejected | Connecting |
+| -------------- | ------------ | --------- | -------- | ---------- |
+| Account Detail | N            | Y         | Y        | Y          |
+| Convert        | N            | Y         | N        | Y?         |
+| Transfer       | N            | Y         | N        | N          |
+

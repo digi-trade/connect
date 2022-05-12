@@ -257,9 +257,9 @@ major_ccy | string | 主要货，用于转换限额判定
 </ul>
 </aside>
 
-## 账户划转列表
+## 基于账户获取划转列表
 
-查询划转历史记录，支持参数查询和分页。
+基于账户查询划转历史记录，支持参数查询和分页。
 
 ```shell
 curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
@@ -275,6 +275,7 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
   "transfers":[
     {
       "transfer_id": "4c416854-8970-4838-99ad-febc437ac81d",
+      "account_id": "6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c",
       "instructed_amount": "1002.865",
       "customer_fee": "2.5",
       "actual_amount": "1000.365",
@@ -282,20 +283,21 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
       "direction": "DEBIT",
       "conversion_id": "d81adf6d-0322-41d7-8c32-669203e35f11",
       "external_id": "adb8f31d-7a71-4003-85d7-3ac58158461f",
-      "external_ref_id": "someone@xxx.com",
+      "user_ext_ref": "bc6b32a7-414e-46e4-a8c4-901568ad51e2",
       "created_at": 1633445162,
       "status": "SUCCESS",
       "transfer_by": "PARTNER"
     },
     {
       "transfer_id": "4c416854-8971-4838-99ad-febc437ac81d",
+      "account_id": "6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c",
       "instructed_amount": "2.865",
       "customer_fee": "2.5",
       "actual_amount": "0.365",
       "symbol": "BTC",
       "direction": "CREDIT",
       "external_id": "adb8f31d-7a71-4003-85d7-3ac58158461f",
-      "external_ref_id": "somebody@xxx.com",
+      "user_ext_ref": "c66768c2-9d1a-4cd9-a255-16de265624ae",
       "created_at": 1633445160,
       "status": "SUCCESS",
       "transfer_by": "CUSTOMER"
@@ -326,6 +328,7 @@ created_to | false | NOW | 创建订单结束时间（Unix Time Epoch的秒数�
 字段 | 类型 | 描述
 --------- | ------- | -----------
 transfer_id | string(uuid) | 划转交易ID
+account_id | string(uuid) | Cabital提供的账户ID
 instructed_amount | string(number) | 请求金额
 customer_fee | string(number) | 收取客户的费用金额
 actual_amount | string(number) | 客户实际收到的金额
@@ -333,7 +336,91 @@ symbol | string | 划转交易的货币
 direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必须
-external_ref_id | string(150) | 合作方关联ID，非必须，通常为 Cabital 端提供，以Email / Phone Number / Chain Address
+user_ext_ref | string(150) | Connect的外部账户id，非必须，Link模式下为必须
+status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING` / `CANCEL`
+created_at | timestamp(number) | 划转交易创建时间
+transfer_by | string(enum) | 发起方，其值为`PARTNER` 或 `CUSTOMER`
+
+## 基于外部账户ID获取划转列表
+
+基于外部账户ID查询划转历史记录，支持参数查询和分页。
+
+```shell
+curl "/api/v1/userextref/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers"
+```
+
+> 返回JSON结构体:
+
+```json
+{
+  "pagination_response": {
+    "cursor": "-1"
+  },
+  "transfers":[
+    {
+      "transfer_id": "4c416854-8970-4838-99ad-febc437ac81d",
+      "account_id": "1f30d577-982a-4091-96e0-af3819fcd412",
+      "instructed_amount": "1002.865",
+      "customer_fee": "2.5",
+      "actual_amount": "1000.365",
+      "symbol": "USDT",
+      "direction": "DEBIT",
+      "conversion_id": "d81adf6d-0322-41d7-8c32-669203e35f11",
+      "external_id": "adb8f31d-7a71-4003-85d7-3ac58158461f",
+      "user_ext_ref": "6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c",
+      "created_at": 1633445162,
+      "status": "SUCCESS",
+      "transfer_by": "PARTNER"
+    },
+    {
+      "transfer_id": "4c416854-8971-4838-99ad-febc437ac81d",
+      "account_id": "bbdde6e2-25e0-4eab-a31d-37142e34c2ee",
+      "instructed_amount": "2.865",
+      "customer_fee": "2.5",
+      "actual_amount": "0.365",
+      "symbol": "BTC",
+      "direction": "CREDIT",
+      "external_id": "adb8f31d-7a71-4003-85d7-3ac58158461f",
+      "user_ext_ref": "6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c",
+      "created_at": 1633445160,
+      "status": "SUCCESS",
+      "transfer_by": "CUSTOMER"
+    }
+  ]
+}
+```
+
+### HTTP请求
+
+`GET /api/v1/userextref/<user_ext_ref>/transfers`
+
+### URL参数
+
+Parameter | 必须 | 默认值 | Description
+--------- | ------- | ----------- | -----------
+user_ext_ref | true | -- | Connect的外部账户id
+direction | false | 全部 | 方向过滤
+symbol | false | 全部 | 币种过滤
+cursor | false | "-1" | 查询结果集的游标位置
+page_size | false | 10 | 取值范围为（1-30）
+has_conversion | false | 全部 | bool型，过滤是否有相关转换订单
+created_from | false | 0 | 创建订单起始时间（Unix Time Epoch的秒数）
+created_to | false | NOW | 创建订单结束时间（Unix Time Epoch的秒数）
+
+### 返回transfers对象描述
+
+字段 | 类型 | 描述
+--------- | ------- | -----------
+transfer_id | string(uuid) | 划转交易ID
+account_id | string(uuid) | Cabital提供的账户ID
+instructed_amount | string(number) | 请求金额
+customer_fee | string(number) | 收取客户的费用金额
+actual_amount | string(number) | 客户实际收到的金额
+symbol | string | 划转交易的货币
+direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
+conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
+external_id | string(50) | 合作方的第三方ID，非必须
+user_ext_ref | string(150) | Connect的外部账户id，非必须，Link模式下为必须
 status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING` / `CANCEL`
 created_at | timestamp(number) | 划转交易创建时间
 transfer_by | string(enum) | 发起方，其值为`PARTNER` 或 `CUSTOMER`
@@ -341,14 +428,14 @@ transfer_by | string(enum) | 发起方，其值为`PARTNER` 或 `CUSTOMER`
 <aside class="warning">
 <b>注意事项：</b>
 <ul>
-  <li><i>SUCCESS</i> & <i>FAILED</i> 为划转交易终态，<i>PROCESSING</i> 为划转交易中间状态。</li>
+  <li><i>SUCCESS</i> & <i>FAILED</i> & <i>CANCEL</i> 为划转交易终态，<i>PROCESSING</i> 为划转交易中间状态。</li>
   <li>划转交易不会在 <i>PROCESSING</i> 状态停留很久，如果一笔划转交易长时间处于 <i>PROCESSING</i> 状态，则需要人工介入调查。</li>
 </ul>
 </aside>
 
-## 账户划转详情
+## 基于账户获取划转详情
 
-通过划转交易ID获取划转交易详情。
+基于账户获取划转交易详情。
 
 ```shell
 curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/4c416854-8970-4838-99ad-febc437ac81d"
@@ -359,6 +446,7 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/4c416854-8
 ```json
 {
   "transfer_id": "4c416854-8970-4838-99ad-febc437ac81d",
+  "account_id": "6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c",
   "instructed_amount": "1002.865",
   "customer_fee": "2.5",
   "actual_amount": "1000.365",
@@ -366,7 +454,7 @@ curl "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/4c416854-8
   "direction": "DEBIT",
   "conversion_id": "d81adf6d-0322-41d7-8c32-669203e35f11",
   "external_id": "adb8f31d-7a71-4003-85d7-3ac58158461f",
-  "external_ref_id": "someone@xxx.com",
+  "user_ext_ref": "393a841e-0fc6-4c76-a121-5056069f1c19",
   "created_at": 1633445162,
   "status": "SUCCESS",
   "transfer_by": "PARTNER"
@@ -389,6 +477,7 @@ transfer_id | true | 划转交易ID
 字段 | 类型 | 描述
 --------- | ------- | -----------
 transfer_id | string(uuid) | 划转交易ID
+account_id | string(uuid) | Cabital提供的账户ID
 instructed_amount | string(number) | 请求金额
 customer_fee | string(number) | 收取客户的费用金额
 actual_amount | string(number) | 客户实际收到的金额
@@ -396,10 +485,66 @@ symbol | string | 划转交易的货币
 direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必须
-external_ref_id | string(150) | 合作方关联ID，非必须，通常为 Cabital 端提供，以Email / Phone Number / Chain Address 
+user_ext_ref | string(150) | Connect的外部账户id，非必须，Link模式下为必须
 status | string(enum) | 划转交易的状态，`SUCCEEDED` / `FAILED` / `EXECUTING` / `CANCEL` 
 created_at | timestamp(number) | 划转交易创建时间
 transfer_by | string(enum) | 发起方，其值为`PARTNER` 或 `CUSTOMER` 
+
+## 获取划转详情
+
+获取划转交易详情。
+
+```shell
+curl "/api/v1/transfers/4c416854-8970-4838-99ad-febc437ac81d"
+```
+
+> 返回JSON结构体:
+
+```json
+{
+  "transfer_id": "4c416854-8970-4838-99ad-febc437ac81d",
+  "account_id": "6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c",
+  "instructed_amount": "1002.865",
+  "customer_fee": "2.5",
+  "actual_amount": "1000.365",
+  "symbol": "USDT",
+  "direction": "DEBIT",
+  "conversion_id": "d81adf6d-0322-41d7-8c32-669203e35f11",
+  "external_id": "adb8f31d-7a71-4003-85d7-3ac58158461f",
+  "user_ext_ref": "6d3654ac-5f8b-4202-af20-6ab3a7f44d78",
+  "created_at": 1633445162,
+  "status": "SUCCESS",
+  "transfer_by": "PARTNER"
+}
+```
+
+### HTTP请求
+
+`GET /api/v1/transfers/<transfer_id>`
+
+### URL参数
+
+Parameter | 必须 |  Description
+--------- | ------- |  -----------
+transfer_id | true | 划转交易ID
+
+### 返回transfers对象描述
+
+字段 | 类型 | 描述
+--------- | ------- | -----------
+transfer_id | string(uuid) | 划转交易ID
+account_id | string(uuid) | Cabital提供的账户ID
+instructed_amount | string(number) | 请求金额
+customer_fee | string(number) | 收取客户的费用金额
+actual_amount | string(number) | 客户实际收到的金额
+symbol | string | 划转交易的货币
+direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
+conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
+external_id | string(50) | 合作方的第三方ID，非必须
+user_ext_ref | string(150) | Connect的外部账户id，非必须，Link模式下为必须
+status | string(enum) | 划转交易的状态，`SUCCEEDED` / `FAILED` / `EXECUTING` / `CANCEL`
+created_at | timestamp(number) | 划转交易创建时间
+transfer_by | string(enum) | 发起方，其值为`PARTNER` 或 `CUSTOMER`
 
 ## 账户双向划转
 

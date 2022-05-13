@@ -72,7 +72,7 @@ classDef partner fill:#7FFFD4;
 ## 开始link
 
 ```shell
-curl "https://api.cabital.com/api/v1/partner/link"
+curl "https://connect.cabital.com/api/v1/partner/link"
 ```
 
 ### HTTP 请求
@@ -113,12 +113,12 @@ Url : 我方提供的页面
 
 
 ```shell
-curl "http://partner.cabital.com/api/v1/link/links/cdaa9983-9b8f-4478-ba60-896ac239879d"
+curl "http://connect.cabital.com/api/v1/partner/links/cdaa9983-9b8f-4478-ba60-896ac239879d"
 ```
 
 ### HTTP 请求
 
-`GET /api/v1/links/user_ext_ref`
+`GET /api/v1/partner/links/<user_ext_ref>`
 
 ### URL参数
 
@@ -133,7 +133,7 @@ curl "http://partner.cabital.com/api/v1/link/links/cdaa9983-9b8f-4478-ba60-896ac
   "account_uuid": "6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c",
   "link_status": "LINKED",
   "otp_ready": true,
-  "kyc_status": "KYC_PASS",
+  "kyc_status": 3,
   "email_address": "john.doe@email.com",
   "valid_until": 1648836455
 }
@@ -142,14 +142,24 @@ curl "http://partner.cabital.com/api/v1/link/links/cdaa9983-9b8f-4478-ba60-896ac
 
 | 字段          | 类型              | 描述                                                         |
 | ------------- | ----------------- | ------------------------------------------------------------ |
-| link_status   | string(ENUM)      | 账户关联状态                                                 |
+| link_status   | string(ENUM)      | 当前Link状态的最终状态 LINKED or UNLINKED                                                 |
 | account_uuid  | string            | Link后的虚拟Account ID                                       |
 | otp_ready     | bool              | 客户是否已经在 Cabital 绑定完成OTP，其在提现的时候需要附上   |
-| kyc_status    | enum              | 客户的KYC状态，其决定了是否已经开户成功                      |
+| kyc_status    | int(enum)              | 客户的KYC状态，其决定了是否已经开户成功                      |
 | email_address | string            | 用户在本方的 Email， 供合作方匹配                            |
 | valid_until   | number(timestamp) | 以秒为单位从Unix Epoch到当前的数字，用来表示该Link的有效时间，非必需 |
 
+### Enum解释
 
+- kyc_status
+
+| Bit位 | 描述     |
+| ----- | -------- |
+| 1     | INIT     |
+| 2     | PENDING |
+| 3     | PASS |
+| 4     | REJECT |
+| 5     | REVIEW |
 
 ## Partner提供接口（Callback）
 
@@ -167,7 +177,7 @@ curl -X POST "http://api.partner.com/link"
 | ----------- | ----------------- | ------------------------------------------------------------ |
 | user_ext_ref | string            | Partner在开始Link的时候唯一的external_id，在Partner侧具有唯一性 |
 | account_uuid  | string            | Link后的虚拟Account ID                                       |
-| staus      | string            | 当前Link状态的最终状态 |
+| staus      | string(enum)            | 当前Link状态的最终状态 LINKED or UNLINKED |
 | event_time     | timestamp | 事件产生的时间，格式为[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) |
 | data -> valid_until | number(timestamp) | 以秒为单位从Unix Epoch到当前的数字，用来表示该Link的有效时间，非必需 |
 
@@ -262,6 +272,6 @@ curl -X GET "http://api.partner.com/profiles/<user_ext_ref>"
 | API \ Status   | Disconnected | Connected | Rejected | Connecting |
 | -------------- | ------------ | --------- | -------- | ---------- |
 | Account Detail | N            | Y         | Y        | Y          |
-| Convert        | N            | Y         | N        | Y?         |
+| Convert        | N            | Y         | N        | N         |
 | Transfer       | N            | Y         | N        | N          |
 

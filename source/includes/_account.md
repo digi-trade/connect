@@ -336,7 +336,7 @@ symbol | string | 划转交易的货币
 direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必须
-user_ext_ref | string(150) | Connect的外部账户id，非必须，Link模式下为必须
+user_ext_ref | string(50) | Connect的外部账户id，非必须，Link模式下为必须
 status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING` / `CANCEL`
 created_at | timestamp(number) | 划转交易创建时间
 transfer_by | string(enum) | 发起方，其值为`PARTNER` 或 `CUSTOMER`
@@ -420,7 +420,7 @@ symbol | string | 划转交易的货币
 direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必须
-user_ext_ref | string(150) | Connect的外部账户id，非必须，Link模式下为必须
+user_ext_ref | string(50) | Connect的外部账户id，非必须，Link模式下为必须
 status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING` / `CANCEL`
 created_at | timestamp(number) | 划转交易创建时间
 transfer_by | string(enum) | 发起方，其值为`PARTNER` 或 `CUSTOMER`
@@ -485,7 +485,7 @@ symbol | string | 划转交易的货币
 direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必须
-user_ext_ref | string(150) | Connect的外部账户id，非必须，Link模式下为必须
+user_ext_ref | string(50) | Connect的外部账户id，非必须，Link模式下为必须
 status | string(enum) | 划转交易的状态，`SUCCEEDED` / `FAILED` / `EXECUTING` / `CANCEL` 
 created_at | timestamp(number) | 划转交易创建时间
 transfer_by | string(enum) | 发起方，其值为`PARTNER` 或 `CUSTOMER` 
@@ -541,7 +541,7 @@ symbol | string | 划转交易的货币
 direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必须
-user_ext_ref | string(150) | Connect的外部账户id，非必须，Link模式下为必须
+user_ext_ref | string(50) | Connect的外部账户id，非必须，Link模式下为必须
 status | string(enum) | 划转交易的状态，`SUCCEEDED` / `FAILED` / `EXECUTING` / `CANCEL`
 created_at | timestamp(number) | 划转交易创建时间
 transfer_by | string(enum) | 发起方，其值为`PARTNER` 或 `CUSTOMER`
@@ -648,13 +648,12 @@ curl -X PUT "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/306
 
 ### HTTP请求
 
-`PUT /api/v1/accounts/<account_id>/transfers/<transfer_id>`
+`PUT /api/v1/transfers/<transfer_id>`
 
 ### URL参数
 
 字段 | 必须 |  描述
 --------- | ------- |  -----------
-account_id | true | Cabital提供的账户ID
 transfer_id | true | 划转交易ID
 
 ### 提交对象描述
@@ -662,6 +661,7 @@ transfer_id | true | 划转交易ID
 字段 | 类型 | 必须  | 描述
 --------- | ------- | ------------  | -----------
 status | string(enum) | true | 划转的结果，`SUCCEEDED` / `FAILED` / `CANCEL` 
+code   | string(150)  | false | status为 `FAILED` 或者 `CANCEL` 的时候，需要给出错误代码
 message | string(150) | false | status为 `FAILED` 或者 `CANCEL` 的时候，需要给出提示信息
 handle_time | timestamp(number) | true | 处理时间
 

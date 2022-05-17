@@ -631,6 +631,7 @@ instruction_id | string(uuid) | 交易请求ID，对账用
 curl -X PUT "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/30643636-3162-6564-3563-373064383332"
 -d '{
     "status": "SUCCEEDED",
+    "code": "xxx001",
     "message": "ok",
     "handle_time": 1633445162
 }'
@@ -641,6 +642,7 @@ curl -X PUT "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/306
 ```json
 {
   "status": "SUCCEEDED",
+  "code": "xxx001",
   "message": "ok",
   "handle_time": 1633445162
 }

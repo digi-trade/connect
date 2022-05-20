@@ -392,6 +392,6 @@ direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID
 external_id | string(50) | 合作方的第三方ID
 user_ext_ref | string(150) | Connect的外部账户id，非必须，Link模式下为必须
-status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING`
+status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING` / `CANCEL`
 created_at | timestamp(number) | 划转交易创建时间
 

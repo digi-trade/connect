@@ -361,7 +361,7 @@ curl "/api/v1/recon/transfers/adb8f31d-7a71-4003-85d7-3ac58158461f"
   "direction": "DEBIT",
   "conversion_id": "d81adf6d-0322-41d7-8c32-669203e35f11",
   "external_id": "adb8f31d-7a71-4003-85d7-3ac58158461f",
-  "external_ref_id": "someone@xxx.com",
+  "user_ext_ref": "bc6b32a7-414e-46e4-a8c4-901568ad51e2",
   "status": "SUCCESS",
   "created_at": 1633445162
 }
@@ -391,7 +391,7 @@ symbol | string | 划转交易的货币
 direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT`为充值，`DEBIT`为提款
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID
 external_id | string(50) | 合作方的第三方ID
-external_ref_id | string(150) | 合作方关联ID，通常为 Cabital 端提供，以Email / Phone Number / Chain Address
-status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING`
+user_ext_ref | string(150) | Connect的外部账户id，非必须，Link模式下为必须
+status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING` / `CANCEL`
 created_at | timestamp(number) | 划转交易创建时间
 

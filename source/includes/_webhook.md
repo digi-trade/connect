@@ -82,7 +82,7 @@ data | object | false | 账户关联的一些额外数据，比如Mis-matched fi
 {
   "transfer_id": "16d4dfe2-de1b-4ceb-b1d8-8b9b79a3200b",
   "account_id": "1771ffd6-d20b-4858-ad34-d596a9ec51d4",
-  "status": "SUCCEEDED",
+  "status": "SUCCESS",
   "event_time": "2022-04-01T09:00:00.000Z",
   "data" : {}
 }
@@ -94,7 +94,7 @@ data | object | false | 账户关联的一些额外数据，比如Mis-matched fi
 --------- | ------- | ------------ | -----------
 transfer_id | string | true | 划转交易ID
 account_id | string | true | 本方的账户Id
-status | string(enum) | true | 划转交易的状态，`SUCCEEDED` / `FAILED` / `EXECUTING` / `CANCEL`
+status | string(enum) | true | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING` / `CANCEL`
 event_time | datestamp | true | 事件产生的时间，格式为[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
 data | object | false | 额外数据
 

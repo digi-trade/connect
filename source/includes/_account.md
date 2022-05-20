@@ -486,7 +486,7 @@ direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必须
 user_ext_ref | string(150) | Connect的外部账户id，非必须，Link模式下为必须
-status | string(enum) | 划转交易的状态，`SUCCEEDED` / `FAILED` / `EXECUTING` / `CANCEL` 
+status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING` / `CANCEL` 
 created_at | timestamp(number) | 划转交易创建时间
 transfer_by | string(enum) | 发起方，其值为`PARTNER` 或 `CUSTOMER` 
 
@@ -542,7 +542,7 @@ direction | string(enum) | 划转交易的方向，以Cabital为中心，`CREDIT
 conversion_id | string(uuid) | C+T关联交易中的转换订单ID，非必须
 external_id | string(50) | 合作方的第三方ID，非必须
 user_ext_ref | string(150) | Connect的外部账户id，非必须，Link模式下为必须
-status | string(enum) | 划转交易的状态，`SUCCEEDED` / `FAILED` / `EXECUTING` / `CANCEL`
+status | string(enum) | 划转交易的状态，`SUCCESS` / `FAILED` / `PROCESSING` / `CANCEL`
 created_at | timestamp(number) | 划转交易创建时间
 transfer_by | string(enum) | 发起方，其值为`PARTNER` 或 `CUSTOMER`
 
@@ -618,7 +618,7 @@ instructed_amount | string(number) | 请求金额
 customer_fee | string(number) | 收取客户的费用金额
 actual_amount | string(number) | 实际金额
 external_id | string(50) | 合作方的第三方ID，非必需
-status | string(enum) | 划转交易的结果，`SUCCEEDED` / `FAILED` / `EXECUTING` / `CANCEL` 
+status | string(enum) | 划转交易的结果，`SUCCESS` / `FAILED` / `PROCESSING` / `CANCEL` 
 instruction_id | string(uuid) | 交易请求ID，对账用
 
 <!-- ### OTP的使用！！！ -->
@@ -630,7 +630,7 @@ instruction_id | string(uuid) | 交易请求ID，对账用
 ```shell
 curl -X PUT "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/30643636-3162-6564-3563-373064383332"
 -d '{
-    "status": "SUCCEEDED",
+    "status": "SUCCESS",
     "code": "xxx001",
     "message": "ok",
     "handle_time": 1633445162
@@ -641,7 +641,7 @@ curl -X PUT "/api/v1/accounts/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/transfers/306
 
 ```json
 {
-  "status": "SUCCEEDED",
+  "status": "SUCCESS",
   "code": "xxx001",
   "message": "ok",
   "handle_time": 1633445162
@@ -662,7 +662,7 @@ transfer_id | true | 划转交易ID
 
 字段 | 类型 | 必须  | 描述
 --------- | ------- | ------------  | -----------
-status | string(enum) | true | 划转的结果，`SUCCEEDED` / `FAILED` / `CANCEL` 
+status | string(enum) | true | 划转的结果，`SUCCESS` / `FAILED` / `CANCEL` 
 code   | string(150)  | false | status为 `FAILED` 或者 `CANCEL` 的时候，需要给出错误代码
 message | string(150) | false | status为 `FAILED` 或者 `CANCEL` 的时候，需要给出提示信息
 handle_time | timestamp(number) | true | 处理时间

@@ -232,7 +232,7 @@ curl -X GET "http://api.partner.com/profiles/<user_ext_ref>"
 
 | 字段               | 类型              | 描述                                                |
 | ------------------ | ----------------- | --------------------------------------------------- |
-| sub                | string(string)    | Connect的外部Partner账户的唯一id，                  |
+| user_ext_ref       | string(string)    | Connect的外部Partner账户的唯一id，                  |
 | preferred_username | string            | 合作方用户名，默认显示项                            |
 | email              | string            | 合作方账户的email，非必需，可以混淆后传输，仅供显示 |
 | picture            | string(image url) | 作为我方在显示用户在合作方的头像，非必需            |

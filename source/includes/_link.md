@@ -238,8 +238,7 @@ curl -X GET "http://api.partner.com/profiles/<user_ext_ref>"
 | picture            | string(image url) | 作为我方在显示用户在合作方的头像，非必需            |
 
 
-
-
+<!--
 
 ## link状态与API访问权限
 
@@ -275,3 +274,4 @@ curl -X GET "http://api.partner.com/profiles/<user_ext_ref>"
 | Convert        | N            | Y         | N        | N         |
 | Transfer       | N            | Y         | N        | N          |
 
+-->
